@@ -116,7 +116,6 @@
 		"../scss/custom/_type.scss",
 		"../scss/custom/_tables.scss",
 		"../scss/custom/_checkboxes-radio.scss",
-		"../scss/custom/_fixed-plugin.scss",
 		"../scss/custom/_sidebar-and-main-panel.scss",
 		"../scss/custom/_misc.scss",
 		"../scss/custom/_rtl.scss",

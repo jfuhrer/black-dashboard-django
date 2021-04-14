@@ -27,7 +27,7 @@
   <link rel="icon" type="image/png"          href="{% static 'assets/img/favicon.png'    %}">
 
   <title>
-    Black Dashboard Django - {% block title %}{% endblock %} | Creative-Tim
+    FinCon - {% block title %}{% endblock %}
   </title>
 
   <!--     Fonts and icons     -->
@@ -46,10 +46,12 @@
 
 </head>
 
-<body class="">
+<body class="white-content"> <!-- set default white light mode -->
   <div class="wrapper">
+    {% if request.user.is_authenticated %}
+       {% include 'includes/sidebar.html' %}
+    {% endif %}
 
-    {% include 'includes/sidebar.html' %}
 
     <div class="main-panel">
 
@@ -67,11 +69,7 @@
     
   </div>
 
-  {% include 'includes/fixed-plugin.html' %}
-
   {% include 'includes/scripts.html' %}
-
-  {% include 'includes/scripts-sidebar.html' %}
 
   <!-- Specific Page JS goes HERE  -->
   {% block javascripts %}{% endblock javascripts %}
