@@ -44,6 +44,7 @@
   --white: #ffffff;
   --neutral: #ffffff;
   --darker: black;
+  --black-blue: #1d253b;
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
@@ -57,6 +58,11 @@
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+::selection {
+  color: var(--gray);
+  background: var(--lighter);
 }
 
 html {
@@ -5411,7 +5417,7 @@ input[type="button"].btn-block {
   padding: 0.75rem 1rem;
   margin-bottom: 1rem;
   list-style: none;
-  background-color: #1d253b;
+  background-color: var(--black-blue);
   border-radius: 0.25rem;
 }
 
@@ -14099,7 +14105,7 @@ fieldset[disabled] .btn-link.active {
 }
 
 .dropdown-menu.dropdown-black {
-  background: linear-gradient(to bottom, #222a42 0%, #1d253b 100%);
+  background: linear-gradient(to bottom, #222a42 0%, var(--black-blue) 100%);
   border: 1px solid #344675;
 }
 
@@ -14139,7 +14145,7 @@ fieldset[disabled] .btn-link.active {
 }
 
 .dropup .dropdown-menu.dropdown-black:after {
-  color: #1d253b;
+  color: var(--black-blue);
   z-index: 2;
 }
 
@@ -15718,7 +15724,7 @@ img {
 }
 
 .modal.modal-black .modal-content {
-  background: linear-gradient(to bottom, #222a42 0%, #1d253b 100%);
+  background: linear-gradient(to bottom, #222a42 0%, var(--black-blue) 100%);
   color: rgba(255, 255, 255, 0.8);
 }
 
@@ -18522,7 +18528,7 @@ code {
 .form-control[disabled],
 .form-control[readonly],
 fieldset[disabled] .form-control {
-  background-color: #1d253b;
+  background-color: var(--black-blue);
   color: #344675;
   cursor: not-allowed;
 }
@@ -19037,27 +19043,27 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .white-content .navbar.navbar-transparent .navbar-brand {
-  color: #1d253b;
+  color: var(--black-blue);
 }
 
 .white-content .navbar.navbar-transparent .navbar-toggler-bar {
-  background: #1d253b;
+  background: var(--black-blue);
 }
 
 .white-content .navbar.navbar-transparent .navbar-nav li a:not(.dropdown-item) {
-  color: #1d253b;
+  color: var(--black-blue);
 }
 
 .white-content .navbar.navbar-transparent .navbar-nav li a:not(.dropdown-item) i {
-  color: #1d253b;
+  color: var(--black-blue);
 }
 
 .white-content .navbar.navbar-transparent .navbar-minimize button i {
-  color: #1d253b;
+  color: var(--black-blue);
 }
 
 .white-content .navbar.navbar-transparent .search-bar.input-group i {
-  color: #1d253b;
+  color: var(--black-blue);
 }
 
 .white-content .navbar.navbar-transparent .search-bar.input-group .form-control {
@@ -19090,7 +19096,7 @@ Copyright (c) 2015 Daniel Eden
 .white-content ol li,
 .white-content ul li,
 .white-content pre {
-  color: #1d253b;
+  color: var(--black-blue);
 }
 
 .white-content .font-icon-detail i {
@@ -19136,7 +19142,7 @@ Copyright (c) 2015 Daniel Eden
 
 .white-content .input-group-prepend .input-group-text {
   border-color: rgba(29, 37, 59, 0.5);
-  color: #1d253b;
+  color: var(--black-blue);
 }
 
 .white-content .form-control {
@@ -19269,12 +19275,12 @@ Copyright (c) 2015 Daniel Eden
 
 .white-content .card:not(.card-white) .card-header .card-title,
 .white-content .card:not(.card-white) .card-body .card-title {
-  color: #1d253b;
+  color: var(--black-blue);
 }
 
 .white-content .card:not(.card-white) .card-body .card-category,
 .white-content .card:not(.card-white) .card-body .card-description {
-  color: #1d253b;
+  color: var(--black-blue);
 }
 
 .white-content .card:not(.card-white) label:not(.btn) {
@@ -19336,11 +19342,11 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .white-content .footer ul li a {
-  color: #1d253b;
+  color: var(--black-blue);
 }
 
 .white-content .footer .copyright {
-  color: #1d253b;
+  color: var(--black-blue);
 }
 
 .white-content .progress-container .progress,
@@ -19356,7 +19362,7 @@ Copyright (c) 2015 Daniel Eden
 
 .white-content .progress-container .progress-badge,
 .white-content .progress-container.progress.sm .progress-badge {
-  color: #1d253b;
+  color: var(--black-blue);
 }
 
 .white-content .full-page {
@@ -19373,7 +19379,7 @@ Copyright (c) 2015 Daniel Eden
 .white-content .full-page ol li,
 .white-content .full-page ul li,
 .white-content .full-page pre {
-  color: #1d253b;
+  color: var(--black-blue);
 }
 
 .white-content .full-page .description {
@@ -19381,16 +19387,16 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .white-content .full-page .footer ul li a {
-  color: #1d253b;
+  color: var(--black-blue);
 }
 
 .white-content .full-page .footer .copyright {
-  color: #1d253b;
+  color: var(--black-blue);
 }
 
 .white-content .nav-pills .nav-item .nav-link:not(.active) {
   background: #d3d7e9;
-  color: #1d253b;
+  color: var(--black-blue);
 }
 
 .white-content .nav-pills .nav-item .nav-link:not(.active):hover {
@@ -19508,7 +19514,7 @@ Copyright (c) 2015 Daniel Eden
 
 .card.card-white .input-group-prepend .input-group-text {
   border-color: rgba(29, 37, 59, 0.2);
-  color: #1d253b;
+  color: var(--black-blue);
 }
 
 .card.card-white .form-control {

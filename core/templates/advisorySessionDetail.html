@@ -1,0 +1,71 @@
+{% extends "layouts/base.html" %}
+{% block title %} Beratung November 2019{% endblock %}
+{% load static %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'assets/css/advisorySessionDetail.css' %}">
+{% endblock stylesheets %}
+
+{% block content %}
+
+<section class="timeline">
+  <ul class="design">
+    <li class="design">
+      <div class="advisory-detail">
+        <h3>Beratung 13. November 2019</h3>
+        <h4>Eckdaten</h4>
+        Kundenberaterin Maja Siebert <br>
+        in der Filiale Altdorf (oder via Zoom Link: ...)
+        <h4>Aktuelle Situation</h4>
+        <ul class="bullet-points">
+          <li>Regelmässiges Einkommen CHF 102’000</li>
+          <li>Keine grossen, vorhersehbare Ausgaben in den nächsten Jahren</li>
+          <li>Bereits kleine Erfahrungen mit Finanzprodukten</li>
+          <li>Interesse an einzelnen Aktien, Fokus Nachhaltigkeit</li>
+        </ul>
+        Aktuelle Portfolioverteilung
+        <img src="{% static 'assets/img/portfolio_verteilung.jpg' %}" alt="Aktuelle Portfolioverteilung Kuchendiagramm">
+        <h4>Anlagekriterien</h4>
+        <ul class="bullet-points">
+          <li>Anlagehorizont:  8- 12 Jahre</li>
+          <li>Risikobereitschaft:  Hoch</li>
+          <li>Verlusttragbarkeit:  Gegeben</li>
+          <li> Finanzielle Situation: Regelmässiges Einkommen CHF 102’000, Liquide Mittel CHF 150’000. Keine Hypothek oder Schulden</li>
+          <li>Erfahrung & Kenntnisse: Bereits kleine Erfahrungen mit Finanzprodukten, investiert in Strategy Equity Fond. Gute Kenntnisse & Interesse an einzelnen Aktien</li>
+        </ul>
+        <br>
+        <br>
+        <img src="{% static 'assets/img/asset_allokation.jpeg' %}" alt="Strategische Asset Allokation">
+
+        <h4>Anlagestrategie </h4>
+        Basierend auf den zuvor definierten Anlagekriterien trifft die Anlagestrategie Wachstum am besten auf Sie zu.<br>
+        Nötige Umschichtungen für die Strategie Wachstum:
+        <h4>Möglichkeiten / Vorschläge </h4>
+        <h6>Fonds</h6>
+        Die BANK hat mehrere Fonds, welche sich im Anteil an Aktien unterscheiden.  Fonds Strategy Fixed Income, Growth and Performance kommen in Frage.  Aufgrund Anlagestrategie präferiert Kunde Growth.
+        <h6>ETF</h6>
+        Exchange Traded Funds. Passive gemanagte Indexfonds: haben tiefere Gebühren, decken einen grösseren Bereich ab als einzelne Aktien, ähnlich wie aktiv gemanagte Fonds von der Bank. Keine aktiven Anpassungen an Börsenentwicklung.
+        <h4>Entscheidungen </h4>
+        Investition in Fonds LUX Strategy Growth
+        100 Stück à CHF 120
+        Investition von CHF 12’000
+        Ausgeführt von Beraterin am 18. Oktober 2019
+        <h4>Hot Leads </h4>
+        Kunde überlegt sich noch, ob er ETFs kaufen will und würde sich allenfalls wieder bei der Bankberaterin melden.
+        <h4>Ergänzung: Selbständiger Kauf: SPI </h4>
+        50 Stück à CHF 5’000
+        Ausgeführt von Kundin am 31. Oktober 2019
+      </div>
+    </li>
+    <li class="design">
+      <div class="back-to-timeline">
+        <a href="/advisorySession.html" style="color:black">Zurück zum Zeitstrahl </a>
+      </div>
+    </li>
+  </ul>
+</section>
+{% endblock content %}
+
+{% block javascripts %}
+  <script type="text/javascript" src="{% static 'assets/js/timeline.js' %}"></script>
+{% endblock javascripts %}

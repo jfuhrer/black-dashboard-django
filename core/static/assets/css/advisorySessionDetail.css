@@ -1,0 +1,88 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  overflow-x: hidden;
+  padding-bottom: 50px;
+}
+
+h4 {
+    margin-bottom: 5px;
+    margin-top: 30px;}
+
+.advisory-detail {
+}
+
+.back-to-timeline {
+    border:none !important;
+}
+
+.bullet-points {
+    padding-left: 20px;
+    margin: 0 0 100px 0 !important;
+}
+
+.bullet-points li {
+    margin: 0 0 10px 0;
+}
+
+
+/*timeline stroke*/
+.timeline ul.design li.design {
+  list-style-type: none;
+  position: relative;
+  width: 6px;
+  padding-top: 50px;
+  background: var(--primary);
+}
+
+/* bullets*/
+.timeline ul.design li.design::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50px;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--duskyPink);
+}
+
+
+.timeline ul.design li.design div {
+  position: relative;
+  padding: 15px;
+  border-color: var(--duskyPink);
+  border-style: solid;
+  left: 25px;
+  color: var(--black-blue);
+  width: 1200px; /* ToDo: use relative position, ot fixed!*/
+}
+
+/* GENERAL MEDIA QUERIES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+@media screen and (max-width: 900px) {
+  .timeline ul.design li.design div {
+    width: 250px;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+  .timeline ul.design li.design {
+    margin-left: 20px;
+  }
+  .timeline ul.design li.design div {
+    width: calc(100vw - 91px);
+  }
+
+}
