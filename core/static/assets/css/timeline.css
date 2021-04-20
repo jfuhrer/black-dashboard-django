@@ -23,13 +23,18 @@ body {
 .timeline-text {
     color: white
 }
+
+.next-advisory {
+    background: var(--yellow) !important
+}
+
 .timeline ul li {
   list-style-type: none;
   position: relative;
   width: 6px;
   margin: 0 auto;
   padding-top: 150px; /* space between the bullets */
-  background: #8DABBE; /* same as timeline */
+  background: var(--primary);
 }
 
 .timeline ul li::after {
@@ -49,7 +54,7 @@ body {
   bottom: 0;
   width: 400px;
   padding: 15px;
-  background: #C99E9C;
+  background: var(--duskyPink);
 }
 
 .timeline ul li div::before {
@@ -68,7 +73,13 @@ body {
 .timeline ul li:nth-child(odd) div::before {
   left: -15px;
   border-width: 8px 16px 8px 0;
-  border-color: transparent #C99E9C transparent transparent;
+  border-color: transparent var(--duskyPink) transparent transparent;
+}
+
+.timeline ul li:first-child div::before {
+  left: -15px;
+  border-width: 8px 16px 8px 0;
+  border-color: transparent var(--yellow) transparent transparent;
 }
 
 .timeline ul li:nth-child(even) div {
@@ -78,7 +89,7 @@ body {
 .timeline ul li:nth-child(even) div::before {
   right: -15px;
   border-width: 8px 0 8px 16px;
-  border-color: transparent transparent transparent #C99E9C;
+  border-color: transparent transparent transparent var(--duskyPink);
 }
 
 time {
@@ -96,7 +107,10 @@ time {
 }
 
 .timeline ul li.in-view::after {
-  background: #C99E9C;
+  background: var(--duskyPink);
+}
+.timeline ul li:first-child.in-view::after {
+  background: var(--yellow);
 }
 
 .timeline ul li div {
@@ -146,6 +160,6 @@ time {
   .timeline ul li:nth-child(even) div::before {
     left: -15px;
     border-width: 8px 16px 8px 0;
-    border-color: transparent #C99E9C transparent transparent;
+    border-color: transparent var(--duskyPink) transparent transparent;
   }
 }
