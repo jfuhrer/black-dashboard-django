@@ -3,16 +3,16 @@
 {% load static %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{% static 'assets/css/advisorySession.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/advisory-session.css' %}">
 {% endblock stylesheets %}
 
 {% block content %}
-
+{% for person in persons %}
 <section class="timeline">
   <ul>
-    <li class="bullet-next-advisory">
+    <li class="bullet-next-advisory" onclick="backToMainTimeline()">
       <div class="timeline-advisory next-advisory">
-          <time> <a href="/advisorySessionDetail.html">Nächste Beratung 17. Mai 2021 </a> </time> mit Kundenberaterin Maja Siebert<br>
+          <time>{{person.first_name}}  <a href="/advisorySessionDetail.html">Nächste Beratung 17. Mai 2021 </a> </time> mit Kundenberaterin Maja Siebert<br>
           Online via Zoom<br>
           <a style="text-decoration:underline;"
              href="https://uzh.zoom.us/j/69046937724?pwd=bjFPOHNIc0V0S2JHQnE3b2JTUlNOZz10">
@@ -20,7 +20,7 @@
           <b>Agenda</b> <br> Portfolioentwicklung, Wünsche & Ziele, Allfällige Anpassungen
       </div>
     </li>
-    <li>
+    <li onclick="backToMainTimeline()">
       <div class="timeline-advisory advisory-2020">
         <time> <a href="/advisorySessionDetail.html">Beratung Oktober 2020 </a> </time> mit Kundenberaterin Maja Siebert<br>
         in der Filiale Altdorf<br> <br>
@@ -30,17 +30,17 @@
         Entscheid Ausstehend ETFs
       </div>
     </li>
-    <li>
+    <li onclick="backToMainTimeline()">
       <div class="timeline-event advisory-2020">
         <time>Telefongespräch April 2020 </time> mit Herrn Alex Meier<br> Erkundigung nach Bedürfnisse<br>keine Anpassungen getätigt
       </div>
     </li>
-    <li>
+    <li onclick="backToMainTimeline()">
       <div class="timeline-event advisory-2019">
         <time>Zukauf 14. September 2019</time>Strategy Growth Fonds<br>Valor 601320<br>Investition à CHF 20'000<br>Kaufauftrag online via E-Banking aufgegeben
       </div>
     </li>
-    <li>
+    <li onclick="backToMainTimeline()">
       <div class="timeline-advisory advisory-2017">
         <time>Beratung Mai 2017</time>
          mit Kundenberaterin Maja Siebert<br>
@@ -51,33 +51,34 @@
         Entscheid Ausstehend ETFs
       </div>
     </li>
-    <li>
+    <li onclick="backToMainTimeline()">
       <div class="timeline-event advisory-2017">
         <time>Umschichtung Februar 2017</time> Von Balanced auf Growth<br>Total CHF 50'000<br>Selbständig Online via E-Banking
       </div>
     </li>
-    <li>
+    <li onclick="backToMainTimeline()">
       <div class="timeline-event advisory-2015">
         <time>Telefongespräch April 2015 </time> mit Herrn Alex Meier<br>Bestätigung Anlegerprofil<br>Profil Balanced aktuell: Risikostufe 2/5
       </div>
     </li>
-    <li>
+    <li onclick="backToMainTimeline()">
       <div class="timeline-advisory advisory-2009">
         <time>Beratung Nov 2009</time> Anlagestrategie Wachstum<br> Keine Investition
       </div>
     </li>
-    <li>
+    <li onclick="backToMainTimeline()">
       <div class="timeline-event advisory-2005">
         <time>Telefongespräch April 2005 </time> mit Herrn Alex Meier<br>Erkundigung nach Bedürfnisse<br>keine Anpassungen getätigt
       </div>
     </li>
-    <li>
+    <li onclick="backToMainTimeline()">
       <div class="timeline-advisory advisory-2004">
         <time>Beratung Mai 2004</time> Anlagestrategie Wachstum<br>  Investition CHF 15'000
       </div>
     </li>
   </ul>
 </section>
+{% endfor %}
 {% endblock content %}
 
 {% block javascripts %}

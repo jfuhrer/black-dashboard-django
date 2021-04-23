@@ -11,6 +11,9 @@ urlpatterns = [
     # The home page
     path('', views.index, name='home'),
 
+    # ToDo: non-static path would be better
+    re_path(r'^advisorySession.html$', views.advisorySessions, name='advisorySessions'),
+
     # Matches any html file
     re_path(r'^.*\.*', views.pages, name='pages'),
 

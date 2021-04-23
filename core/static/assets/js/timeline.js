@@ -31,3 +31,9 @@
   window.addEventListener("scroll", callbackFunc);
 
 })();
+
+function backToMainTimeline() {
+  location.href = "/index.html";
+}
+
+

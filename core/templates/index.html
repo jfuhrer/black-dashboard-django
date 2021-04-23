@@ -7,12 +7,12 @@
 {% endblock stylesheets %}
 
 {% block content %}
-
+{% for person in persons %}
 <section class="timeline">
   <ul>
     <li>
       <div class="timeline-text next-advisory">
-        <time>Nächste Beratung 17. Mai 2021</time> 10:00 Uhr <br> Mit Frau Maja Siebert <br> Online via Zoom
+        <time>{{person.first_name}} Nächste Beratung 17. Mai 2021</time> 10:00 Uhr <br> Mit Frau Maja Siebert <br> Online via Zoom
       </div>
     </li>
     <li>
@@ -52,6 +52,7 @@
     </li>
   </ul>
 </section>
+{% endfor %}
 {% endblock content %}
 
 {% block javascripts %}

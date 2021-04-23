@@ -56,7 +56,6 @@ h4 {
   background: var(--duskyPink);
 }
 
-
 .timeline ul.design li.design div {
   position: relative;
   padding: 15px;
@@ -64,17 +63,16 @@ h4 {
   border-style: solid;
   left: 25px;
   color: var(--black-blue);
-  width: 1200px; /* ToDo: use relative position, ot fixed!*/
+  width: 1500px; /* ToDo: use relative position, ot fixed!*/
 }
 
 /* GENERAL MEDIA QUERIES
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1200px) { /* ToDo: not correct behaviour here*/
   .timeline ul.design li.design div {
-    width: 250px;
-  }
-
+    width: calc(100vw - 91px);
+      }
 }
 
 @media screen and (max-width: 600px) {
