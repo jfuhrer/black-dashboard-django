@@ -4,30 +4,27 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
 from django.http import HttpResponse
 from django import template
-from .models import PersonTest
+from .models import PersonTest, AdvisorySession
 
 @login_required(login_url="/login/")
 def index(request):
     context = {}
     try:
-        username = None
-        username = request.user.username
         userId = request.user
-        print('userId ', userId)
-        if username is None:
-            print('username is none')  # ToDo: throw better exception
-        else:
-            print('get advisory sessions for user', username)
-        persons = PersonTest.objects.filter(first_name=username) # ToDo: maybe select with id, not username?
+        if userId is None:
+            print('user cannot be found', userId)  # ToDo: throw better exception
 
-        context = {'persons': persons}
+        advisories = AdvisorySession.objects.filter(person_id=userId).filter(Q(type='advisory') | Q(type='next-advisory')).order_by('-date')
+
+        context = {'advisories': advisories}
         context['segment'] = 'index'
 
-        return render(request, "index.html", {'persons': persons})
+        return render(request, "index.html", context)
 
     except template.TemplateDoesNotExist:
         html_template = loader.get_template( 'page-404.html' )
@@ -65,22 +62,13 @@ def advisorySessions(request):
     context = {}
 
     try:
-        username = None
-        username = request.user.username
         userId = request.user
-        print(userId)
-        if username is None:
-            print('username is none')  # ToDo: throw better exception
-        else:
-            print('get advisory sessions for user', username)
+        if userId is None:
+            print('user cannot be found', userId)  # ToDo: throw better exception
 
-        persons = PersonTest.objects.filter(first_name=username)
-        context = {'persons': persons}
-
-        load_template = request.path.split('/')[-1]
-        context['segment'] = load_template
+        advisories = AdvisorySession.objects.filter(person_id=userId).order_by('-date')
+        context = {'advisories': advisories}
         return render(request, "advisorySession.html", context)
-
 
     except template.TemplateDoesNotExist:
 

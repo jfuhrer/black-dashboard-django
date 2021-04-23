@@ -7,52 +7,28 @@
 {% endblock stylesheets %}
 
 {% block content %}
-{% for person in persons %}
+
 <section class="timeline">
   <ul>
+    {% for advisory in advisories %}
+    {% if advisory.type == "next-advisory" %}
     <li>
       <div class="timeline-text next-advisory">
-        <time>{{person.first_name}} Nächste Beratung 17. Mai 2021</time> 10:00 Uhr <br> Mit Frau Maja Siebert <br> Online via Zoom
+        <time> <a href="/advisorySession.html"> {{advisory.title}} </time> {{advisory.date}}  {{advisory.place}} <br> Mit {{advisory.advisor_name}} <br>
+        <a style="text-decoration:underline;" href={{advisory.overview}}>Zoom Meeting beitreten</a>
       </div>
     </li>
+    {% else %}
     <li>
       <div class="timeline-text">
-        <time> <a href="/advisorySession.html">Beratung Oktober 2020</a></time> Anlagestrategie Wachstum<br>  Investition CHF 15'000
+        <time> <a href="/advisorySession.html"> {{advisory.title}} </time> {{advisory.place}} <br> Mit {{advisory.advisor_name}} <br> {{advisory.overview}}
       </div>
     </li>
-    <li>
-      <div class="timeline-text">
-        <time>Beratung August 2019</time> Anlagestrategie Wachstum<br>  Investition CHF 25'000
-      </div>
-    </li>
-    <li>
-      <div class="timeline-text">
-        <time>Beratung Mai 2017</time> Anlagestrategie Ausgewogen <br> Investition CHF 15'000 <br> Entscheid Ausstehend ETF SLI
-      </div>
-    </li>
-    <li>
-      <div class="timeline-text">
-        <time>Beratung April 2013</time> Anlagestrategie Ausgewogen <br> Investition CHF 15'000
-      </div>
-    </li>
-    <li>
-      <div class="timeline-text">
-        <time>Beratung Okt 2010</time> Anlagestrategie Ausgewogen<br>  Investition CHF 15'000 <br> Kauf Strategy Growth CHF 15’000
-      </div>
-    </li>
-    <li>
-      <div class="timeline-text">
-        <time>Beratung Nov 2009</time> Anlagestrategie Wachstum<br> Keine Investition
-      </div>
-    </li>
-    <li>
-      <div class="timeline-text">
-        <time>Eröffnung Beratungsmandat Mai 2006</time>Eröffnungsgespräch<br>
-      </div>
-    </li>
+    {% endif %}
+    {% endfor %}
   </ul>
 </section>
-{% endfor %}
+
 {% endblock content %}
 
 {% block javascripts %}
