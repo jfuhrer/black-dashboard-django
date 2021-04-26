@@ -13,7 +13,7 @@
     {% if advisory.type == "next-advisory" %}
      <li class="bullet-next-advisory" onclick="backToMainTimeline()">
       <div class="timeline-advisory next-advisory">
-        <time> <a href="/advisorySession.html"> {{advisory.title}} </time> {{advisory.date}}  {{advisory.place}} <br> Mit {{advisory.advisor_name}} <br>
+        <time> <a href="/advisorySession.html"> {{advisory.title}}</a> </time> {{advisory.date}}  {{advisory.place}} <br> Mit {{advisory.advisor_name}} <br>
         <a style="text-decoration:underline;" href={{advisory.overview}}>Zoom Meeting beitreten</a>
       </div>
     </li>

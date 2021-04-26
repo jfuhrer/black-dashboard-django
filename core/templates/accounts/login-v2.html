@@ -1,0 +1,38 @@
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'assets/css/login-register.css' %}">
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="login-wrap-login">
+    <div class="login-html">
+        <h1 class="title">Willkommen bei FinCon</h1>
+        <h4 class="title"> deinem digitalen Assistenten in Bankberatungen</h4>
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked>
+        <label for="tab-1" class="tab"> <a href="{% url 'login' %}"> Anmelden</a> </label>
+        <input id="tab-2" type="radio" name="tab" class="sign-up">
+        <label for="tab-2" class="tab"> <a href="{% url 'register' %}"> Registrieren</a> </label>
+        <div class="login-form">
+            <form role="form" method="post" action="">
+                {% csrf_token %}
+
+                <div class="group">
+                    <label class="label">Benutzername</label>
+                    <div class="input"> {{ form.username }}</div>
+                </div>
+                <div class="group">
+                    <label class="label">Passwort</label>
+                    <div class="input"> {{ form.password }}</div>
+                </div>
+                <div class="group">
+                    <button type="submit" name="login" class="button">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
