@@ -32,7 +32,3 @@
 
 })();
 
-function backToMainTimeline() {
-  location.href = "/index.html";
-}
-

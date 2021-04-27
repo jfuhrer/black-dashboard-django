@@ -56,7 +56,7 @@ body {
 .timeline ul li div.timeline-advisory {
   position: relative;
   bottom: 0;
-  width: 400px;
+  width: 450px;
   padding: 15px;
   background: var(--duskyPink);
 }
@@ -65,7 +65,7 @@ body {
 .timeline ul li div.timeline-event {
   position: relative;
   bottom: 0;
-  width: 400px;
+  width: 450px;
   padding: 15px;
   background: transparent;
   box-shadow:0px 0px 0px 5px var(--duskyPink) inset;
@@ -113,7 +113,7 @@ body {
 
 
 .timeline ul li:nth-child(even) div {
-  left: -439px;
+  left: -489px;
 }
 
 /*triangle*/
