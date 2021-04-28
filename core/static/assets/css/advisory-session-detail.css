@@ -18,10 +18,12 @@ h4 {
     margin-top: 30px;}
 
 .advisory-detail {
+    margin-top: -15px; /* text starts at same hight as bullet point*/
 }
 
-.back-to-timeline {
-    border:none !important;
+.link {
+    font-size: 1.5em;
+    text-decoration: underline;
 }
 
 .bullet-points {
@@ -59,8 +61,6 @@ h4 {
 .timeline ul.design li.design div {
   position: relative;
   padding: 15px;
-  border-color: var(--duskyPink);
-  border-style: solid;
   left: 25px;
   color: var(--black-blue);
   width: 1500px; /* ToDo: use relative position, ot fixed!*/

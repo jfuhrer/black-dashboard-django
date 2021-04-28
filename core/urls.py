@@ -10,8 +10,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),          # Django admin route
+    path('ckeditor/', include('ckeditor_uploader.urls')), # upload images in rich text field
     path("", include("authentication.urls")), # Auth routes - login / register
     path("", include("app.urls"))             # UI Kits Html files
-]
-
-urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

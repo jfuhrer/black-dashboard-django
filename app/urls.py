@@ -13,6 +13,8 @@ urlpatterns = [
 
     # ToDo: non-static path would be better
     re_path(r'^advisorySession.html$', views.advisorySessions, name='advisorySessions'),
+    re_path(r'^advisorySessionDetail.html$', views.advisorySessionDetail, name='advisorySessionDetail'),
+    re_path(r'^protocol.html$', views.protocol, name='protocol'),
 
     # Matches any html file
     re_path(r'^.*\.*', views.pages, name='pages'),
