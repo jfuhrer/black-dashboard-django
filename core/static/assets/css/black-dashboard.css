@@ -189,13 +189,13 @@ sup {
 }
 
 a {
-  color: white;
+  color: inherit;
   text-decoration: none;
   background-color: transparent;
 }
 
 a:hover {
-  color: white;
+  color: inherit;
   text-decoration: none;
 }
 

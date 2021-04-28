@@ -24,6 +24,14 @@
       </div>
     </li>
     <li class="design">
+      <div class="advisory-detail">
+        <h4> Verlinkte Notizen</h4>
+        {% for note in notes %}
+        <a href="{% url 'view-note' 2 %}" > {{note.title}} </a> <!-- ToDo take notes.id not 2 -->
+        {% endfor %}
+      </div>
+    </li>
+    <li class="design">
       <div class="advisory-detail link">
         <a href="/protocol.html" style="color:black">Protokoll</a>
       </div>

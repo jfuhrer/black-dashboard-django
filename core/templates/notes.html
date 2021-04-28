@@ -14,6 +14,17 @@
         <div class="card-body ">
             <div class="table-full-width table-responsive">
                 <table class="table">
+                    <thead class=" text-primary">
+                    <tr>
+                        <th>
+                            Reminder
+                        </th>
+                        <th>
+                            Zu erledigen bis
+                        </th>
+                    </tr>
+                    </thead>
+                    {% for note in notes %}
                     <tbody>
                     <tr>
                         <td>
@@ -27,106 +38,18 @@
                             </div>
                         </td>
                         <td>
-                            <p class="title">Fragen zur kommenden Beratung</p>
-                            <p class="text-muted">Welche nachhaltigen Produkte; Kosten aktuelles Portfolio</p>
+                            <div class="title">{{note.reminder_date|date:"d.m.Y" }}</div>
+                        </td>
+                        <td> <a href="{% url 'view-note' 2 %}"> <!-- ToDo take notes.id not 2 -->
+                            <div class="title">{{note.title}}</div></a>
+                            <div class="text-muted"> {{note.body | safe}}</div>
                         </td>
                         <td class="td-actions text-right">
-                            <button type="button" rel="tooltip" title="" class="btn btn-link"
-                                    data-original-title="Edit Task">
-                                <i class="tim-icons icon-pencil"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" value="" checked="">
-                                    <span class="form-check-sign">
-                            <span class="check"></span>
-                          </span>
-                                </label>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="title">Nachhalige Fonds / Green Bonds</p>
-                            <p class="text-muted">Gibt unt. Produkte, generell aber eher teurer im Vgl. zu anderen WIESO?</p>
-                        </td>
-                        <td class="td-actions text-right">
-                            <button type="button" rel="tooltip" title="" class="btn btn-link"
-                                    data-original-title="Edit Task">
-                                <i class="tim-icons icon-pencil"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" value="">
-                                    <span class="form-check-sign">
-                            <span class="check"></span>
-                          </span>
-                                </label>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="title">Besprechung Investition mit Michael</p>
-                            <p class="text-muted">Ok so? Dokumentation zeigen, Graphik nicht vergessen</p>
-                        </td>
-                        <td class="td-actions text-right">
-                            <button type="button" rel="tooltip" title="" class="btn btn-link"
-                                    data-original-title="Edit Task">
-                                <i class="tim-icons icon-pencil"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" value="">
-                                    <span class="form-check-sign">
-                            <span class="check"></span>
-                          </span>
-                                </label>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="title">Notizen Beratung 1016</p>
-                            <p class="text-muted">zu hause mal anschauen ETFs = passiv gemanagte Fonds, daher günstiger bilden Index ab</p>
-                        </td>
-                        <td class="td-actions text-right">
-                            <button type="button" rel="tooltip" title="" class="btn btn-link"
-                                    data-original-title="Edit Task">
-                                <i class="tim-icons icon-pencil"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" value="">
-                                    <span class="form-check-sign">
-                            <span class="check"></span>
-                          </span>
-                                </label>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="title">Notizen Beratung 2015</p>
-                            <p class="text-muted"> Je höher Risiko tendenziell grösserer erwarteter Gewinn aber auch hohe Volatilität
-                                --> langer Horizont wichtig, habe ich = OK. Profil Growth ist passend. 3a nicht vergessen! </p>
-                        </td>
-                        <td class="td-actions text-right">
-                            <button type="button" rel="tooltip" title="" class="btn btn-link"
-                                    data-original-title="Edit Task">
-                                <i class="tim-icons icon-pencil"></i>
-                            </button>
+                        <a href="{% url 'edit-note' 1 %}"> <i class="tim-icons icon-pencil"></i></a> <!-- ToDo take notes.id not 1 -->
                         </td>
                     </tr>
                     </tbody>
+                    {% endfor %}
                 </table>
             </div>
         </div>

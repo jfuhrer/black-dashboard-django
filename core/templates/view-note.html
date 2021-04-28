@@ -1,0 +1,32 @@
+{% extends "layouts/base.html" %}
+{% block title %} Notiz lesen{% endblock %}
+{% load static %}
+
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<h2>Notiz lesen</h2>
+<br>
+<div class="form-group">
+    {% for note in notes%}
+    <h4>{{note.title}}</h4>
+    <div>{{note.body | safe}}</div> <br>
+    <p>Reminder Date gesetzt? Am {{note.reminder_date|date:"d.m.Y H:i"}}</p>
+    {% endfor %}
+
+    <br>
+    <a href="{% url 'notes' %}" class="btn btn-fill btn-primary">Schliessen</a>
+    <a href="{% url 'edit-note' 2 %}" class="btn btn-fill btn-primary">Bearbeiten</a> <!-- ToDo: how to get note's id -->
+
+
+</div>
+{% endif %}
+
+
+{% endblock content %}
+
+{% block javascripts %}
+{% endblock javascripts %}
