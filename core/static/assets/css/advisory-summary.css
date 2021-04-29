@@ -13,17 +13,13 @@ body {
   padding-bottom: 50px;
 }
 
-h4 {
-    margin-bottom: 5px;
-    margin-top: 30px;}
-
 .advisory-detail {
     margin-top: -15px; /* text starts at same hight as bullet point*/
 }
 
 .link {
-    font-size: 1.5em;
-    text-decoration: underline;
+    font-size: 1em;
+   /* text-decoration: underline; */
 }
 
 .bullet-points {

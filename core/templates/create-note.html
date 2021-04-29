@@ -1,0 +1,29 @@
+{% extends "layouts/base.html" %}
+{% block title %} Notiz erstellen {% endblock %}
+{% load static %}
+
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<h2>Notiz erstellen</h2>
+<br>
+<div class="form-group">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <br>
+        <button type="submit" name="safe" class="btn btn-fill btn-primary">Speichern</button>
+    </form>
+
+</div>
+{% endif %}
+
+
+{% endblock content %}
+
+{% block javascripts %}
+{% endblock javascripts %}

@@ -8,18 +8,22 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<h2>Notiz lesen</h2>
-<br>
 <div class="form-group">
     {% for note in notes%}
     <h4>{{note.title}}</h4>
-    <div>{{note.body | safe}}</div> <br>
-    <p>Reminder Date gesetzt? Am {{note.reminder_date|date:"d.m.Y H:i"}}</p>
-    {% endfor %}
-
+    <div>{{note.text | safe}}</div>
+    <br>
+    <p>Bearbeitet am: {{note.evt_modified|date:"d.m.Y H:i"}}</p>
+    <p>Erstellt am: {{note.evt_created|date:"d.m.Y H:i"}}</p>
+    <p>Zu Erledigen bis: {{note.due_date|date:"d.m.Y H:i"}}</p>
+    <p>Reminder gesetzt: {{note.reminder}}</p>
     <br>
     <a href="{% url 'notes' %}" class="btn btn-fill btn-primary">Schliessen</a>
-    <a href="{% url 'edit-note' 2 %}" class="btn btn-fill btn-primary">Bearbeiten</a> <!-- ToDo: how to get note's id -->
+    <a href="{% url 'edit-note' note.id %}" class="btn btn-fill btn-primary">Bearbeiten</a>
+    <a title="Notiz-Inhalt kopieren & E-Mail senden" href="mailto:jara.fuhrer@uzh.ch?subject=Geteilte Notiz: {{note.title}}&body=Bitte deine Notiz hierhin kopieren" class="btn btn-fill btn-primary">
+        Notiz mit Berater teilen</a>
+
+    {% endfor %}
 
 
 </div>

@@ -1,9 +1,11 @@
 {% extends 'layouts/base.html' %}
-
+{% load static %}
 {% block title %} Notizen {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{% static 'assets/css/notes.css' %}">
+{% endblock stylesheets %}
 
 {% block content %}
 <div class="col-md-12">
@@ -16,36 +18,37 @@
                 <table class="table">
                     <thead class=" text-primary">
                     <tr>
-                        <th>
-                            Reminder
+                        <th title="Aktiviere den Reminder, um einen Tag vor Ablaufdatum eine Erinnerungsemail zu bekommen">
+                            <i class="tim-icons icon-bell-55"></i>
                         </th>
                         <th>
                             Zu erledigen bis
+                        </th>
+                        <th>
+                            Erstellt am
                         </th>
                     </tr>
                     </thead>
                     {% for note in notes %}
                     <tbody>
                     <tr>
-                        <td>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" value="">
-                                    <span class="form-check-sign">
-                            <span class="check"></span>
-                          </span>
-                                </label>
-                            </div>
+                        <td style="min-width:70px">
+                            {% if note.reminder %}
+                            Aktiv
+                            {% endif %}
                         </td>
-                        <td>
-                            <div class="title">{{note.reminder_date|date:"d.m.Y" }}</div>
+                        <td style="min-width:120px">
+                            <div class="title">{{note.due_date|date:"d.m.Y" }}</div>
                         </td>
-                        <td> <a href="{% url 'view-note' 2 %}"> <!-- ToDo take notes.id not 2 -->
+                         <td style="min-width:100px">
+                            <div class="title">{{note.evt_created|date:"d.m.Y" }}</div>
+                        </td>
+                        <td> <a href="{% url 'view-note' note.id %}">
                             <div class="title">{{note.title}}</div></a>
-                            <div class="text-muted"> {{note.body | safe}}</div>
+                            <div class="text-muted"> {{note.text | safe}}</div>
                         </td>
-                        <td class="td-actions text-right">
-                        <a href="{% url 'edit-note' 1 %}"> <i class="tim-icons icon-pencil"></i></a> <!-- ToDo take notes.id not 1 -->
+                        <td class="td-actions text-right" style="padding-left:10px; padding-right: 10px;">
+                        <a href="{% url 'edit-note' note.id %}"> <i class="tim-icons icon-pencil"></i></a>
                         </td>
                     </tr>
                     </tbody>

@@ -14,10 +14,22 @@ from django.views import generic
 from .models import AdvisorySessionSummary, AdvisorySession, Notes
 
 
+class CreateNoteView(generic.CreateView):
+    model = Notes
+    template_name = 'create-note.html'
+    fields = ['title', 'text', 'due_date', 'reminder', 'advisory_session']
+    success_url = reverse_lazy('notes')
+
+    def form_valid(self, form):
+        form.instance.person = self.request.user
+        print('user?', self.request.user)
+        return super(CreateNoteView, self).form_valid(form)
+
+
 class EditNoteView(generic.UpdateView):
     model = Notes
     template_name = 'edit-note.html'
-    fields = ['title', 'body', 'reminder_date', 'advisory_session']
+    fields = ['title', 'text', 'due_date', 'advisory_session', 'reminder']
     success_url = reverse_lazy('notes')
 
 
@@ -29,6 +41,30 @@ class ViewNoteView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['notes'] = Notes.objects.filter(pk=self.kwargs.get('pk'))
+        return context
+
+
+class AdvisorySummaryView(generic.DetailView):
+    model = AdvisorySession
+    template_name = 'advisory-summary.html'
+    context_object_name = 'advisory-summary'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        notesToAdvisory = Notes.objects.filter(advisory_session=self.kwargs.get('pk'))
+        advisory = AdvisorySession.objects.filter(pk=self.kwargs.get('pk'))
+        context = {'advisory': advisory, 'notes': notesToAdvisory}
+        return context
+
+
+class ProtocolView(generic.DetailView):
+    model = AdvisorySession
+    template_name = 'protocol.html'
+    context_object_name = 'protocol'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['advisory'] = AdvisorySession.objects.filter(pk=self.kwargs.get('pk'))
         return context
 
 
@@ -102,51 +138,6 @@ def advisorySessions(request):
         html_template = loader.get_template('page-500.html')
         return HttpResponse(html_template.render(context, request))
 
-
-@login_required(login_url="/login/")
-def advisorySessionDetail(request):
-    context = {}
-
-    try:
-        userId = request.user
-        if userId is None:
-            print('user cannot be found', userId)  # ToDo: throw better exception
-
-        notes = Notes.objects.filter(advisory_session=1)   # ToDo: wrong, how to get id
-        summary = AdvisorySession.objects.filter(id=1) # ToDo: wrong, how to get id
-        context = {'summary': summary, 'notes': notes}
-        return render(request, "advisorySessionDetail.html", context)
-
-    except template.TemplateDoesNotExist:
-
-        html_template = loader.get_template('page-404.html')
-        return HttpResponse(html_template.render(context, request))
-
-    except:
-        html_template = loader.get_template('page-500.html')
-        return HttpResponse(html_template.render(context, request))
-
-
-@login_required(login_url="/login/")
-def protocol(request):
-    context = {}
-
-    try:
-        userId = request.user
-        if userId is None:
-            print('user cannot be found', userId)  # ToDo: throw better exception
-
-        summary = AdvisorySession.objects.filter(id=1) # ToDo: wrong, how to get id
-        context = {'summary': summary}
-        return render(request, "protocol.html", context)
-
-    except template.TemplateDoesNotExist:
-        html_template = loader.get_template('page-404.html')
-        return HttpResponse(html_template.render(context, request))
-
-    except:
-        html_template = loader.get_template('page-500.html')
-        return HttpResponse(html_template.render(context, request))
 
 
 @login_required(login_url="/login/")

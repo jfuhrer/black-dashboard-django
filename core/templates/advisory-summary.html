@@ -1,0 +1,62 @@
+{% extends "layouts/base.html" %}
+{% block title %} Beratungszusammenfassung{% endblock %}
+{% load static %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'assets/css/advisory-summary.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/sticky-note.css' %}">
+
+{% endblock stylesheets %}
+
+{% block content %}
+
+<section class="timeline">
+    {% for adv in advisory %}
+    <ul class="design">
+        <h2>{{adv.title}}</h2>
+        {% if adv.summary|length > 0%}
+        <li class="design">
+            <div class="advisory-detail">
+                {{adv.summary|safe}}
+            </div>
+        </li>
+        {% elif adv.type != "next-advisory" %}
+        <li class="design">
+            <div class="advisory-detail">
+                <p>Es konnte keine Zusammenfassung gefunden werden.</p>
+            </div>
+        </li>
+        {% endif %}
+        <li class="design">
+            <div class="advisory-detail">
+                {% for note in notes %}
+                <i class="tim-icons icon-notes" style="padding-right: 5px;"></i>
+                <a href="{% url 'view-note' note.id %}">{{note.title}}</a> <br>
+                {% endfor %}
+            </div>
+            <div class="advisory-detail">
+                <i class="tim-icons icon-simple-add"></i>
+                <a href="{% url 'create-note' %}">Neue Notiz erstellen</a>
+            </div>
+        </li>
+        {% if adv.type != "next-advisory" %}
+        <li class="design">
+            <div class="advisory-detail link">
+                <a href="{% url 'protocol' adv.id %}" style="color:black">Zum Protokoll</a>
+            </div>
+        </li>
+        {% endif %}
+        <li class="design">
+            <div class="advisory-detail link">
+                <a href="/advisorySession.html" style="color:black">Zurück zum Zeitstrahl</a>
+            </div>
+        </li>
+    </ul>
+    {% endfor %}
+
+</section>
+{% endblock content %}
+
+{% block javascripts %}
+<script type="text/javascript" src="{% static 'assets/js/timeline.js' %}"></script>
+{% endblock javascripts %}
