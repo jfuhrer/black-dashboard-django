@@ -22,6 +22,12 @@ body {
    /* text-decoration: underline; */
 }
 
+.advisory-detail i{
+    padding-right: 5px; font-size:1.5em
+}
+. advisory-detail link {
+    color:black
+}
 .bullet-points {
     padding-left: 20px;
     margin: 0 0 100px 0 !important;

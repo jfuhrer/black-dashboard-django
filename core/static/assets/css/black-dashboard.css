@@ -91,7 +91,7 @@ body {
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #525f7f;
+  color: var(--black-blue);
   text-align: left;
   background-color: #1e1e2f;
 }
@@ -100,6 +100,11 @@ body {
   outline: 0 !important;
 }
 
+.more {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--primary);
+}
 hr {
   box-sizing: content-box;
   height: 0;
@@ -12544,7 +12549,8 @@ a.text-darker:focus {
 }
 
 .text-muted {
-  color: #6c757d !important;
+  font-weight: 320;
+   color: var(--black-blue);
 }
 
 .text-black-50 {
@@ -19314,7 +19320,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .white-content .card:not(.card-white).card-tasks .card-body i {
-  color: rgba(34, 42, 66, 0.7);
+  color: var(--black-blue);
 }
 
 .white-content .card:not(.card-white).card-tasks .card-body i:hover {
@@ -19322,7 +19328,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .white-content .table>tbody>tr>td {
-  color: rgba(34, 42, 66, 0.7) !important;
+  color: var(--black-blue) !important;
 }
 
 .white-content .table>thead>tr>th,
@@ -19338,7 +19344,7 @@ Copyright (c) 2015 Daniel Eden
 
 .white-content .table>thead>tr>th,
 .white-content .table button.btn-neutral.btn-link {
-  color: rgba(34, 42, 66, 0.7);
+  color: var(--black-blue);
 }
 
 .white-content .footer ul li a {

@@ -1,0 +1,28 @@
+.details {
+  width: 100%;
+  padding: 0 30px;
+  text-align: left;
+  margin-top: 20px;
+  display: none;
+  color: var(--black-blue);
+}
+
+.explanations {
+    margin-bottom: 10px;
+}
+
+.explanations > img {
+    margin: 20px;
+}
+
+#anlagestrategie_tabelle {
+    display: none
+}
+
+#risiko_aktuell {
+    display: none
+}
+
+#anlagestrategie_aktuell {
+    display: none
+}

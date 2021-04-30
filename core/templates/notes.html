@@ -34,14 +34,16 @@
                     <tr>
                         <td style="min-width:70px">
                             {% if note.reminder %}
-                            Aktiv
+                            <div class="text-muted">Aktiv</div>
+                            {% else %}
+                            <div class="text-muted">Inaktiv</div>
                             {% endif %}
                         </td>
                         <td style="min-width:120px">
-                            <div class="title">{{note.due_date|date:"d.m.Y" }}</div>
+                            <div class="text-muted">{{note.due_date|date:"d.m.Y" }}</div>
                         </td>
                          <td style="min-width:100px">
-                            <div class="title">{{note.evt_created|date:"d.m.Y" }}</div>
+                            <div class="text-muted">{{note.evt_created|date:"d.m.Y" }}</div>
                         </td>
                         <td> <a href="{% url 'view-note' note.id %}">
                             <div class="title">{{note.title}}</div></a>

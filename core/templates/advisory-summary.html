@@ -19,6 +19,10 @@
             <div class="advisory-detail">
                 {{adv.summary|safe}}
             </div>
+            <br>
+            <div class="advisory-detail">
+                <p style="color: var(--primary); font-weight: 400">Zuletzt geändert von: {{adv.modified_by}} am {{adv.evt_modified|date:"d.m.Y H:i"}}</p>
+            </div>
         </li>
         {% elif adv.type != "next-advisory" %}
         <li class="design">
@@ -30,7 +34,7 @@
         <li class="design">
             <div class="advisory-detail">
                 {% for note in notes %}
-                <i class="tim-icons icon-notes" style="padding-right: 5px;"></i>
+                <i class="tim-icons icon-notes"></i>
                 <a href="{% url 'view-note' note.id %}">{{note.title}}</a> <br>
                 {% endfor %}
             </div>
@@ -42,13 +46,13 @@
         {% if adv.type != "next-advisory" %}
         <li class="design">
             <div class="advisory-detail link">
-                <a href="{% url 'protocol' adv.id %}" style="color:black">Zum Protokoll</a>
+                <a href="{% url 'protocol' adv.id %}">Zum Protokoll</a>
             </div>
         </li>
         {% endif %}
         <li class="design">
             <div class="advisory-detail link">
-                <a href="/advisorySession.html" style="color:black">Zurück zum Zeitstrahl</a>
+                <a href="/advisorySession.html">Zurück zum Zeitstrahl</a>
             </div>
         </li>
     </ul>

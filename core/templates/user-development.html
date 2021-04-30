@@ -1,0 +1,88 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %} Anlegerprofil{% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'assets/css/user-development.css' %}">
+{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="user-title">Anlegerprofil & Entwicklung </h2>
+                <div class="user-details" onclick="showDetails('investmentStrategy')">
+                    <i class="tim-icons icon-minimal-down" style="padding-right: 5px;"></i>
+                    <b>Anlagestrategie:</b> Ambitioniert
+                </div>
+                <div class="details" id="investmentStrategy">
+                    <div class="explanations">
+                        Die Anlagestrategie wird vom Kunden nach diversen Kriterien gewählt und von der Bank umgesetzt.
+                        Dabei bestimmt sie die Gewichtung einzelnen Anlagekategorien innerhalb einer Bandbreite,
+                        um die bestmöglche Performance unter vertretbarem Risiko zu erreichen.
+                    </div>
+                    <div class="explanations">
+                        Die Bank bietet fünf verschiedene <span class="more" onclick="showDetails('anlagestrategie_tabelle')"> Anlagestrategien </span>
+                        an.
+                        s<img id="anlagestrategie_tabelle" src="{% static 'assets/img/anlagestrategie_tabelle.png' %}"
+                              style="width:800px">
+                    </div>
+                    <div class="explanations">
+                        Du hast aktuell die Anlagestrategie <span class="more" onclick="showDetails('anlagestrategie_aktuell')"> Ambitioniert </span>
+                        gewählt.
+                        Dies bedeutet, dass du potentiell eher hoches Risiko eingehst, aber auch eine eher hohen Rendite
+                        erwarten darfst.
+                        <img id="anlagestrategie_aktuell" src="{% static 'assets/img/anlagestrategie.png' %}"
+                             alt="Anlagestrategie" style="width:500px">
+                    </div>
+                </div>
+                <br>
+                <div class="user-details" onclick="showDetails('investmentGoal')">
+                    <i class="tim-icons icon-minimal-down" style="padding-right: 5px;"></i>
+                    <b>Anlageziel:</b> xx
+                </div>
+                <div class="details" id="investmentGoal">
+                    <div class="explanations">
+                    Mit der Strategie Ambitioniert verfolgst du das Ziel eines langfristiges Kapitalwachstums.
+                    </div>
+                </div>
+                <br>
+                <div class="user-details" onclick="showDetails('riskLevel')">
+                    <i class="tim-icons icon-minimal-down" style="padding-right: 5px;"></i>
+                    <b>Risikostufe:</b> 4 von 5
+                </div>
+                <div class="details" id="riskLevel">
+                    <div class="explanations">
+                        Aufgrund der gewählten Anlagestrategie Ambitioniert gehst du schätzungsweise ein <span class="more"
+                            onclick="showDetails('risiko_aktuell')"> Risiko von Stufe 4</span> ein.
+                        Dies bedeutet, dass du bereit bist, erhöhte Vermögensschwankungen und tendenziell hohes Risiko
+                        einzugehen.
+                        <img id="risiko_aktuell" src="{% static 'assets/img/risiko_aktuell.png' %}" alt="Risikostufe"
+                             style="width:500px">
+                    </div>
+                </div>
+                <br>
+                <div class="user-details" onclick="showDetails('investmentHorizon')">
+                    <i class="tim-icons icon-minimal-down" style="padding-right: 5px;"></i> <b>Anlagehorizont:</b>
+                    8 bis 12 Jahre
+                </div>
+                <div class="details" id="investmentHorizon">
+                    <div class="explanations">
+                        Der Anlagehorizont bestimmt, wie lange du dein Vermögen investiert lassen kannst.
+                        Wir empfehlen einen längeren Anlagehorizont je risikohafter eine Investition ist, damit allfällige
+                        Kursschwankungen "ausgesessen" werden können und keinen Verkaufsdruck entsteht.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+
+{% block javascripts %}
+<script type="text/javascript" src="{% static 'assets/js/user-development.js' %}"></script>
+{% endblock javascripts %}
