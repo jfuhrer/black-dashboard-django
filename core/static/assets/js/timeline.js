@@ -32,3 +32,25 @@
 
 })();
 
+
+// context menu
+    window.addEventListener("contextmenu",function(event){
+      event.preventDefault();
+      var contextElement = document.getElementById("context-menu");
+      contextElement.style.top = event.pageY +  "px";
+      contextElement.style.left = event.pageX + "px";
+      contextElement.classList.add("active");
+    });
+    window.addEventListener("click",function(){
+      document.getElementById("context-menu").classList.remove("active");
+    });
+
+
+// pop up create note
+function togglePopup(){
+  document.getElementById("popup-1").classList.toggle("active");
+}
+
+
+
+

@@ -104,6 +104,7 @@ body {
     cursor: pointer;
     font-weight: 600;
     color: var(--primary);
+    padding: 10px 0 10px 0;
 }
 hr {
   box-sizing: content-box;

@@ -2,16 +2,28 @@
 """
 Copyright (c) 2019 - present AppSeed.us
 """
+import datetime
+
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django import template
 from django.urls import reverse_lazy
 from django.views import generic
+from django.forms import ModelForm
+from django.views.decorators.http import require_POST
 
-from .models import AdvisorySessionSummary, AdvisorySession, Notes
+from .models import AdvisorySession, Notes
+
+
+class CreateNoteForm(ModelForm):
+    success_url = reverse_lazy('advisory-summary')
+
+    class Meta:
+        model = Notes
+        fields = ['title', 'text', 'due_date', 'reminder', 'advisory_session']
 
 
 class CreateNoteView(generic.CreateView):
@@ -22,7 +34,7 @@ class CreateNoteView(generic.CreateView):
 
     def form_valid(self, form):
         form.instance.person = self.request.user
-        print('user?', self.request.user)
+        print('form valid')
         return super(CreateNoteView, self).form_valid(form)
 
 
@@ -48,12 +60,13 @@ class AdvisorySummaryView(generic.DetailView):
     model = AdvisorySession
     template_name = 'advisory-summary.html'
     context_object_name = 'advisory-summary'
+    form_class = CreateNoteForm
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        form = CreateNoteForm(initial={"advisory_session": self.kwargs.get('pk')})
         notesToAdvisory = Notes.objects.filter(advisory_session=self.kwargs.get('pk'))
         advisory = AdvisorySession.objects.filter(pk=self.kwargs.get('pk'))
-        context = {'advisory': advisory, 'notes': notesToAdvisory}
+        context = {'advisory': advisory, 'notes': notesToAdvisory, 'form': form}
         return context
 
 
@@ -76,10 +89,10 @@ def index(request):
         if userId is None:
             print('user cannot be found', userId)  # ToDo: throw better exception
 
-        advisories = AdvisorySession.objects.filter(person_id=userId).filter(Q(type='advisory') | Q(type='next-advisory')).order_by('-date')
+        advisories = AdvisorySession.objects.filter(person_id=userId).order_by('-date')
 
-        context = {'advisories': advisories}
         context['segment'] = 'index'
+        context['advisories'] = advisories
 
         return render(request, "index.html", context)
 
@@ -116,31 +129,6 @@ def pages(request):
 
 
 @login_required(login_url="/login/")
-def advisorySessions(request):
-    context = {}
-
-    try:
-        userId = request.user
-        if userId is None:
-            print('user cannot be found', userId)  # ToDo: throw better exception
-
-        advisories = AdvisorySession.objects.filter(person_id=userId).order_by('-date')
-        context = {'advisories': advisories}
-        return render(request, "advisorySession.html", context)
-
-    except template.TemplateDoesNotExist:
-
-        html_template = loader.get_template('page-404.html')
-        return HttpResponse(html_template.render(context, request))
-
-    except:
-
-        html_template = loader.get_template('page-500.html')
-        return HttpResponse(html_template.render(context, request))
-
-
-
-@login_required(login_url="/login/")
 def notes(request):
     context = {}
 
@@ -160,3 +148,4 @@ def notes(request):
     except:
         html_template = loader.get_template('page-500.html')
         return HttpResponse(html_template.render(context, request))
+

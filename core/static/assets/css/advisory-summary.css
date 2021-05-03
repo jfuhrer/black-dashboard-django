@@ -17,17 +17,11 @@ body {
     margin-top: -15px; /* text starts at same hight as bullet point*/
 }
 
-.link {
-    font-size: 1em;
-   /* text-decoration: underline; */
-}
 
 .advisory-detail i{
     padding-right: 5px; font-size:1.5em
 }
-. advisory-detail link {
-    color:black
-}
+
 .bullet-points {
     padding-left: 20px;
     margin: 0 0 100px 0 !important;
@@ -36,6 +30,15 @@ body {
 .bullet-points li {
     margin: 0 0 10px 0;
 }
+
+.title-advisory-detail {
+   font-weight: 600;
+}
+
+.link {
+    color: var(--primary) !important;
+}
+
 
 
 /*timeline stroke*/
@@ -86,3 +89,94 @@ body {
   }
 
 }
+
+
+
+/* --------------------------- context menu ---------------------------*/
+
+    #context-menu {
+      position:fixed;
+      z-index:10000;
+      width:150px;
+      background:var(--primary);
+      border-radius:5px;
+      transform:scale(0);
+      transform-origin:top left;
+    }
+    #context-menu.active {
+      transform:scale(1);
+      transition:transform 300ms ease-in-out;
+    }
+    #context-menu .item {
+      padding:8px 10px;
+      font-size:15px;
+      color:#eee;
+    }
+    #context-menu .item:hover {
+      background:var(--light);
+      cursor: pointer;
+    }
+    #context-menu .item i {
+      display:inline-block;
+      margin-right:5px;
+    }
+
+
+
+/*--------------------- pop up create note */
+.popup .overlay {
+  position:fixed;
+  top:0px;
+  left:0px;
+  width:100vw;
+  height:100vh;
+  z-index:1;
+  display:none;
+
+}
+
+.popup .content {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) scale(0);
+  background:#fff;
+  width:500px;
+  height:350px;
+  z-index:2;
+  text-align:center;
+  padding:20px;
+  box-sizing:border-box;
+  font-family:"Open Sans",sans-serif;
+  border-style: solid;
+  border-color: var(--primary);
+  border-width: 4px;
+
+}
+
+.popup .close-btn {
+  cursor:pointer;
+  position:absolute;
+  right:20px;
+  top:20px;
+  width:30px;
+  height:30px;
+  background:#222;
+  color: var(--white);
+  font-size:25px;
+  font-weight:600;
+  line-height:30px;
+  text-align:center;
+  border-radius:50%;
+}
+
+.popup.active .overlay {
+  display:block;
+}
+
+.popup.active .content {
+  transition:all 300ms ease-in-out;
+  transform:translate(-50%,-50%) scale(1);
+}
+
+

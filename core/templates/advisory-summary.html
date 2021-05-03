@@ -4,7 +4,6 @@
 
 {% block stylesheets %}
 <link rel="stylesheet" href="{% static 'assets/css/advisory-summary.css' %}">
-<link rel="stylesheet" href="{% static 'assets/css/sticky-note.css' %}">
 
 {% endblock stylesheets %}
 
@@ -13,26 +12,29 @@
 <section class="timeline">
     {% for adv in advisory %}
     <ul class="design">
-        <h2>{{adv.title}}</h2>
-        {% if adv.summary|length > 0%}
+        <h2 class="title-advisory-detail">{{adv.title}}</h2>
+        {% if adv.summary|length > 0 %}
         <li class="design">
             <div class="advisory-detail">
+                <h4 class="title-advisory-detail"> Zusammenfassung </h4>
                 {{adv.summary|safe}}
             </div>
             <br>
             <div class="advisory-detail">
-                <p style="color: var(--primary); font-weight: 400">Zuletzt geändert von: {{adv.modified_by}} am {{adv.evt_modified|date:"d.m.Y H:i"}}</p>
+                <p class="title-advisory-detail link">Zuletzt geändert von {{adv.modified_by}} am {{adv.evt_modified|date:"d.m.Y H:i"}}</p>
             </div>
         </li>
         {% elif adv.type != "next-advisory" %}
         <li class="design">
             <div class="advisory-detail">
-                <p>Es konnte keine Zusammenfassung gefunden werden.</p>
+                <h4 class="title-advisory-detail"> Zusammenfassung </h4>
+                <p>Es gibt keine Zusammenfassung zu diesem Kontakt.</p>
             </div>
         </li>
         {% endif %}
         <li class="design">
             <div class="advisory-detail">
+                <h4 class="title-advisory-detail"> Notizen </h4>
                 {% for note in notes %}
                 <i class="tim-icons icon-notes"></i>
                 <a href="{% url 'view-note' note.id %}">{{note.title}}</a> <br>
@@ -43,22 +45,45 @@
                 <a href="{% url 'create-note' %}">Neue Notiz erstellen</a>
             </div>
         </li>
-        {% if adv.type != "next-advisory" %}
+        {% if adv.type == "advisory" %}
         <li class="design">
-            <div class="advisory-detail link">
-                <a href="{% url 'protocol' adv.id %}">Zum Protokoll</a>
+            <div class="advisory-detail">
+                <a href="{% url 'protocol' adv.id %}">
+                    <h4 class="title-advisory-detail link"> Zum Protokoll </h4>
+                </a>
             </div>
         </li>
         {% endif %}
-        <li class="design">
-            <div class="advisory-detail link">
-                <a href="/advisorySession.html">Zurück zum Zeitstrahl</a>
-            </div>
-        </li>
     </ul>
     {% endfor %}
-
 </section>
+
+    <div id="context-menu">
+      <div class="item">
+        <i class="fa fa-clone"></i> Text kopieren
+      </div>
+      <div class="item" onclick="togglePopup()">
+        <i class="fa fa-clipboard"></i> Notiz erstellen
+      </div>
+    </div>
+
+<div class="popup" id="popup-1">
+    <div class="overlay"></div>
+    <div class="content">
+        <div class="close-btn" onclick="togglePopup()">&times;</div>
+        <h1>Notiz erstellen</h1>
+        <div class="form-group" style="color: black;">
+            <form action="{% url 'create-note' %}" method="POST" role="form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {{ form.media }}
+                 <br>
+                <button type="submit" name="safe" class="btn btn-fill btn-primary">Speichern</button>
+            </form>
+        </div>
+    </div>
+</div>
+
 {% endblock content %}
 
 {% block javascripts %}

@@ -12,7 +12,6 @@ urlpatterns = [
     # The home page
     path('', views.index, name='home'),
 
-    re_path(r'^advisorySession.html$', views.advisorySessions, name='advisorySessions'),
     re_path(r'^notes.html$', views.notes, name='notes'),
 
     path('protocol/<int:pk>/', ProtocolView.as_view(), name='protocol'),

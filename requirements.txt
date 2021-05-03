@@ -4,8 +4,10 @@ django==2.2.10
 pycodestyle
 pytz
 sqlparse
-Unipath
+Unipath~=1.1
 dj-database-url
 python-decouple
 gunicorn
 whitenoise
+
+django-ckeditor~=6.0.0
