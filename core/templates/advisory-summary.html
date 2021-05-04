@@ -11,11 +11,11 @@
 
 <section class="timeline">
     {% for adv in advisory %}
+    <h2 class="title-advisory-detail">{{adv.title}}</h2>
     <ul class="design">
-        <h2 class="title-advisory-detail">{{adv.title}}</h2>
         {% if adv.summary|length > 0 %}
         <li class="design">
-            <div class="advisory-detail">
+            <div class="advisory-detail" onmouseup="getSelectedText()">
                 <h4 class="title-advisory-detail"> Zusammenfassung </h4>
                 {{adv.summary|safe}}
             </div>
@@ -37,12 +37,12 @@
                 <h4 class="title-advisory-detail"> Notizen </h4>
                 {% for note in notes %}
                 <i class="tim-icons icon-notes"></i>
-                <a href="{% url 'view-note' note.id %}">{{note.title}}</a> <br>
+                <a href="{% url 'view-note' note.id %}">{{note.title}}</a> <br> <br>
                 {% endfor %}
             </div>
             <div class="advisory-detail">
                 <i class="tim-icons icon-simple-add"></i>
-                <a href="{% url 'create-note' %}">Neue Notiz erstellen</a>
+                <a href="{% url 'create-note' %}?a={{ request.path }}">Neue Notiz erstellen</a>
             </div>
         </li>
         {% if adv.type == "advisory" %}
@@ -59,9 +59,6 @@
 </section>
 
     <div id="context-menu">
-      <div class="item">
-        <i class="fa fa-clone"></i> Text kopieren
-      </div>
       <div class="item" onclick="togglePopup()">
         <i class="fa fa-clipboard"></i> Notiz erstellen
       </div>
@@ -70,15 +67,16 @@
 <div class="popup" id="popup-1">
     <div class="overlay"></div>
     <div class="content">
-        <div class="close-btn" onclick="togglePopup()">&times;</div>
-        <h1>Notiz erstellen</h1>
+         <div title='Abbrechen' class="close-btn" onclick="togglePopup()">&times;</div>
+        <h3>Neue Notiz</h3>
         <div class="form-group" style="color: black;">
-            <form action="{% url 'create-note' %}" method="POST" role="form">
+            <form action="{% url 'create-note' %}?a={{ request.path }}" method="POST" role="form">
                 {% csrf_token %}
-                {{ form.as_p }}
-                {{ form.media }}
-                 <br>
-                <button type="submit" name="safe" class="btn btn-fill btn-primary">Speichern</button>
+                <span id="text-field"></span> <!--ToDo prefil note! -->
+                <span>Titel: {{ form.title }}</span> <br>
+                <span style="display:none">{{ form.advisory_session }} </span> <br>
+                <span>{{ form.text }} {{ form.media }}</span>
+                <button title="Speichern" type="submit" name="safe" class="save-btn"><i class="fas fa-check"></i></button>
             </form>
         </div>
     </div>

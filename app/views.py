@@ -5,34 +5,41 @@ Copyright (c) 2019 - present AppSeed.us
 import datetime
 
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
-from django.shortcuts import render, get_object_or_404, redirect
-from django.template import loader
-from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
+from django.http import HttpResponse
 from django import template
 from django.urls import reverse_lazy
 from django.views import generic
 from django.forms import ModelForm
-from django.views.decorators.http import require_POST
 
 from .models import AdvisorySession, Notes
 
 
 class CreateNoteForm(ModelForm):
-    success_url = reverse_lazy('advisory-summary')
+    def get_success_url(self):
+        return self.request.GET.get('a', reverse_lazy('notes'))
 
     class Meta:
         model = Notes
-        fields = ['title', 'text', 'due_date', 'reminder', 'advisory_session']
+        fields = ['title', 'text', 'advisory_session']
 
 
 class CreateNoteView(generic.CreateView):
     model = Notes
     template_name = 'create-note.html'
     fields = ['title', 'text', 'due_date', 'reminder', 'advisory_session']
-    success_url = reverse_lazy('notes')
+
+    def get_initial(self):
+        initial = super(generic.CreateView, self).get_initial()
+        advisory_id = self.request.GET.get('a')[-2]
+        initial.update({'advisory_session': advisory_id, 'text': 'test auto fill'})
+        return initial
+
+    def get_success_url(self):
+        return self.request.GET.get('a', reverse_lazy('notes'))
 
     def form_valid(self, form):
+
         form.instance.person = self.request.user
         print('form valid')
         return super(CreateNoteView, self).form_valid(form)
@@ -41,7 +48,7 @@ class CreateNoteView(generic.CreateView):
 class EditNoteView(generic.UpdateView):
     model = Notes
     template_name = 'edit-note.html'
-    fields = ['title', 'text', 'due_date', 'advisory_session', 'reminder']
+    fields = ['title', 'advisory_session', 'due_date', 'reminder', 'text']
     success_url = reverse_lazy('notes')
 
 

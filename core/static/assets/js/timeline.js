@@ -45,10 +45,35 @@
       document.getElementById("context-menu").classList.remove("active");
     });
 
+function getSelectionText() {
+    var text = "";
+    if (window.getSelection) {
+        text = window.getSelection().toString();
+    } else if (document.selection && document.selection.type != "Control") {
+        text = document.selection.createRange().text;
+    }
+    return text;
+}
+
+
+function getSelectedText(){
+    if (window.getSelection) {
+        text = window.getSelection();
+    } else if (window.document.getSelection) {
+        text =window.document.getSelection();
+    } else if (window.document.selection) {
+        text = window.document.selection.createRange().text;
+    }
+    sessionStorage.setItem('text', text);
+    return text;
+}
 
 // pop up create note
 function togglePopup(){
-  document.getElementById("popup-1").classList.toggle("active");
+    let text = sessionStorage.getItem('text');
+    console.log(text)
+    document.getElementById("popup-1").classList.toggle("active");
+    document.getElementById("text-field").textContent=text;
 }
 
 

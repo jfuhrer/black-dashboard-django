@@ -8,23 +8,40 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<div class="form-group">
+<div class="card">
     {% for note in notes%}
-    <h4>{{note.title}}</h4>
-    <div>{{note.text | safe}}</div>
-    <br>
-    <p>Bearbeitet am: {{note.evt_modified|date:"d.m.Y H:i"}}</p>
-    <p>Erstellt am: {{note.evt_created|date:"d.m.Y H:i"}}</p>
-    <p>Zu Erledigen bis: {{note.due_date|date:"d.m.Y H:i"}}</p>
-    <p>Reminder gesetzt: {{note.reminder}}</p>
-    <br>
-    <a href="{% url 'notes' %}" class="btn btn-fill btn-primary">Schliessen</a>
-    <a href="{% url 'edit-note' note.id %}" class="btn btn-fill btn-primary">Bearbeiten</a>
-    <a title="Notiz-Inhalt kopieren & E-Mail senden" href="mailto:jara.fuhrer@uzh.ch?subject=Geteilte Notiz: {{note.title}}&body=Bitte deine Notiz hierhin kopieren" class="btn btn-fill btn-primary">
-        Notiz mit Berater teilen</a>
+    <div class="card-header ">
+        <h3 class="title d-inline">{{note.title}}</h3>
+    </div>
+    <div class="card-body ">
+        <div class="form-group">
 
+            <h4></h4>
+            <div>{{note.text | safe}}</div>
+            <br>
+            <hr style="border-top: 2px solid rgba(0, 0, 0, 0.2);">
+            <p>Erstellt am: {{note.evt_created|date:"d.m.Y H:i"}}</p>
+            {% if note.evt_modified %}
+            <p>Bearbeitet am: {{note.evt_modified|date:"d.m.Y H:i"}}</p>
+            {% endif %}
+            {% if note.due_date %}
+            <p>Zu Erledigen bis: {{note.due_date|date:"d.m.Y H:i"}}</p>
+            {% endif %}
+            {% if note.reminder %}
+            <p>Reminder: Aktiv</p>
+            {% else %}
+            <p>Reminder: Inaktiv</p>
+            {% endif %}
+            <br>
+            <a href="{% url 'notes' %}" class="btn btn-fill btn-primary">Schliessen</a>
+            <a href="{% url 'edit-note' note.id %}" class="btn btn-fill btn-primary">Bearbeiten</a>
+            <a title="Notiz-Inhalt kopieren & E-Mail senden"
+               href="mailto:jara.fuhrer@uzh.ch?subject=Geteilte Notiz: {{note.title}}&body=Bitte deine Notiz hierhin kopieren"
+               class="btn btn-fill btn-primary">
+                Notiz mit Berater teilen</a>
+        </div>
+    </div>
     {% endfor %}
-
 
 </div>
 {% endif %}

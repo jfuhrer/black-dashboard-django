@@ -37,22 +37,19 @@ INSTALLED_APPS = [
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
-"""" define toolbar of richtext field, add config_name='name' to models.py to field
+# define toolbar of richtext field
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Custom',
         'toolbar_Custom': [
-            ['Bold', 'Link', 'Italic', 'Image','Undo', 'Redo', 'NumberedList', 'BulletedList'],
+            ['Bold', 'Italic', 'Underline', 'Strikethrough', 'Image', 'Undo', 'Redo', 'Link', 'Table',
+             'Insert Horizontal Line', 'Text Color', 'Background Color', 'Smiley', 'NumberedList', 'BulletedList'],
         ],
+        'height': 200,
+        'width': 500,
     },
-    'notes': {
-        'toolbar': 'Notes',
-        'toolbar_Notes': [
-            ['Bold', 'Link', 'Italic', 'Image'],
-        ],
-    }
 }
-"""
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',

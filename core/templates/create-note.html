@@ -8,16 +8,26 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<h2>Notiz erstellen</h2>
-<br>
-<div class="form-group">
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.media }}
-        {{ form.as_p }}
+<div class="card">
+    <div class="card-header">
+        <h3 class="title d-inline">Neue Notiz</h3>
+    </div>
+    <div class="card-body">
         <br>
-        <button type="submit" name="safe" class="btn btn-fill btn-primary">Speichern</button>
-    </form>
+        <div class="form-group">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <span>Titel: {{ form.title }} <span style="visibility:hidden">empty</span>
+                    Verlinkte Beratung: {{ form.advisory_session }}</span> <br> <br><br>
+                <span>Zu erledigen bis: {{ form.due_date }} <span style="visibility:hidden">empty</span>
+                    Reminder: {{ form.reminder }} </span> <br><br><br>
+                <span>{{ form.text }} {{ form.media }}</span>
+                <br>
+                <button type="submit" name="safe" class="btn btn-fill btn-primary">Speichern</button>
+                <a href="{% url 'notes' %}" class="btn btn-fill btn-primary">Abbrechen</a>
+            </form>
+        </div>
+    </div>
 </div>
 {% endif %}
 

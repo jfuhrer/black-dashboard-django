@@ -34,13 +34,13 @@ class AdvisorySession(models.Model):
 
 class Notes(models.Model):
     person = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    title = models.CharField(max_length=150)
+    title = models.CharField('Titel', max_length=150)
     text = RichTextUploadingField(blank=True, null=True)
     due_date = models.DateTimeField('Zu erledigen bis', null=True, blank=True,)
     reminder = models.BooleanField(default=False)
     advisory_session = models.ForeignKey(AdvisorySession, on_delete=models.CASCADE, null=True, blank=True,)
-    evt_created = models.DateTimeField('Created on', auto_now_add=True) # Automatically set the field to now when the object is first created. blank = true, editable = false
-    evt_modified = models.DateTimeField('Modified on', auto_now=True) # Automatically set the field to now every time the object is saved.  blank = true, editable = false
+    evt_created = models.DateTimeField('Erstellt am', auto_now_add=True) # Automatically set the field to now when the object is first created. blank = true, editable = false
+    evt_modified = models.DateTimeField('Verändert am', auto_now=True) # Automatically set the field to now every time the object is saved.  blank = true, editable = false
 
 
 

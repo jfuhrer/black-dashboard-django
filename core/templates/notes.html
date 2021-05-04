@@ -2,11 +2,17 @@
 {% load static %}
 {% block title %} Notizen {% endblock %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'assets/css/notes.css' %}">
+{% endblock stylesheets %}
+
 {% block content %}
 <div class="col-md-12">
     <div class="card">
         <div class="card-header ">
             <h3 class="title d-inline">Deine persönlichen Notizen</h3>
+            <a href="{% url 'create-note' %}?a={{ request.path }}" class="new-note fa fa-plus" title="Neue Notiz">
+            </a>
         </div>
         <div class="card-body ">
             <div class="table-full-width table-responsive">
