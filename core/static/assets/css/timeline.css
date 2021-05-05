@@ -137,6 +137,10 @@ time {
   margin-bottom: 8px;
 }
 
+.advisory-icon{
+    padding-right: 5px;
+}
+
 
 /* EFFECTS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -172,6 +176,10 @@ time {
   transform: none;
   visibility: visible;
   opacity: 1;
+}
+
+.meeting-link {
+    text-decoration:underline;
 }
 
 

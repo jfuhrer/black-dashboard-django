@@ -15,10 +15,10 @@
             <div class="timeline-advisory next-advisory">
                 <a href="{% url 'advisory-summary' advisory.id %}">
                     <time> {{advisory.title}}</time>
-                    <i class="tim-icons icon-square-pin" style="padding-right: 5px;"></i> {{advisory.date|date:"d.m.Y H:i" }} Uhr, {{advisory.place}} <br>
-                    <i class="tim-icons icon-single-02" style="padding-right: 5px;"></i>{{advisory.advisor_name}} <br>
-                    <i class="tim-icons icon-bullet-list-67" style="padding-right: 5px;"></i>{{advisory.agenda}} </a> <br>
-                <a style="text-decoration:underline" href={{advisory.overview}}> <i class="tim-icons icon-tv-2" style="padding-right: 5px;"></i> Zoom Meeting beitreten</a>
+                    <i class="tim-icons icon-square-pin advisory-icon"></i> {{advisory.date|date:"d.m.Y H:i" }} Uhr, {{advisory.place}} <br>
+                    <i class="tim-icons icon-single-02 advisory-icon"></i>{{advisory.advisor_name}} <br>
+                    <i class="tim-icons icon-bullet-list-67 advisory-icon"></i>{{advisory.agenda}} </a> <br>
+                <a href={{advisory.overview}} class="meeting-link "> <i class="tim-icons icon-tv-2 advisory-icon"></i> Zoom Meeting beitreten</a>
             </div>
         </li>
         {% elif advisory.type == "advisory" %}
@@ -26,14 +26,14 @@
             <div class="timeline-advisory">
                 <a href="{% url 'advisory-summary' advisory.id %}">
                     <time> {{advisory.title}}</time>
-                    <i class="tim-icons icon-square-pin" style="padding-right: 5px;"></i>{{advisory.place}}<br>
-                    <i class="tim-icons icon-single-02" style="padding-right: 5px;"></i>{{advisory.advisor_name}}<br>
-                    <i class="tim-icons icon-compass-05" style="padding-right: 5px;"></i>{{advisory.overview}}<br>
+                    <i class="tim-icons icon-square-pin advisory-icon"></i>{{advisory.place}}<br>
+                    <i class="tim-icons icon-single-02 advisory-icon"></i>{{advisory.advisor_name}}<br>
+                    <i class="tim-icons icon-compass-05 advisory-icon"></i>{{advisory.overview}}<br>
                     {% if advisory.investment_details|length > 0 %}
-                    <i class="tim-icons icon-coins" style="padding-right: 5px;"></i>{{advisory.investment_details}}
+                    <i class="tim-icons icon-coins advisory-icon"></i>{{advisory.investment_details}}
                     {% endif %}
                     {% if advisory.hot_leads|length > 0 %}
-                    <i class="tim-icons icon-zoom-split" style="padding-right: 5px;"></i>{{advisory.hot_leads}}
+                    <i class="tim-icons icon-zoom-split advisory-icon"></i>{{advisory.hot_leads}}
                     {% endif %}
                 </a>
             </div>
@@ -43,9 +43,9 @@
             <div class="timeline-event">
                 <a href="{% url 'advisory-summary' advisory.id %}">
                     <time> {{advisory.title}}</time>
-                    <i class="tim-icons icon-square-pin" style="padding-right: 5px;"></i>{{advisory.date|date:"d.m.Y H:i"}}<br>
-                    <i class="tim-icons icon-single-02" style="padding-right: 5px;"></i>Mit {{advisory.advisor_name}} <br>
-                    <i class="tim-icons icon-bullet-list-67" style="padding-right: 5px;"></i>{{advisory.overview}}<br>
+                    <i class="tim-icons icon-square-pin advisory-icon"></i>{{advisory.date|date:"d.m.Y H:i"}}<br>
+                    <i class="tim-icons icon-single-02 advisory-icon"></i>Mit {{advisory.advisor_name}} <br>
+                    <i class="tim-icons icon-bullet-list-67 advisory-icon"></i>{{advisory.overview}}<br>
                 </a>
             </div>
         </li>

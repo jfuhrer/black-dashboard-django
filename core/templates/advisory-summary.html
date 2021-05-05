@@ -65,14 +65,13 @@
     </div>
 
 <div class="popup" id="popup-1">
-    <div class="overlay"></div>
     <div class="content">
-         <div title='Abbrechen' class="close-btn" onclick="togglePopup()">&times;</div>
-        <h3>Neue Notiz</h3>
-        <div class="form-group" style="color: black;">
+        <div title='Abbrechen' class="close-btn" onclick="togglePopup()">&times;</div>
+        <h3 id="popup-1-header">Neue Notiz</h3>
+        <div class="form-group">
             <form action="{% url 'create-note' %}?a={{ request.path }}" method="POST" role="form">
                 {% csrf_token %}
-                <span id="text-field"></span> <!--ToDo prefil note! -->
+                <span id="text-field"></span> <!--ToDo prefill note with selected text! -->
                 <span>Titel: {{ form.title }}</span> <br>
                 <span style="display:none">{{ form.advisory_session }} </span> <br>
                 <span>{{ form.text }} {{ form.media }}</span>

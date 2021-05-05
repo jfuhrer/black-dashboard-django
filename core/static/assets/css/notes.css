@@ -12,3 +12,25 @@
   text-align:center;
   border-radius:50%;
 }
+
+.td-reminder {
+    min-width:70px;
+}
+
+.td-due-date{
+    min-width:120px;
+}
+
+.td-created{
+    min-width:100px;
+}
+
+.td-pencil {
+    padding-left:10px;
+    padding-right: 10px;
+}
+
+
+.view-note-hr {
+    border-top: 2px solid rgba(0, 0, 0, 0.2);
+}

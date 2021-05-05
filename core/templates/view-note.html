@@ -1,8 +1,9 @@
 {% extends "layouts/base.html" %}
-{% block title %} Notiz lesen{% endblock %}
+{% block title %} Notiz lesen {% endblock %}
 {% load static %}
 
 {% block stylesheets %}
+<link rel="stylesheet" href="{% static 'assets/css/notes.css' %}">
 {% endblock stylesheets %}
 
 {% block content %}
@@ -19,7 +20,7 @@
             <h4></h4>
             <div>{{note.text | safe}}</div>
             <br>
-            <hr style="border-top: 2px solid rgba(0, 0, 0, 0.2);">
+            <hr class="view-note-hr">
             <p>Erstellt am: {{note.evt_created|date:"d.m.Y H:i"}}</p>
             {% if note.evt_modified %}
             <p>Bearbeitet am: {{note.evt_modified|date:"d.m.Y H:i"}}</p>
