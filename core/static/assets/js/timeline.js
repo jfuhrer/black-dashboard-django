@@ -55,7 +55,7 @@ function getSelectionText() {
     return text;
 }
 
-
+// store selected text in storage
 function getSelectedText(){
     if (window.getSelection) {
         text = window.getSelection();
@@ -73,7 +73,9 @@ function togglePopup(){
     let text = sessionStorage.getItem('text');
     console.log(text)
     document.getElementById("popup-1").classList.toggle("active");
-    document.getElementById("text-field").textContent=text;
+    document.getElementById("selected-text").value=text;
+    document.getElementById("selected-text-preview").textContent=text;
+
 }
 
 // Make the DIV element draggable:

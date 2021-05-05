@@ -59,7 +59,8 @@
 </section>
 
     <div id="context-menu">
-      <div class="item" onclick="togglePopup()">
+      <div class="item" onclick="togglePopup()" title="Markiere die betroffene Stelle und schreib eine Notiz dazu.
+      Der markierte Text wird dann in die Notiz eingebaut.">
         <i class="fa fa-clipboard"></i> Notiz erstellen
       </div>
     </div>
@@ -71,8 +72,10 @@
         <div class="form-group">
             <form action="{% url 'create-note' %}?a={{ request.path }}" method="POST" role="form">
                 {% csrf_token %}
-                <span id="text-field"></span> <!--ToDo prefill note with selected text! -->
-                <span>Titel: {{ form.title }}</span> <br>
+                <span>Titel: {{ form.title }}</span><br><br>
+                <span>Notiz zum Abschnitt:</span>
+                <span id="selected-text-preview"></span>
+                <input style="visibility:hidden" type="text" id = "selected-text" name="selected-text" value="" />
                 <span style="display:none">{{ form.advisory_session }} </span> <br>
                 <span>{{ form.text }} {{ form.media }}</span>
                 <button title="Speichern" type="submit" name="safe" class="save-btn"><i class="fas fa-check"></i></button>

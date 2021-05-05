@@ -143,12 +143,20 @@ body {
   border-color: var(--primary);
   border-width: 4px;
   width:550px;
-  height:450px;
+  height:480px;
 }
 
 #popup-1-header {
   cursor: move;
 }
+
+#selected-text-preview {
+  display: block;
+  max-height: 40px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+ }
 
 .popup .close-btn {
   cursor:pointer;

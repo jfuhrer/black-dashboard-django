@@ -18,7 +18,7 @@ from .models import AdvisorySession, Notes
 
 class CreateNoteForm(ModelForm):
     def get_success_url(self):
-        return self.request.GET.get('a', reverse_lazy('notes'))
+        return self.request.GET.get('a', reverse_lazy('notes')) #redirect to url stored in param 'a'
 
     class Meta:
         model = Notes
@@ -32,16 +32,23 @@ class CreateNoteView(generic.CreateView):
 
     def get_initial(self):
         initial = super(generic.CreateView, self).get_initial()
-        advisory_id = self.request.GET.get('a')[-2]
-        initial.update({'advisory_session': advisory_id, 'text': 'test auto fill'})
+        # prefill person and if available advisory session
+        initial.update({'person': self.request.user})
+        if self.request.GET.get('a')[-2] is not None:
+            initial.update({'advisory_session': self.request.GET.get('a')[-2]})
         return initial
 
     def get_success_url(self):
-        return self.request.GET.get('a', reverse_lazy('notes'))
+        return self.request.GET.get('a', reverse_lazy('notes')) #redirect to url stored in param 'a'
 
     def form_valid(self, form):
-
         form.instance.person = self.request.user
+        # add selected text to notes-textfield if existing
+        selected_text = self.request.POST.get('selected-text')
+        if selected_text is not None:
+            form.instance.text = '<p> Notiz zu Abschnitt: <br> '+ selected_text +\
+                                 '</p> <hr style="border-top: 2px solid rgba(0, 0, 0, 0.2);">' + \
+                                 form.instance.text
         print('form valid')
         return super(CreateNoteView, self).form_valid(form)
 
