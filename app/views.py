@@ -2,7 +2,6 @@
 """
 Copyright (c) 2019 - present AppSeed.us
 """
-import datetime
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
@@ -11,24 +10,15 @@ from django.http import HttpResponse
 from django import template
 from django.urls import reverse_lazy
 from django.views import generic
-from django.forms import ModelForm
 
-from .models import AdvisorySession, Notes
-
-
-class CreateNoteForm(ModelForm):
-    def get_success_url(self):
-        return self.request.GET.get('a', reverse_lazy('notes')) #redirect to url stored in param 'a'
-
-    class Meta:
-        model = Notes
-        fields = ['title', 'text', 'advisory_session']
+from .forms import CreateNoteForm
+from .models import AdvisorySession, Notes, BankEmployees, UserProfile
 
 
 class CreateNoteView(generic.CreateView):
     model = Notes
     template_name = 'create-note.html'
-    fields = ['title', 'text', 'due_date', 'reminder', 'advisory_session']
+    form_class = CreateNoteForm
 
     def get_initial(self):
         initial = super(generic.CreateView, self).get_initial()
@@ -67,6 +57,9 @@ class ViewNoteView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        user = UserProfile.objects.get(user=self.request.user)
+        advisor = BankEmployees.objects.get(pk=user.advisor_id)
+        context['advisor'] = advisor
         context['notes'] = Notes.objects.filter(pk=self.kwargs.get('pk'))
         return context
 
@@ -104,10 +97,12 @@ def index(request):
         if userId is None:
             print('user cannot be found', userId)  # ToDo: throw better exception
 
+        #advisors = BankEmployees.objects.all() # if wanted get advisor name by this model
         advisories = AdvisorySession.objects.filter(person_id=userId).order_by('-date')
 
         context['segment'] = 'index'
         context['advisories'] = advisories
+        #context['advisors'] = advisors
 
         return render(request, "index.html", context)
 

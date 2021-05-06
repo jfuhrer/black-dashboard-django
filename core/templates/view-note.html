@@ -26,7 +26,7 @@
             <p>Bearbeitet am: {{note.evt_modified|date:"d.m.Y H:i"}}</p>
             {% endif %}
             {% if note.due_date %}
-            <p>Zu Erledigen bis: {{note.due_date|date:"d.m.Y H:i"}}</p>
+            <p>Zu Erledigen bis: {{note.due_date|date:"d.m.Y"}}</p>
             {% endif %}
             {% if note.reminder %}
             <p>Reminder: Aktiv</p>
@@ -36,10 +36,17 @@
             <br>
             <a href="{% url 'notes' %}" class="btn btn-fill btn-primary">Schliessen</a>
             <a href="{% url 'edit-note' note.id %}" class="btn btn-fill btn-primary">Bearbeiten</a>
+            {% if advisor.email %}
             <a title="Notiz-Inhalt kopieren & E-Mail senden"
-               href="mailto:jara.fuhrer@uzh.ch?subject=Geteilte Notiz: {{note.title}}&body=Bitte deine Notiz hierhin kopieren"
+               href="mailto:{{advisor.email}}?subject=Geteilte Notiz: {{note.title}}&body=Bitte deine Notiz hierhin kopieren"
                class="btn btn-fill btn-primary">
                 Notiz mit Berater teilen</a>
+            {% else %}
+            <a title="Notiz-Inhalt kopieren & E-Mail senden"
+               href="mailto:?subject=Geteilte Notiz: {{note.title}}&body=Bitte deine Notiz hierhin kopieren"
+               class="btn btn-fill btn-primary">
+                Notiz mit Berater teilen</a>
+            {% endif %}
         </div>
     </div>
     {% endfor %}
