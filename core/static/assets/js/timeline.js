@@ -71,10 +71,18 @@ function getSelectedText(){
 // pop up create note
 function togglePopup(){
     let text = sessionStorage.getItem('text');
-    console.log(text)
     document.getElementById("popup-1").classList.toggle("active");
     document.getElementById("selected-text").value=text;
     document.getElementById("selected-text-preview").textContent=text;
+}
+
+function showDetails(id_name) {
+  var x = document.getElementById(id_name);
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
 
 }
 

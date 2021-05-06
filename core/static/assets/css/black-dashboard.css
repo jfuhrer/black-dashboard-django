@@ -20,7 +20,7 @@
 :root {
   --indigo: #5603ad;
   --purple: #8965e0;
-  --duskyPink: #C99E9C;
+  --duskyPink: #DFB8B8;
   --red: #f5365c;
   --orange: #fb6340;
   --yellow: #FCBE18;
@@ -32,6 +32,7 @@
   --gray-dark: #32325d;
   --light: #ced4da;
   --lighter: #e9ecef;
+  --beige: #C9C0B1;
   --primary: #8DABBE;
   --secondary: #f4f5f7;
   --success: #00f2c3;
@@ -484,7 +485,8 @@ hr {
   margin-top: 2rem;
   margin-bottom: 2rem;
   border: 0;
-  border-top: 0.0625rem solid rgba(34, 42, 66, 0.1);
+  border-top: 0.0625rem solid
+  border-color: var(--beige);
 }
 
 small,
@@ -16476,7 +16478,7 @@ h6,
 }
 
 p {
-  font-weight: 320;
+  font-weight: 400;
 }
 
 button,
@@ -16654,7 +16656,8 @@ pre {
 }
 
 hr {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 2px solid;
+  border-color: var(--beige);
   margin-top: 1rem;
   margin-bottom: 1rem;
 }

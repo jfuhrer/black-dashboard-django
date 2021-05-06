@@ -3,42 +3,37 @@
 {% load static %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{% static 'assets/css/advisory-summary.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/sticky-note.css' %}">
-
+<link rel="stylesheet" href="{% static 'assets/css/advisory-summary.css' %}">
 {% endblock stylesheets %}
 
 {% block content %}
 
 <section class="timeline">
-  {% for adv in advisory %}
-  <ul class="design">
-    <h2>{{adv.title}}</h2>
-    <li class="design">
-      <div class="advisory-detail">
-        {% if adv.protocol|length > 0 %}
-        <p> {{adv.protocol|safe}}</p>
-        {% else %}
-        <p> Es konnte kein Gesprächsprotokoll gefunden werden.</p>
-        {% endif %}
-      </div>
-    </li>
-    <li class="design">
-      <div class="advisory-detail link">
-        <a href="{% url 'advisory-summary' adv.id %}" style="color:black">Zusammenfassung</a>
-      </div>
-    </li>
-    <li class="design">
-      <div class="advisory-detail link">
-        <a href="{% url 'advisory-summary' adv.id %}" style="color:black">Zeitstrahl</a>
-      </div>
-    </li>
-  </ul>
-  {% endfor %}
+    {% for adv in advisory %}
+    <ul class="design">
+        <h2>{{adv.title}}</h2>
+        <li class="design">
+            <div class="advisory-detail">
+                {% if adv.protocol|length > 0 %}
+                <p> {{adv.protocol|safe}}</p>
+                {% else %}
+                <p> Es konnte kein Gesprächsprotokoll gefunden werden.</p>
+                {% endif %}
+            </div>
+        </li>
+        <li class="design">
+            <div class="advisory-detail">
+                <a href="{% url 'advisory-summary' adv.id %}">
+                    <h4 class="title-advisory-detail link">Zur Zusammenfassung </h4>
+                </a>
+            </div>
+        </li>
+    </ul>
+    {% endfor %}
 
 </section>
 {% endblock content %}
 
 {% block javascripts %}
-  <script type="text/javascript" src="{% static 'assets/js/timeline.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/timeline.js' %}"></script>
 {% endblock javascripts %}

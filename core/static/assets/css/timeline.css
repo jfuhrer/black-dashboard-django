@@ -29,7 +29,7 @@ body {
 }
 
 .next-advisory {
-    background: var(--yellow) !important
+    background: var(--duskyPink) !important
 }
 
 .timeline ul li {
@@ -58,7 +58,7 @@ body {
   bottom: 0;
   width: 450px;
   padding: 15px;
-  background: var(--duskyPink);
+  background: var(--beige);
 }
 
 
@@ -68,7 +68,7 @@ body {
   width: 450px;
   padding: 15px;
   background: transparent;
-  box-shadow:0px 0px 0px 5px var(--duskyPink) inset;
+  box-shadow:0px 0px 0px 5px var(--beige) inset;
 }
 
 .timeline ul li div::before {
@@ -83,32 +83,32 @@ body {
 .timeline ul li: div.next-advisory::before {
   left: -15px;
   border-width: 8px 16px 8px 0;
-  border-color: transparent var(--yellow) transparent transparent;
+  border-color: transparent var(--duskyPink) transparent transparent;
 }
 
 .timeline ul li:nth-child(odd) div {
   left: 45px;
 }
 
-/*next advisory is yellow*/
+/*next advisory is duskyPink*/
 .timeline ul li.bullet-next-advisory div::before {
-  left: -15px;
-  border-width: 8px 16px 8px 0;
-  border-color: transparent var(--yellow) transparent transparent;
-}
-
-/*triangle*/
-.timeline ul li:nth-child(odd) div::before {
   left: -15px;
   border-width: 8px 16px 8px 0;
   border-color: transparent var(--duskyPink) transparent transparent;
 }
 
 /*triangle*/
+.timeline ul li:nth-child(odd) div::before {
+  left: -15px;
+  border-width: 8px 16px 8px 0;
+  border-color: transparent var(--beige) transparent transparent;
+}
+
+/*triangle*/
 .timeline ul li:nth-child(odd) div.next-advisory::before {
   left: -15px;
   border-width: 8px 16px 8px 0;
-  border-color: transparent var(--yellow) transparent transparent;
+  border-color: transparent var(--duskyPink) transparent transparent;
 }
 
 
@@ -120,14 +120,14 @@ body {
 .timeline ul li:nth-child(even) div::before {
   right: -15px;
   border-width: 8px 0 8px 16px;
-  border-color: transparent transparent transparent var(--duskyPink);
+  border-color: transparent transparent transparent var(--beige);
 }
 
 /*triangle*/
 .timeline ul li:nth-child(even) div.next-advisory::before {
   right: -15px;
   border-width: 8px 0 8px 16px;
-  border-color: transparent transparent transparent var(--yellow);
+  border-color: transparent transparent transparent var(--duskyPink);
 }
 
 time {
@@ -150,11 +150,11 @@ time {
 }
 
 .timeline ul li.in-view::after {
-  background: var(--duskyPink);
+  background: var(--beige);
 }
 /*next advisory*/
 .timeline ul li.bullet-next-advisory.in-view::after {
-  background: var(--yellow);
+  background: var(--duskyPink);
 }
 
 
@@ -209,7 +209,7 @@ time {
   .timeline ul li:nth-child(even) div::before {
     left: -15px;
     border-width: 8px 16px 8px 0;
-    border-color: transparent var(--duskyPink) transparent transparent;
+    border-color: transparent var(--beige) transparent transparent;
   }
 }
 

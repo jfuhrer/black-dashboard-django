@@ -26,3 +26,13 @@
 #anlagestrategie_aktuell {
     display: none
 }
+
+
+.clickable {
+    cursor:pointer;
+    padding: 10px;
+}
+
+.dividing-hr {
+    margin: 2px 20px;
+}

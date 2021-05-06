@@ -40,7 +40,6 @@ body {
 }
 
 
-
 /*timeline stroke*/
 .timeline ul.design li.design {
   list-style-type: none;
@@ -60,7 +59,7 @@ body {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: var(--duskyPink);
+  background: var(--beige);
 }
 
 .timeline ul.design li.design div {
@@ -89,7 +88,6 @@ body {
   }
 
 }
-
 
 
 /* --------------------------- context menu ---------------------------*/
@@ -122,6 +120,23 @@ body {
     }
 
 
+/* --------------------------- notes drill down ---------------------------*/
+
+.details {
+  max-width: 500px; /* ToDO: not static width!*/
+  padding: 0 30px;
+  text-align: left;
+  display: none;
+  color: inherit;
+  box-sizing:border-box;
+  font-family: inherit;
+  border-radius: 10px;
+}
+
+.clickable-notes {
+    cursor:pointer;
+    margin-left: -40px;
+}
 
 /*--------------------- pop up create note  --------------------- */
 .popup {
@@ -134,7 +149,6 @@ body {
 .popup .content {
   position:absolute;
   transform:translate(-50%,-50%) scale(0);
-  background:#fff;
   z-index:2;
   padding:20px;
   box-sizing:border-box;
@@ -148,6 +162,7 @@ body {
 
 #popup-1-header {
   cursor: move;
+  font-weight: 600;
 }
 
 #selected-text-preview {
@@ -199,5 +214,20 @@ body {
 .popup.active .content {
   transition:all 300ms ease-in-out;
   transform:translate(-50%,-50%) scale(1);
+}
+
+/* ToDo: delete when not needed
+ */
+[data-title]:hover::before {
+  content: attr(data-title);
+  position: absolute;
+  bottom: -26px;
+  display: inline-block;
+  padding: 20px 10px;
+  max-width: 300px;
+  border-radius: 2px;
+  color: var(--white);
+  background-color: var(--primary);
+  opacity: 1.0;
 }
 

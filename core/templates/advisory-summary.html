@@ -21,7 +21,9 @@
             </div>
             <br>
             <div class="advisory-detail">
-                <p class="title-advisory-detail link">Zuletzt geändert von {{adv.modified_by}} am {{adv.evt_modified|date:"d.m.Y H:i"}}</p>
+                <p class="title-advisory-detail link" title="Hier klicken, um die Änderungen zu sehen">
+                    Zuletzt geändert von {{adv.modified_by}} am
+                    {{adv.evt_modified|date:"d.m.Y H:i"}}</p>
             </div>
         </li>
         {% elif adv.type != "next-advisory" %}
@@ -36,8 +38,16 @@
             <div class="advisory-detail">
                 <h4 class="title-advisory-detail"> Notizen </h4>
                 {% for note in notes %}
-                <i class="tim-icons icon-notes"></i>
-                <a href="{% url 'view-note' note.id %}">{{note.title}}</a> <br> <br>
+                <div class="clickable-notes" onclick="showDetails('{{note.id}}')">
+                    <i class="tim-icons icon-notes"></i> <span class="title-advisory-detail link"> {{note.title}} </span>
+                </div>
+                <div class="details card" id="{{note.id}}">
+                    <a href="{% url 'view-note' note.id %}"> {{ note.text|safe}}
+                        <hr>
+                        <p>Erstellt am: {{ note.evt_created|date:"d.m.Y"}} </p>
+                        <p>Zu erledigen bis: {{ note.due_date|date:"d.m.Y"}} </p>
+                    </a>
+                </div>
                 {% endfor %}
             </div>
             <div class="advisory-detail">
@@ -58,15 +68,15 @@
     {% endfor %}
 </section>
 
-    <div id="context-menu">
-      <div class="item" onclick="togglePopup()" title="Markiere die betroffene Stelle und schreib eine Notiz dazu.
+<div id="context-menu">
+    <div class="item" onclick="togglePopup()" title="Markiere die betroffene Stelle und schreib eine Notiz dazu.
       Der markierte Text wird dann in die Notiz eingebaut.">
         <i class="fa fa-clipboard"></i> Notiz erstellen
-      </div>
     </div>
+</div>
 
 <div class="popup" id="popup-1">
-    <div class="content">
+    <div class="content card">
         <div title='Abbrechen' class="close-btn" onclick="togglePopup()">&times;</div>
         <h3 id="popup-1-header">Neue Notiz</h3>
         <div class="form-group">
@@ -75,10 +85,11 @@
                 <span>Titel: {{ form.title }}</span><br><br>
                 <span>Notiz zum Abschnitt:</span>
                 <span id="selected-text-preview"></span>
-                <input style="visibility:hidden" type="text" id = "selected-text" name="selected-text" value="" />
+                <input style="visibility:hidden" type="text" id="selected-text" name="selected-text" value=""/>
                 <span style="display:none">{{ form.advisory_session }} </span> <br>
                 <span>{{ form.text }} {{ form.media }}</span>
-                <button title="Speichern" type="submit" name="safe" class="save-btn"><i class="fas fa-check"></i></button>
+                <button title="Speichern" type="submit" name="safe" class="save-btn"><i class="fas fa-check"></i>
+                </button>
             </form>
         </div>
     </div>
