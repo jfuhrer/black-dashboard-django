@@ -52,7 +52,7 @@
             </div>
             <div class="advisory-detail">
                 <i class="tim-icons icon-simple-add"></i>
-                <a href="{% url 'create-note' %}?a={{ request.path }}">Neue Notiz erstellen</a>
+                <a href="{% url 'create-note' %}?next={{ request.path }}">Neue Notiz erstellen</a>
             </div>
         </li>
         {% if adv.type == "advisory" %}
@@ -80,7 +80,7 @@
         <div title='Abbrechen' class="close-btn" onclick="togglePopup()">&times;</div>
         <h3 id="popup-1-header">Neue Notiz</h3>
         <div class="form-group">
-            <form action="{% url 'create-note' %}?a={{ request.path }}" method="POST" role="form">
+            <form action="{% url 'create-note' %}?next={{ request.path }}" method="POST" role="form">
                 {% csrf_token %}
                 <span>Titel: {{ form.title }}</span><br><br>
                 <span>Notiz zum Abschnitt:</span>

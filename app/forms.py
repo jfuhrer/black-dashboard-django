@@ -11,7 +11,7 @@ class DateInput(forms.DateInput):
 
 class CreateNoteForm(ModelForm):
     def get_success_url(self):
-        return self.request.GET.get('a', reverse_lazy('notes')) #redirect to url stored in param 'a'
+        return self.request.GET.get('next', reverse_lazy('notes')) #redirect to url stored in param 'a'
 
     class Meta:
         model = Notes
@@ -19,3 +19,7 @@ class CreateNoteForm(ModelForm):
         widgets = {
             'due_date': DateInput(),
         }
+
+
+class SearchForm(forms.Form):
+    q = forms.CharField(label='Search', max_length=50)

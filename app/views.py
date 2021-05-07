@@ -4,6 +4,8 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.shortcuts import render
 from django.template import loader
 from django.http import HttpResponse
@@ -11,11 +13,73 @@ from django import template
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .forms import CreateNoteForm
+from .forms import CreateNoteForm, SearchForm
 from .models import AdvisorySession, Notes, BankEmployees, UserProfile
 
 
-class CreateNoteView(generic.CreateView):
+class SearchView(LoginRequiredMixin, generic.FormView):
+    login_url = '/login/'
+    template_name = 'search.html'
+    form_class = SearchForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['segment'] = 'search'
+        return context
+
+
+class SearchResultsView(LoginRequiredMixin, generic.ListView):
+    login_url = '/login/'
+    template_name = 'search-results.html'
+
+    def get_queryset(self):
+        object_list = []
+        query = self.request.GET.get('q')
+
+        advisory_results = AdvisorySession.objects.filter(
+            Q(summary__icontains=query) |
+            Q(title__icontains=query)
+        ).distinct()
+
+        for advisory in advisory_results:
+            result_title = advisory.title
+            result_text = advisory.summary
+            result_date = advisory.date
+            object_list.append({'type': 'Beratung', 'title': result_title,
+                                'date': result_date, 'text':result_text})
+
+        advisory_results = AdvisorySession.objects.filter(protocol__icontains=query).distinct()
+
+        for advisory in advisory_results:
+            result_title = advisory.title
+            result_text = advisory.protocol
+            result_date = advisory.date
+            object_list.append({'type': 'Beratung Protokoll', 'title': result_title,
+                                'date': result_date, 'text': result_text})
+
+        notes_results = Notes.objects.filter(
+            Q(title__icontains=query) | Q(text__icontains=query)  # case insensitive
+        ).distinct()
+
+        for notes in notes_results:
+            print('note')
+            result_title = notes.title
+            result_text = notes.text # ToDo: not only in summary but overall
+            result_date = notes.evt_created
+            object_list.append({'type': 'Notiz', 'title': result_title,
+                                'date': result_date, 'text':result_text})
+
+        return object_list
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        query = self.request.GET.get('q')
+        context['query'] = query
+        return context
+
+
+class CreateNoteView(LoginRequiredMixin, generic.CreateView):
+    login_url = '/login/'
     model = Notes
     template_name = 'create-note.html'
     form_class = CreateNoteForm
@@ -24,12 +88,12 @@ class CreateNoteView(generic.CreateView):
         initial = super(generic.CreateView, self).get_initial()
         # prefill person and if available advisory session
         initial.update({'person': self.request.user})
-        if self.request.GET.get('a')[-2] is not None:
-            initial.update({'advisory_session': self.request.GET.get('a')[-2]})
+        if self.request.GET.get('next')[-2] is not None:
+            initial.update({'advisory_session': self.request.GET.get('next')[-2]})
         return initial
 
     def get_success_url(self):
-        return self.request.GET.get('a', reverse_lazy('notes')) #redirect to url stored in param 'a'
+        return self.request.GET.get('next', reverse_lazy('notes')) #redirect to url stored in param 'a'
 
     def form_valid(self, form):
         form.instance.person = self.request.user
@@ -43,14 +107,16 @@ class CreateNoteView(generic.CreateView):
         return super(CreateNoteView, self).form_valid(form)
 
 
-class EditNoteView(generic.UpdateView):
+class EditNoteView(LoginRequiredMixin, generic.UpdateView):
+    login_url = '/login/'
     model = Notes
     template_name = 'edit-note.html'
-    fields = ['title', 'advisory_session', 'due_date', 'reminder', 'text']
+    form_class = CreateNoteForm
     success_url = reverse_lazy('notes')
 
 
-class ViewNoteView(generic.DetailView):
+class ViewNoteView(LoginRequiredMixin, generic.DetailView):
+    login_url = '/login/'
     model = Notes
     template_name = 'view-note.html'
     context_object_name = 'note'
@@ -64,7 +130,8 @@ class ViewNoteView(generic.DetailView):
         return context
 
 
-class AdvisorySummaryView(generic.DetailView):
+class AdvisorySummaryView(LoginRequiredMixin, generic.DetailView):
+    login_url = '/login/'
     model = AdvisorySession
     template_name = 'advisory-summary.html'
     context_object_name = 'advisory-summary'
@@ -78,7 +145,8 @@ class AdvisorySummaryView(generic.DetailView):
         return context
 
 
-class ProtocolView(generic.DetailView):
+class ProtocolView(LoginRequiredMixin, generic.DetailView):
+    login_url = '/login/'
     model = AdvisorySession
     template_name = 'protocol.html'
     context_object_name = 'protocol'
@@ -123,6 +191,7 @@ def pages(request):
 
         load_template = request.path.split('/')[-1]
         context['segment'] = load_template
+        load_template = load_template + '.html'
 
         html_template = loader.get_template(load_template)
         return HttpResponse(html_template.render(context, request))
@@ -148,7 +217,8 @@ def notes(request):
             print('user cannot be found', userId)  # ToDo: throw better exception
 
         notesObjects = Notes.objects.filter(person_id=userId) # ToDo: wrong, how to get id
-        context = {'notes': notesObjects}
+        context = {'notes': notesObjects, 'segment': 'notes'}
+        print('notes')
         return render(request, "notes.html", context)
 
     except template.TemplateDoesNotExist:

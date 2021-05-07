@@ -6,14 +6,24 @@
 {% endblock stylesheets %}
 
 {% block content %}
-<h1>Globale Suche</h1>
 
-<p>Mal schauen obs klappt</p>
+{% if user.is_authenticated %}
+<div class="card">
+    <div class="card-header">
+        <h3 class="title d-inline">Suche</h3>
+    </div>
+    <div class="card-body">
+        <p>Suche in deinen Beratungen & Notizen.</p>
 
-<form action="{% url 'search_results' %}" method="get">
-  {{form.as_p}}
-</form>
+        <form action="{% url 'search-results' %}" method="get">
+            {{form.q}}
+        </form>
 
+    </div>
+</div>
+
+
+{% endif %}
 {% endblock content %}
 
 {% block javascripts %}

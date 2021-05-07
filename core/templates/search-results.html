@@ -1,0 +1,59 @@
+{% extends "layouts/base.html" %}
+{% block title %} Search {% endblock %}
+{% load static %}
+
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h3 class="title d-inline">Suchresultate für "{{ query }}" </h3>
+    </div>
+    <div class="card-body">
+        <div class="table-full-width table-responsive">
+            <table class="table">
+                <thead class=" text-primary">
+                <tr>
+                    <th>
+                        Typ
+                    </th>
+                    <th>
+                        Titel
+                    </th>
+                    <th>
+                        Datum
+                    </th>
+                    <th>
+                        Treffer
+                    </th>
+                </tr>
+                </thead>
+                {% for result in object_list %}
+                <tbody>
+                <tr>
+                    <td>
+                        <div>{{result.type}}</div>
+                    </td>
+                    <td>
+                        <div>{{result.title}}</div>
+                    </td>
+                    <td>
+                        <div>{{result.date | date:"d.m.Y" }}</div>
+                    </td>
+                    <td>
+                        <div>{{result.text |safe }}</div>
+                    </td>
+                </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+{% block javascripts %}
+{% endblock javascripts %}

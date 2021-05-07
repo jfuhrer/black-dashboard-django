@@ -11,7 +11,7 @@
     <div class="card">
         <div class="card-header ">
             <h3 class="title d-inline">Deine persönlichen Notizen</h3>
-            <a href="{% url 'create-note' %}?a={{ request.path }}" class="new-note fa fa-plus" title="Neue Notiz">
+            <a href="{% url 'create-note' %}?next={{ request.path }}" class="new-note fa fa-plus" title="Neue Notiz">
             </a>
         </div>
         <div class="card-body ">
