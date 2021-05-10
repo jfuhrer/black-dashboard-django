@@ -17,8 +17,8 @@
                     <time> {{advisory.title}}</time>
                     <i class="tim-icons icon-square-pin advisory-icon"></i> {{advisory.date|date:"d.m.Y H:i" }} Uhr, {{advisory.place}} <br>
                     <i class="tim-icons icon-single-02 advisory-icon"></i>{{advisory.advisor_name}} <br>
-                    <i class="tim-icons icon-bullet-list-67 advisory-icon"></i>{{advisory.agenda}} </a> <br>
-                <a href={{advisory.overview}} class="meeting-link "> <i class="tim-icons icon-tv-2 advisory-icon"></i> Zoom Meeting beitreten</a>
+                    <i class="tim-icons icon-bullet-list-67 advisory-icon" title="Agenda"></i>{{advisory.agenda}} </a> <br>
+                <a href={{advisory.overview}} class="meeting-link" title="Zoom Link"> <i class="tim-icons icon-tv-2 advisory-icon"></i> Zoom Meeting beitreten</a>
             </div>
         </li>
         {% elif advisory.type == "advisory" %}
@@ -28,12 +28,12 @@
                     <time> {{advisory.title}}</time>
                     <i class="tim-icons icon-square-pin advisory-icon"></i>{{advisory.place}}<br>
                     <i class="tim-icons icon-single-02 advisory-icon"></i>{{advisory.advisor_name}}<br>
-                    <i class="tim-icons icon-compass-05 advisory-icon"></i>{{advisory.overview}}<br>
+                    <i class="tim-icons icon-compass-05 advisory-icon" title="Key Take Away"></i>{{advisory.overview}}<br>
                     {% if advisory.investment_details|length > 0 %}
-                    <i class="tim-icons icon-coins advisory-icon"></i>{{advisory.investment_details}}
+                    <i class="tim-icons icon-coins advisory-icon" title="Investments"></i>{{advisory.investment_details}}
                     {% endif %}
                     {% if advisory.hot_leads|length > 0 %}
-                    <i class="tim-icons icon-zoom-split advisory-icon"></i>{{advisory.hot_leads}}
+                    <i class="tim-icons icon-zoom-split advisory-icon" title="Hot Leads"></i>{{advisory.hot_leads}}
                     {% endif %}
                 </a>
             </div>
@@ -43,9 +43,9 @@
             <div class="timeline-event">
                 <a href="{% url 'advisory-summary' advisory.id %}">
                     <time> {{advisory.title}}</time>
-                    <i class="tim-icons icon-square-pin advisory-icon"></i>{{advisory.date|date:"d.m.Y H:i"}}<br>
+                    <i class="tim-icons icon-square-pin advisory-icon"></i>{{advisory.date|date:"d.m.Y"}}<br>
                     <i class="tim-icons icon-single-02 advisory-icon"></i>Mit {{advisory.advisor_name}} <br>
-                    <i class="tim-icons icon-bullet-list-67 advisory-icon"></i>{{advisory.overview}}<br>
+                    <i class="tim-icons icon-bullet-list-67 advisory-icon" title="Inhalt"></i>{{advisory.overview}}<br>
                 </a>
             </div>
         </li>

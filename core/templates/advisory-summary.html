@@ -21,9 +21,10 @@
             </div>
             <br>
             <div class="advisory-detail">
-                <p class="title-advisory-detail link" title="Hier klicken, um die Änderungen zu sehen">
+                <a href="{% url 'advisory-changes' adv.id %}" class="title-advisory-detail link"
+                   title="Hier klicken, um die Änderungen zu sehen">
                     Zuletzt geändert von {{adv.modified_by}} am
-                    {{adv.evt_modified|date:"d.m.Y H:i"}}</p>
+                    {{adv.evt_modified|date:"d.m.Y H:i"}}</a>
             </div>
         </li>
         {% elif adv.type != "next-advisory" %}

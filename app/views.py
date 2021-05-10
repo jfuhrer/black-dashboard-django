@@ -145,6 +145,18 @@ class AdvisorySummaryView(LoginRequiredMixin, generic.DetailView):
         return context
 
 
+class AdvisoryChangesView(LoginRequiredMixin, generic.DetailView):
+    login_url = '/login/'
+    model = AdvisorySession # ToDo maybe own model?
+    template_name = 'advisory-changes.html'
+    context_object_name = 'advisory-changes'
+
+    def get_context_data(self, **kwargs):
+        advisory = AdvisorySession.objects.filter(pk=self.kwargs.get('pk'))
+        context = {'advisory': advisory}
+        return context
+
+
 class ProtocolView(LoginRequiredMixin, generic.DetailView):
     login_url = '/login/'
     model = AdvisorySession

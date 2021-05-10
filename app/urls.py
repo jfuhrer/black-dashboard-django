@@ -6,7 +6,7 @@ Copyright (c) 2019 - present AppSeed.us
 from django.urls import path, re_path
 from app import views
 from app.views import EditNoteView, ViewNoteView, AdvisorySummaryView, ProtocolView, CreateNoteView, SearchResultsView, \
-    SearchView
+    SearchView, AdvisoryChangesView
 
 urlpatterns = [
     # The home page
@@ -16,6 +16,7 @@ urlpatterns = [
 
     path('protocol/<int:pk>/', ProtocolView.as_view(), name='protocol'),
     path('advisory-summary/<int:pk>/', AdvisorySummaryView.as_view(), name='advisory-summary'),
+    path('advisory-changes/<int:pk>/', AdvisoryChangesView.as_view(), name='advisory-changes'),
     path('edit-note/<int:pk>/', EditNoteView.as_view(), name='edit-note'),
     path('view-note/<int:pk>/', ViewNoteView.as_view(), name='view-note'),
     path('create-note/', CreateNoteView.as_view(), name='create-note'),
