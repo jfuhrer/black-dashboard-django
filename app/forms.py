@@ -1,3 +1,15 @@
+"""
+=========================================================
+* FinCon v.1.0
+=========================================================
+* Coded by Jara Fuhrer
+* Master Thesis at the University of Zurich, 2021
+
+=========================================================
+
+"""
+
+
 from django import forms
 from django.urls import reverse_lazy
 from django.forms import ModelForm

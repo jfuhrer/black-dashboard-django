@@ -1,3 +1,14 @@
+/*!
+
+=========================================================
+* FinCon v.1.0
+=========================================================
+* Coded by Jara Fuhrer
+* Master Thesis at the University of Zurich, 2021
+
+=========================================================
+
+*/
 
 // highlight search query in results
 function highlight(text){

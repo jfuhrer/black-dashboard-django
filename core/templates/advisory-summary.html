@@ -1,3 +1,16 @@
+<!--
+
+=========================================================
+* FinCon v.1.0
+=========================================================
+* Coded by Jara Fuhrer
+* Master Thesis at the University of Zurich, 2021
+
+=========================================================
+
+-->
+
+
 {% extends "layouts/base.html" %}
 {% block title %} Beratungszusammenfassung{% endblock %}
 {% load static %}
@@ -54,6 +67,15 @@
             <div class="advisory-detail">
                 <i class="tim-icons icon-simple-add"></i>
                 <a href="{% url 'create-note' %}?next={{ request.path }}">Neue Notiz erstellen</a>
+            </div>
+        </li>
+        <li class="design">
+            <div class="advisory-detail">
+                <h4 class="title-advisory-detail"> Verlinkte Dokumente </h4>
+                <!-- ToDo: once documents are available -->
+                <div class="clickable-doc" title="In Entwicklung, nicht abrufbar">
+                    <i class="tim-icons icon-attach-87"></i>Factsheet.pdf
+                </div>
             </div>
         </li>
         {% if adv.type == "advisory" %}

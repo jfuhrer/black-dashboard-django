@@ -14,9 +14,9 @@
         <div class="card">
             <div class="card-body">
                 <h2 class="user-title">Kundenprofil</h2>
-                <div class="user-details"><b>User-ID</b> <br> {{ request.user.id }}</div>
-                <div class="user-details"><b>Username (Kundennummer)</b> <br> {{ request.user.username }}</div>
-                <div class="user-details"><b>Name</b> <br>{{ request.user.first_name }} {{ request.user.last_name }}</div>
+                <div class="user-details"><b>User-ID</b> <br> {{ request.user.id }}</div><br>
+                <div class="user-details"><b>Username (Kundennummer)</b> <br> {{ request.user.username }}</div><br>
+                <div class="user-details"><b>Name</b> <br>{{ request.user.first_name }} {{ request.user.last_name }}</div><br>
                 <div class="user-details"><b>E-Mail</b><br> {{ request.user.email }}</div>
             </div>
         </div>
