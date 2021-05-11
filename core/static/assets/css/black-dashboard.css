@@ -19791,10 +19791,10 @@ Copyright (c) 2015 Daniel Eden
 
 .card-user .author .block.block-one {
   background: rgba(225, 78, 202, 0.6);
-  background: -webkit-linear-gradient(to right, rgba(225, 78, 202, 0.6) 0%, rgba(225, 78, 202, 0) 100%);
-  background: -o-linear-gradient(to right, rgba(225, 78, 202, 0.6) 0%, rgba(225, 78, 202, 0) 100%);
-  background: -moz-linear-gradient(to right, rgba(225, 78, 202, 0.6) 0%, rgba(225, 78, 202, 0) 100%);
-  background: linear-gradient(to right, rgba(225, 78, 202, 0.6) 0%, rgba(225, 78, 202, 0) 100%);
+  background: -webkit-linear-gradient(to right, rgb(201, 192, 177) 0%, rgba(201, 192, 177, 0) 100%);
+  background: -o-linear-gradient(to right, rgb(201, 192, 177) 0%, rgba(201, 192, 177, 0) 100%);
+  background: -moz-linear-gradient(to right, rgb(201, 192, 177) 0%, rgba(201, 192, 177, 0) 100%);
+  background: linear-gradient(to right, rgb(201, 192, 177) 0%, rgba(201, 192, 177, 0) 100%);
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=10);
   -webkit-transform: rotate(150deg);
   -moz-transform: rotate(150deg);
@@ -19806,11 +19806,11 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .card-user .author .block.block-two {
-  background: rgba(225, 78, 202, 0.6);
-  background: -webkit-linear-gradient(to right, rgba(225, 78, 202, 0.6) 0%, rgba(225, 78, 202, 0) 100%);
-  background: -o-linear-gradient(to right, rgba(225, 78, 202, 0.6) 0%, rgba(225, 78, 202, 0) 100%);
-  background: -moz-linear-gradient(to right, rgba(225, 78, 202, 0.6) 0%, rgba(225, 78, 202, 0) 100%);
-  background: linear-gradient(to right, rgba(225, 78, 202, 0.6) 0%, rgba(225, 78, 202, 0) 100%);
+  background: rgba(201, 192, 177, 0.6);
+  background: -webkit-linear-gradient(to right, rgb(201, 192, 177) 0%, rgba(201, 192, 177, 0) 100%);
+  background: -o-linear-gradient(to right, rgb(201, 192, 177) 0%, rgba(201, 192, 177, 0) 100%);
+  background: -moz-linear-gradient(to right, rgb(201, 192, 177) 0%, rgba(201, 192, 177, 0) 100%);
+  background: linear-gradient(to right, rgb(201, 192, 177) 0%, rgba(201, 192, 177, 0) 100%);
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=10);
   -webkit-transform: rotate(30deg);
   -moz-transform: rotate(30deg);
@@ -19823,10 +19823,10 @@ Copyright (c) 2015 Daniel Eden
 
 .card-user .author .block.block-three {
   background: rgba(225, 78, 202, 0.6);
-  background: -webkit-linear-gradient(to right, rgba(225, 78, 202, 0.6) 0%, rgba(225, 78, 202, 0) 100%);
-  background: -o-linear-gradient(to right, rgba(225, 78, 202, 0.6) 0%, rgba(225, 78, 202, 0) 100%);
-  background: -moz-linear-gradient(to right, rgba(225, 78, 202, 0.6) 0%, rgba(225, 78, 202, 0) 100%);
-  background: linear-gradient(to right, rgba(225, 78, 202, 0.6) 0%, rgba(225, 78, 202, 0) 100%);
+  background: -webkit-linear-gradient(to right, rgb(201, 192, 177) 0%, rgba(201, 192, 177, 0) 100%);
+  background: -o-linear-gradient(to right, rgb(201, 192, 177) 0%, rgba(201, 192, 177, 0) 100%);
+  background: -moz-linear-gradient(to right, rgb(201, 192, 177) 0%, rgba(201, 192, 177, 0) 100%);
+  background: linear-gradient(to right, rgb(201, 192, 177) 0%, rgba(201, 192, 177, 0) 100%);
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=10);
   -webkit-transform: rotate(170deg);
   -moz-transform: rotate(170deg);
@@ -19839,10 +19839,10 @@ Copyright (c) 2015 Daniel Eden
 
 .card-user .author .block.block-four {
   background: rgba(225, 78, 202, 0.6);
-  background: -webkit-linear-gradient(to right, rgba(225, 78, 202, 0.6) 0%, rgba(225, 78, 202, 0) 100%);
-  background: -o-linear-gradient(to right, rgba(225, 78, 202, 0.6) 0%, rgba(225, 78, 202, 0) 100%);
-  background: -moz-linear-gradient(to right, rgba(225, 78, 202, 0.6) 0%, rgba(225, 78, 202, 0) 100%);
-  background: linear-gradient(to right, rgba(225, 78, 202, 0.6) 0%, rgba(225, 78, 202, 0) 100%);
+  background: -webkit-linear-gradient(to right, rgb(201, 192, 177) 0%, rgba(201, 192, 177, 0) 100%);
+  background: -o-linear-gradient(to right, rgb(201, 192, 177) 0%, rgba(201, 192, 177, 0) 100%);
+  background: -moz-linear-gradient(to right, rgb(201, 192, 177) 0%, rgba(201, 192, 177, 0) 100%);
+  background: linear-gradient(to right, rgb(201, 192, 177) 0%, rgba(201, 192, 177, 0) 100%);
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=10);
   -webkit-transform: rotate(150deg);
   -moz-transform: rotate(150deg);
