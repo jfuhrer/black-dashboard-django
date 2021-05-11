@@ -62,12 +62,11 @@ class SearchResultsView(LoginRequiredMixin, generic.ListView):
         ).distinct()
 
         for notes in notes_results:
-            print('note')
             result_title = notes.title
             result_text = notes.text # ToDo: not only in summary but overall
             result_date = notes.evt_created
             object_list.append({'type': 'Notiz', 'title': result_title,
-                                'date': result_date, 'text':result_text})
+                                'date': result_date, 'text': result_text})
 
         return object_list
 

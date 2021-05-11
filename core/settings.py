@@ -41,9 +41,10 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Custom',
+        'removePlugins': 'stylesheetparser',
         'toolbar_Custom': [
             ['Bold', 'Italic', 'Underline', 'Strikethrough', 'Image', 'Undo', 'Redo', 'Link', 'Table',
-             'Insert Horizontal Line', 'Text Color', 'Background Color', 'Smiley', 'NumberedList', 'BulletedList'],
+             'Insert Horizontal Line', 'Text Color', 'Background Color', 'Smiley', 'NumberedList', 'BulletedList', 'Source'],
         ],
         'height': 200,
         'width': 500,

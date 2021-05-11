@@ -1,0 +1,17 @@
+.highlight {
+  background-color: var(--yellow);
+  padding: 5px 0 5px 0;
+  border-radius: 10px;
+}
+
+#id_q{
+    padding: 10px;
+    border-radius: 10px;
+    border-color: var(--black-blue);
+    border-style: solid;
+    outline: none;
+}
+
+.no-result {
+    padding: 15px;
+}

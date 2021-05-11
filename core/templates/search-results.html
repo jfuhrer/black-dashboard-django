@@ -3,13 +3,16 @@
 {% load static %}
 
 {% block stylesheets %}
+<link rel="stylesheet" href="{% static 'assets/css/search.css' %}">
 {% endblock stylesheets %}
 
 {% block content %}
+<body onload="highlight('{{query}}')">
 <div class="card">
     <div class="card-header">
         <h3 class="title d-inline">Suchresultate für "{{ query }}" </h3>
     </div>
+    {% if object_list %}
     <div class="card-body">
         <div class="table-full-width table-responsive">
             <table class="table">
@@ -36,13 +39,13 @@
                         <div>{{result.type}}</div>
                     </td>
                     <td>
-                        <div>{{result.title}}</div>
+                        <div class="serachResult" id="resultTitle">{{result.title}}</div>
                     </td>
                     <td>
                         <div>{{result.date | date:"d.m.Y" }}</div>
                     </td>
                     <td>
-                        <div>{{result.text |safe }}</div>
+                        <div class="serachResult" id="resultText">{{result.text|safe }}</div>
                     </td>
                 </tr>
                 </tbody>
@@ -50,10 +53,21 @@
             </table>
         </div>
     </div>
+    {% else %}
+    <div class="no-result">
+        Upps, deine Suche ging leider leer aus.  <br> <br>
+        Vielleicht versuchst du es nochmals mit einem anderen Suchbegriff?
+        <br> <br>
+        <a href="{% url 'search' %}" class="btn btn-fill btn-primary">Neue Suche</a>
+    </div>
+    {% endif %}
 </div>
 
+</body>
 
 {% endblock content %}
 
 {% block javascripts %}
+<script type="text/javascript" src="{% static 'assets/js/search.js' %}"></script>
+
 {% endblock javascripts %}

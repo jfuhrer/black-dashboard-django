@@ -42,7 +42,9 @@
       contextElement.classList.add("active");
     });
     window.addEventListener("click",function(){
-      document.getElementById("context-menu").classList.remove("active");
+        if (document.getElementById("context-menu") !== null) {
+            document.getElementById("context-menu").classList.remove("active");
+        }
     });
 
 function getSelectionText() {
@@ -86,8 +88,10 @@ function showDetails(id_name) {
 
 }
 
-// Make the DIV element draggable:
-dragElement(document.getElementById("popup-1"));
+if (document.getElementById("popup-1") !== null) {
+    // Make the DIV element draggable:
+    dragElement(document.getElementById("popup-1"));
+}
 
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;

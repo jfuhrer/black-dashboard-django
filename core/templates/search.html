@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block stylesheets %}
+<link rel="stylesheet" href="{% static 'assets/css/search.css' %}">
 {% endblock stylesheets %}
 
 {% block content %}
@@ -13,7 +14,7 @@
         <h3 class="title d-inline">Suche</h3>
     </div>
     <div class="card-body">
-        <p>Suche in deinen Beratungen & Notizen.</p>
+        <p>Suche in deinen Beratungen & Notizen</p> <br>
 
         <form action="{% url 'search-results' %}" method="get">
             {{form.q}}

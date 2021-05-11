@@ -216,18 +216,24 @@ body {
   transform:translate(-50%,-50%) scale(1);
 }
 
-/* ToDo: delete when not needed
- */
+/*--------------------- hover-details in summary ----------------------- */
 [data-title]:hover::before {
   content: attr(data-title);
   position: absolute;
-  bottom: -26px;
+  top: 26px;
   display: inline-block;
   padding: 20px 10px;
-  max-width: 300px;
-  border-radius: 2px;
+  min-width: 200px;
+  max-width: 400px;
+  border-radius: 10px;
   color: var(--white);
   background-color: var(--primary);
   opacity: 1.0;
+  text-overflow: ellipsis;
+  box-shadow: 0 1px 20px 0px rgba(0, 0, 0, 0.1);
 }
 
+[data-title] {
+  position: relative;
+  cursor: help;
+}
