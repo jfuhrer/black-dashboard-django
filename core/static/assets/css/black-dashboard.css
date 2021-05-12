@@ -107,6 +107,13 @@ body {
     color: var(--primary);
     padding: 10px 0 10px 0;
 }
+
+@media screen and (max-width:600px) {
+#dropdown-menu {
+    background-color: var(--white) !important;
+    }
+}
+
 hr {
   box-sizing: content-box;
   height: 0;

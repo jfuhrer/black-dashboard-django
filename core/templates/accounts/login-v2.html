@@ -9,13 +9,24 @@
 =========================================================
 
 -->
+<!DOCTYPE html>
+<html lang="en">
 
-
+<!-- Static assets -->
 {% load static %}
 
-{% block stylesheets %}
-<link rel="stylesheet" href="{% static 'assets/css/login-register.css' %}">
-{% endblock stylesheets %}
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    FinCon - Login
+  </title>
+
+    <link rel="stylesheet" href="{% static 'assets/css/black-dashboard.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/login-register.css' %}" />
+</head>
+
 
 {% block content %}
 <div class="login-wrap-login">

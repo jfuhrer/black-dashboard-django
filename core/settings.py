@@ -47,7 +47,7 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'Custom',
         'removePlugins': 'stylesheetparser',
         'toolbar_Custom': [
-            ['Bold', 'Italic', 'Underline', 'Strikethrough', 'Image', 'Undo', 'Redo', 'Link', 'Table',
+            ['Bold', 'Italic', 'Underline', 'Strikethrough', 'Image', 'Link', 'Table',
              'Insert Horizontal Line', 'Text Color', 'Background Color', 'Smiley', 'NumberedList', 'BulletedList', 'Source'],
         ],
         'height': 200,

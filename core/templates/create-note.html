@@ -16,6 +16,7 @@
 {% load static %}
 
 {% block stylesheets %}
+<link rel="stylesheet" href="{% static 'assets/css/notes.css' %}">
 {% endblock stylesheets %}
 
 {% block content %}
@@ -30,10 +31,14 @@
         <div class="form-group">
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                <span>Titel: {{ form.title }} <span style="visibility:hidden">empty</span>
-                    Verlinkte Beratung: {{ form.advisory_session }}</span> <br> <br><br>
-                <span>Zu erledigen bis: {{ form.due_date }} <span style="visibility:hidden">empty</span>
-                    Reminder: {{ form.reminder }} </span> <br><br><br>
+                <div>Titel: {{ form.title }}</div>
+                <br>
+                <div>Verlinkte Beratung: {{ form.advisory_session }}</div>
+                <br>
+                <div>Zu erledigen bis: {{ form.due_date }}</div>
+                <br>
+                <div>Reminder: {{ form.reminder }}</div>
+                <br>
                 <span>{{ form.text }} {{ form.media }}</span>
                 <br>
                 <button type="submit" name="safe" class="btn btn-fill btn-primary">Speichern</button>

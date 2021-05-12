@@ -254,3 +254,33 @@ body {
   position: relative;
   cursor: help;
 }
+
+
+/* GENERAL MEDIA QUERIES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+@media screen and (max-width: 600px) {
+
+    .popup {
+      color: black !important;
+      position: absolute;
+      top:55%;
+      left:50%;
+    }
+    .popup .content {
+      position:absolute;
+      z-index:2;
+      box-sizing:border-box;
+      font-family: inherit;
+      border-style: solid;
+      border-color: var(--primary);
+      border-width: 4px;
+      width:370px;
+      height:530px;
+    }
+
+    #cke_id_text {
+        width: 330px !important;
+    }
+
+}

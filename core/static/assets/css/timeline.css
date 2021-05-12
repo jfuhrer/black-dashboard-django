@@ -69,7 +69,6 @@ body {
 .timeline ul li div.timeline-advisory {
   position: relative;
   bottom: 0;
-  width: 450px;
   padding: 15px;
   background: var(--beige);
 }
@@ -78,7 +77,6 @@ body {
 .timeline ul li div.timeline-event {
   position: relative;
   bottom: 0;
-  width: 450px;
   padding: 15px;
   background: transparent;
   box-shadow:0px 0px 0px 5px var(--beige) inset;
@@ -126,7 +124,7 @@ body {
 
 
 .timeline ul li:nth-child(even) div {
-  left: -489px;
+  left: -589px;
 }
 
 /*triangle*/
@@ -199,17 +197,8 @@ time {
 /* GENERAL MEDIA QUERIES
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-@media screen and (max-width: 900px) {
-  .timeline ul li div {
-    width: 250px;
-  }
-  .timeline ul li:nth-child(even) div {
-    left: -289px;
-    /*250+45-6*/
-  }
-}
-
-@media screen and (max-width: 600px) {
+/* smmartphone */
+@media screen and (max-width:600px) {
   .timeline ul li {
     margin-left: 20px;
   }
@@ -224,5 +213,25 @@ time {
     border-width: 8px 16px 8px 0;
     border-color: transparent var(--beige) transparent transparent;
   }
+}
+
+/* laptop */
+@media screen and (max-width:1300px) and (min-width:601px) {
+  .timeline ul li div {
+    width: calc(100vw - 830px);
+  }
+
+  .timeline ul li:nth-child(even) div {
+    left: -489px;
+  }
+
+}
+
+/* monitor */
+@media screen and (min-width:1301px) {
+  .timeline ul li div {
+    width: calc(100vw - 1370px);
+  }
+
 }
 

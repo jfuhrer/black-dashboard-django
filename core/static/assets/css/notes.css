@@ -10,8 +10,6 @@
 
 */
 
-
-
 .new-note {
   cursor:pointer;
   position:absolute;
@@ -45,3 +43,26 @@
 }
 
 
+
+/* GENERAL MEDIA QUERIES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+/* smmartphone */
+@media screen and (max-width: 600px) {
+
+    /* size of richtext field*/
+    #cke_id_text {
+        width: 330px !important;
+    }
+
+}
+
+/* laptop and monitor */
+@media screen and (min-width: 601px) {
+
+    /* size of richtext field*/
+    #cke_id_text {
+        width: 830px !important;
+    }
+
+}
