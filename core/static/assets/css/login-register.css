@@ -115,7 +115,7 @@ h4{
 }
 
 .login-form .group .input{
-	background: var(--beige); /* Fallback for older browsers without RGBA-support */
+	background: var(--third); /* Fallback for older browsers without RGBA-support */
     background: rgba(201, 192, 177, 0.5);
 }
 

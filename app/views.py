@@ -104,7 +104,7 @@ class CreateNoteView(LoginRequiredMixin, generic.CreateView):
         selected_text = self.request.POST.get('selected-text')
         if selected_text is not None:
             form.instance.text = '<p> Notiz zu Abschnitt: <br> '+ selected_text +\
-                                 '</p> <hr style="border-top: 2px solid rgba(0, 0, 0, 0.2);">' + \
+                                 '</p> <hr>' + \
                                  form.instance.text
         print('form valid')
         return super(CreateNoteView, self).form_valid(form)
@@ -160,7 +160,7 @@ class AdvisoryChangesView(LoginRequiredMixin, generic.DetailView):
         return context
 
 
-class ProtocolView(LoginRequiredMixin, generic.DetailView):
+class SingleProtocolView(LoginRequiredMixin, generic.DetailView):
     login_url = '/login/'
     model = AdvisorySession
     template_name = 'protocol.html'
@@ -233,8 +233,30 @@ def notes(request):
 
         notesObjects = Notes.objects.filter(person_id=userId) # ToDo: wrong, how to get id
         context = {'notes': notesObjects, 'segment': 'notes'}
-        print('notes')
         return render(request, "notes.html", context)
+
+    except template.TemplateDoesNotExist:
+        html_template = loader.get_template('page-404.html')
+        return HttpResponse(html_template.render(context, request))
+
+    except:
+        html_template = loader.get_template('page-500.html')
+        return HttpResponse(html_template.render(context, request))
+
+
+@login_required(login_url="/login/")
+def protocols(request):
+    context = {}
+
+    try:
+        userId = request.user
+        if userId is None:
+            print('user cannot be found', userId)  # ToDo: throw better exception
+
+        advisories = AdvisorySession.objects.filter(person=userId, type='advisory')
+
+        context = {'advisories': advisories, 'segment': 'protocols'}
+        return render(request, "protocols.html", context)
 
     except template.TemplateDoesNotExist:
         html_template = loader.get_template('page-404.html')

@@ -44,13 +44,6 @@ body {
     margin: 0 0 10px 0;
 }
 
-.title-advisory-detail {
-   font-weight: 600;
-}
-
-.link {
-    color: var(--primary) !important;
-}
 
 
 /*timeline stroke*/
@@ -72,7 +65,7 @@ body {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: var(--beige);
+  background: var(--third);
 }
 
 .timeline ul.design li.design div {
@@ -108,7 +101,7 @@ body {
     #context-menu {
       position:fixed;
       z-index:10000;
-      width:150px;
+      width:160px;
       background:var(--primary);
       border-radius:5px;
       transform:scale(0);
@@ -119,7 +112,7 @@ body {
       transition:transform 300ms ease-in-out;
     }
     #context-menu .item {
-      padding:8px 10px;
+      padding: 8px 10px;
       font-size:15px;
       color:#eee;
     }
@@ -131,6 +124,30 @@ body {
       display:inline-block;
       margin-right:5px;
     }
+
+
+/* ------------------ highlight feature -----------------------  */
+.highlight {
+  background-color: var(--yellow);
+  padding: 5px 0 5px 0;
+  border-radius: 10px;
+}
+
+.save-annotations-btn {
+  cursor:pointer;
+  position:absolute;
+  right:15%;
+  width:30px;
+  height:30px;
+  background:var(--primary);
+  color: var(--white);
+  font-size:20px;
+  font-weight:400;
+  text-align:center;
+  border-radius:50%;
+  border-style: solid;
+  border-color: transparent;
+}
 
 
 /* --------------------------- notes drill down ---------------------------*/
@@ -233,27 +250,6 @@ body {
   transform:translate(-50%,-50%) scale(1);
 }
 
-/*--------------------- hover-details in summary ----------------------- */
-[data-title]:hover::before {
-  content: attr(data-title);
-  position: absolute;
-  top: 26px;
-  display: inline-block;
-  padding: 20px 10px;
-  min-width: 200px;
-  max-width: 400px;
-  border-radius: 10px;
-  color: var(--white);
-  background-color: var(--primary);
-  opacity: 1.0;
-  text-overflow: ellipsis;
-  box-shadow: 0 1px 20px 0px rgba(0, 0, 0, 0.1);
-}
-
-[data-title] {
-  position: relative;
-  cursor: help;
-}
 
 
 /* GENERAL MEDIA QUERIES

@@ -33,16 +33,13 @@ body {
   padding: 8px 0;
 }
 
-.timeline-advisory {
-    color: white;
-}
-
-.timeline-event {
-    color: var(--black-blue);
-}
-
-.next-advisory {
-    background: var(--duskyPink) !important
+.timeline ul li.bullet-next-advisory { /* TODO evt hier was ändern*/
+  list-style-type: none;
+  position: relative;
+  width: 6px;
+  margin: 0 auto;
+  padding-top: 10px; /* space to top */
+  background: var(--primary);
 }
 
 .timeline ul li {
@@ -66,20 +63,28 @@ body {
   background: inherit;
 }
 
+/* next advisory box */
+.next-advisory {
+    background: var(--duskyPink) !important
+}
+
+/* advisory box */
 .timeline ul li div.timeline-advisory {
   position: relative;
   bottom: 0;
   padding: 15px;
-  background: var(--beige);
+  background: var(--secondary);
+  color: white;
 }
 
-
+/* event box */
 .timeline ul li div.timeline-event {
   position: relative;
   bottom: 0;
   padding: 15px;
-  background: transparent;
-  box-shadow:0px 0px 0px 5px var(--beige) inset;
+  background-color: var(--third);
+  color: white;
+
 }
 
 .timeline ul li div::before {
@@ -91,31 +96,22 @@ body {
   border-style: solid;
 }
 
-.timeline ul li: div.next-advisory::before {
-  left: -15px;
-  border-width: 8px 16px 8px 0;
-  border-color: transparent var(--duskyPink) transparent transparent;
-}
-
 .timeline ul li:nth-child(odd) div {
   left: 45px;
 }
 
-/*next advisory is duskyPink*/
-.timeline ul li.bullet-next-advisory div::before {
-  left: -15px;
-  border-width: 8px 16px 8px 0;
-  border-color: transparent var(--duskyPink) transparent transparent;
+.timeline ul li:nth-child(even) div {
+  left: -589px;
 }
 
-/*triangle*/
+/*triangle advisory*/
 .timeline ul li:nth-child(odd) div::before {
   left: -15px;
   border-width: 8px 16px 8px 0;
-  border-color: transparent var(--beige) transparent transparent;
+  border-color: transparent var(--secondary) transparent transparent;
 }
 
-/*triangle*/
+/*triangle advisory*/
 .timeline ul li:nth-child(odd) div.next-advisory::before {
   left: -15px;
   border-width: 8px 16px 8px 0;
@@ -123,29 +119,45 @@ body {
 }
 
 
-.timeline ul li:nth-child(even) div {
-  left: -589px;
-}
-
-/*triangle*/
+/*triangle next*/
 .timeline ul li:nth-child(even) div::before {
   right: -15px;
   border-width: 8px 0 8px 16px;
-  border-color: transparent transparent transparent var(--beige);
+  border-color: transparent transparent transparent var(--secondary);
 }
 
-/*triangle*/
+/*triangle next*/
 .timeline ul li:nth-child(even) div.next-advisory::before {
   right: -15px;
   border-width: 8px 0 8px 16px;
   border-color: transparent transparent transparent var(--duskyPink);
 }
 
-time {
+/*triangle event*/
+.timeline ul li:nth-child(even) div.timeline-event::before {
+  right: -15px;
+  border-width: 8px 0 8px 16px;
+  border-color: transparent transparent transparent var(--third);
+}
+
+/*triangle event*/
+.timeline ul li:nth-child(odd) div.timeline-event::before {
+  left: -15px;
+  border-width: 8px 16px 8px 0;
+  border-color: transparent var(--third) transparent transparent;
+}
+
+.timeline-title {
   display: block;
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 8px;
+  color: white !important;
+}
+
+.timeline-text {
+  color: white !important;
+  font-size: 1rem;
 }
 
 .advisory-icon{
@@ -161,11 +173,17 @@ time {
 }
 
 .timeline ul li.in-view::after {
-  background: var(--beige);
+  background: var(--secondary);
 }
-/*next advisory*/
+
+/* bullet next advisory*/
 .timeline ul li.bullet-next-advisory.in-view::after {
   background: var(--duskyPink);
+}
+
+/* bullet event*/
+.timeline ul li.bullet-timeline-event.in-view::after {
+  background: var(--third);
 }
 
 
@@ -197,7 +215,7 @@ time {
 /* GENERAL MEDIA QUERIES
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-/* smmartphone */
+/* smartphone */
 @media screen and (max-width:600px) {
   .timeline ul li {
     margin-left: 20px;
@@ -205,14 +223,30 @@ time {
   .timeline ul li div {
     width: calc(100vw - 91px);
   }
+
   .timeline ul li:nth-child(even) div{
     left: 45px;
   }
+
+  /* triangle always to left*/
   .timeline ul li:nth-child(even) div::before {
     left: -15px;
     border-width: 8px 16px 8px 0;
-    border-color: transparent var(--beige) transparent transparent;
+    border-color: transparent var(--secondary) transparent transparent;
   }
+
+  /*triangle event*/
+   .timeline ul li:nth-child(even) div.timeline-event::before {
+     left: -15px;
+    border-width: 8px 16px 8px 0;
+     border-color: transparent var(--third) transparent transparent;
+    }
+
+  .timeline-text {
+    color: white !important;
+    font-size: 0.8rem;
+  }
+
 }
 
 /* laptop */
@@ -223,6 +257,10 @@ time {
 
   .timeline ul li:nth-child(even) div {
     left: -489px;
+  }
+  .timeline-text {
+    color: white !important;
+    font-size: 0.9rem;
   }
 
 }

@@ -58,15 +58,6 @@
         }
     });
 
-function getSelectionText() {
-    var text = "";
-    if (window.getSelection) {
-        text = window.getSelection().toString();
-    } else if (document.selection && document.selection.type != "Control") {
-        text = document.selection.createRange().text;
-    }
-    return text;
-}
 
 // store selected text in storage
 function getSelectedText(){
@@ -89,6 +80,21 @@ function togglePopup(){
     document.getElementById("selected-text-preview").textContent=text;
 }
 
+// highlight text in summary
+function highlightText(){
+    let text = sessionStorage.getItem('text');
+
+    var div = document.getElementById('advisory-summary-text')
+    var innerTextHTML = div.innerHTML;
+    var indexText = innerTextHTML.indexOf(text);
+
+   if (indexText >= 0) {
+        innerTextHTML = innerTextHTML.substring(0,indexText) + "<span class='highlight'>" +
+        innerTextHTML.substring(indexText,indexText+text.length) + "</span>" + innerTextHTML.substring(indexText + text.length);
+        div.innerHTML = innerTextHTML;
+   }
+ }
+
 function showDetails(id_name) {
   var x = document.getElementById(id_name);
   if (x.style.display === "none") {
@@ -96,7 +102,6 @@ function showDetails(id_name) {
   } else {
     x.style.display = "none";
   }
-
 }
 
 if (document.getElementById("popup-1") !== null) {

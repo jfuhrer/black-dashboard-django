@@ -14,6 +14,8 @@
         <div class="card">
             <div class="card-header ">
                 <h3 class="title d-inline">Anlegerprofil</h3>
+                <span class="open-all fa fa-plus" onclick="openAll()"> </span>
+                <span class="close-all fa fa-minus" onclick="closeAll()"> </span>
             </div>
             <div class="card-body">
                 <br>
@@ -23,19 +25,22 @@
                     <hr class="dividing-hr">
                 </div>
                 <div class="details" id="investmentStrategy">
-                    <div class="explanations">
-                        Die Anlagestrategie wird vom Kunden nach diversen Kriterien gewählt und von der Bank umgesetzt.
+                    <div class="investment-explanations">
+                        Die <span class="explanations" data-title="Definiert die Strategie beim Anlegen der Vermögenswerte.
+                                                                 Richtet sich nach Kriterien wie Risikofreudigkeit, Verlustfähigkeit, Anlagehorizont und Erfahrungen.
+                                                                 Wir bieten 5 verschiedene Strategien an, siehe Tabelle.">
+                        Anlagestrategie</span> wird vom Kunden nach diversen Kriterien gewählt und von der Bank umgesetzt.
                         Dabei bestimmt sie die Gewichtung einzelnen Anlagekategorien innerhalb einer Bandbreite,
                         um die bestmöglche Performance unter vertretbarem Risiko zu erreichen.
                     </div>
-                    <div class="explanations">
-                        Die Bank bietet fünf verschiedene <span class="more"
-                                                                onclick="showDetails('anlagestrategie_tabelle')"> Anlagestrategien </span>
+                    <div class="investment-explanations">
+                        Die Bank bietet fünf verschiedene <span onclick="showDetails('anlagestrategie_tabelle')" >
+                        Anlagestrategien </span>
                         an.
-                        s<img id="anlagestrategie_tabelle" src="{% static 'assets/img/anlagestrategie_tabelle.png' %}"
+                        <img id="anlagestrategie_tabelle" src="{% static 'assets/img/anlagestrategie_tabelle.png' %}"
                               style="width:800px">
                     </div>
-                    <div class="explanations">
+                    <div class="investment-explanations">
                         Du hast aktuell die Anlagestrategie <span class="more"
                                                                   onclick="showDetails('anlagestrategie_aktuell')"> Ambitioniert </span>
                         gewählt.
@@ -52,7 +57,7 @@
                     <hr class="dividing-hr">
                 </div>
                 <div class="details" id="investmentGoal">
-                    <div class="explanations">
+                    <div class="investment-explanations">
                         Mit der Strategie Ambitioniert verfolgst du das Ziel eines langfristiges Kapitalwachstums.
                     </div>
                 </div>
@@ -63,7 +68,7 @@
                     <hr class="dividing-hr">
                 </div>
                 <div class="details" id="riskLevel">
-                    <div class="explanations">
+                    <div class="investment-explanations">
                         Aufgrund der gewählten Anlagestrategie Ambitioniert gehst du schätzungsweise ein <span
                             class="more"
                             onclick="showDetails('risiko_aktuell')"> Risiko von Stufe 4</span> ein.
@@ -80,11 +85,15 @@
                     <hr class="dividing-hr">
                 </div>
                 <div class="details" id="investmentHorizon">
-                    <div class="explanations">
-                        Der Anlagehorizont bestimmt, wie lange du dein Vermögen investiert lassen kannst.
+                    <div class="investment-explanations">
+                        Der <span class="more" onclick="showDetails('anlagehorizont_aktuell')"> Anlagehorizont </span>
+                        bestimmt, wie lange du dein Vermögen investiert lassen kannst.
                         Wir empfehlen einen längeren Anlagehorizont je risikohafter eine Investition ist, damit
                         allfällige
                         Kursschwankungen "ausgesessen" werden können und keinen Verkaufsdruck entsteht.
+                        <br>
+                        <img id="anlagehorizont_aktuell" src="{% static 'assets/img/anlagehorizont.png' %}"
+                             alt="Anlagehorizont" style="width:500px">
                     </div>
                 </div>
             </div>

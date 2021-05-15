@@ -22,13 +22,16 @@
 {% block content %}
 
 <section class="timeline">
+    <button title="In Entwicklung - Markierungen Speichern" type="submit" name="safe" class="save-annotations-btn">
+            <i class="fas fa-check"></i>
+    </button>
     {% for adv in advisory %}
     <ul class="design">
         <h2>{{adv.title}}</h2>
         <li class="design">
-            <div class="advisory-detail">
+            <div class="advisory-detail" onmouseup="getSelectedText()">
                 {% if adv.protocol|length > 0 %}
-                <p> {{adv.protocol|safe}}</p>
+                <span id="advisory-summary-text"> {{adv.protocol|safe}}</span>
                 {% else %}
                 <p> Es konnte kein Gesprächsprotokoll gefunden werden.</p>
                 {% endif %}
@@ -37,14 +40,44 @@
         <li class="design">
             <div class="advisory-detail">
                 <a href="{% url 'advisory-summary' adv.id %}">
-                    <h4 class="title-advisory-detail link">Zur Zusammenfassung </h4>
+                    <h4 class="more">Zurück zur Zusammenfassung </h4>
                 </a>
             </div>
         </li>
     </ul>
     {% endfor %}
-
 </section>
+
+<div id="context-menu">
+    <div class="item" onclick="togglePopup()" title="Markiere die betroffene Stelle und schreib eine Notiz dazu.
+      Der markierte Text wird dann in die Notiz eingebaut.">
+        <i class="fa fa-clipboard"></i> Notiz erstellen
+    </div>
+    <div class="item" onclick="highlightText()">
+        <i class="fa fa-pencil-alt"></i> Text markieren
+    </div>
+</div>
+
+<div class="popup" id="popup-1">
+    <div class="content card">
+        <div title='Abbrechen' class="close-btn" onclick="togglePopup()">&times;</div>
+        <h3 id="popup-1-header">Neue Notiz</h3>
+        <div class="form-group">
+            <form action="{% url 'create-note' %}?next={{ request.path }}" method="POST" role="form">
+                {% csrf_token %}
+                <span>Titel: {{ form.title }}</span><br><br>
+                <span>Notiz zum Abschnitt:</span>
+                <span id="selected-text-preview"></span>
+                <input style="visibility:hidden" type="text" id="selected-text" name="selected-text" value=""/>
+                <span style="display:none">{{ form.advisory_session }} </span> <br>
+                <span>{{ form.text }} {{ form.media }}</span>
+                <button title="Speichern" type="submit" name="safe" class="save-btn"><i class="fas fa-check"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
 {% endblock content %}
 
 {% block javascripts %}

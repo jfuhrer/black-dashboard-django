@@ -25,29 +25,21 @@
   border-radius:50%;
 }
 
-.td-reminder {
-    min-width:70px;
+.td-title {
+    width: 300px;
 }
 
-.td-due-date{
+.td-date{
     min-width:120px;
+    max-width: 200px;
 }
 
-.td-created{
-    min-width:100px;
-}
-
-.td-note-text{
-    min-width:100px;
-    max-width: 600px;
-}
-
-.td-pencil {
+.td-download {
+    width: 100px;
     padding-left:10px !important;
-    padding-right: 30px !important;
     font-size: 1.5em !important;
+    cursor: pointer;
 }
-
 
 
 /* GENERAL MEDIA QUERIES

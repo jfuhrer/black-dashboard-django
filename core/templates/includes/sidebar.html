@@ -5,14 +5,20 @@
         <ul class="nav">
           <li class="{% if 'index' in segment %} active {% endif %} ">
             <a href="/">
-              <i class="tim-icons icon-bank"></i>
-              <p>Home</p>
+              <i class="tim-icons icon-chat-33"></i>
+              <p>Beratungen</p>
             </a>
           </li>
-          <li class="{% if 'documents' in segment %} active {% endif %}">
-            <a href="/documents">
+          <li class="{% if 'protocols' in segment %} active {% endif %}">
+            <a href="/protocols">
               <i class="tim-icons icon-paper"></i>
-              <p>Dokumente</p>
+              <p>Protokolle</p>
+            </a>
+          </li>
+          <li class="{% if 'development' in segment %} active {% endif %}">
+            <a href="/user-development">
+              <i class="tim-icons icon-chart-pie-36"></i>
+              <p>Anlegerprofil</p>
             </a>
           </li>
           <li class="{% if 'notes' in segment %} active {% endif %}">
@@ -21,10 +27,10 @@
               <p>Notizen</p>
             </a>
           </li>
-          <li class="{% if 'development' in segment %} active {% endif %}">
-            <a href="/user-development">
-              <i class="tim-icons icon-chart-pie-36"></i>
-              <p>Anlegerprofil</p>
+          <li class="{% if 'documents' in segment %} active {% endif %}">
+            <a href="/documents">
+              <i class="tim-icons icon-single-copy-04"></i>
+              <p>Dokumente</p>
             </a>
           </li>
           <li class="{% if 'search' in segment %} active {% endif %}">

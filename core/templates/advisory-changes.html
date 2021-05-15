@@ -26,7 +26,7 @@
 <section class="timeline">
     {% for adv in advisory %}
     <h2 class="title-advisory-detail">Änderungen {{adv.title}}</h2>
-    <h4> Still in Progress</h4>
+    <h4>In Entwicklung. Ziel: Veränderungen darstellen - wer hat was geändert?</h4>
     <ul class="design">
         <li class="design">
             <div class="advisory-detail" onmouseup="getSelectedText()">
@@ -35,7 +35,7 @@
                     in der Filiale Altdorf (oder via Zoom Link: ...)<br/>
                     <br/>
                     <strong>Aktuelle Situation</strong><br/>
-                    - Regelm&auml;ssiges Einkommen <s style="color:red"> CHF 102&rsquo;000</s> CHF 112'000 <br/>
+                    - Regelm&auml;ssiges Einkommen <s style="color:red"> CHF 102&rsquo;000</s>  <span style="color:green">CHF 112'000</span> <br/>
                     - Keine grossen, vorhersehbare Ausgaben in den n&auml;chsten Jahren<br/>
                     - Langer Anlagehorizont<br/>
                     - Bereits kleine Erfahrungen mit Finanzprodukten<br/>
@@ -49,7 +49,7 @@
                     - Anlagehorizont: 8- 12 Jahre<br/>
                     - Risikobereitschaft: Hoch<br/>
                     - Verlusttragbarkeit: Gegeben<br/>
-                    - Finanzielle Situation: Regelm&auml;ssiges Einkommen <s style="color:red"> CHF 102&rsquo;000</s> CHF 112'000, Liquide Mittel CHF 150&rsquo;000.
+                    - Finanzielle Situation: Regelm&auml;ssiges Einkommen <s style="color:red"> CHF 102&rsquo;000</s> <span style="color:green"> CHF 112'000 </span>, Liquide Mittel CHF 150&rsquo;000.
                     Keine Hypothek oder Schulden<br/>
                     - Erfahrung &amp; Kenntnisse: Bereits kleine Erfahrungen mit Finanzprodukten, investiert in Strategy
                     Equity Fond. <br> <span style="color:green">Gute Kenntnisse &amp; Interesse an einzelnen Aktien </span><br/>
@@ -84,8 +84,8 @@
         </li>
         <li class="design">
             <div class="advisory-detail">
-                <a href="{% url 'advisory-summary' adv.id %}" class="title-advisory-detail link">
-                    <h4 class="title-advisory-detail link"> Zur Zusammenfassung</h4>
+                <a href="{% url 'advisory-summary' adv.id %}">
+                    <h4 class="more"> Zur Zusammenfassung</h4>
                 </a>
             </div>
         </li>

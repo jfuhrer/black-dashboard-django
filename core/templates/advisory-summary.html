@@ -17,24 +17,26 @@
 
 {% block stylesheets %}
 <link rel="stylesheet" href="{% static 'assets/css/advisory-summary.css' %}">
-
 {% endblock stylesheets %}
 
 {% block content %}
 
 <section class="timeline">
+        <button title="In Entwicklung - Markierungen Speichern" type="submit" name="safe" class="save-annotations-btn">
+            <i class="fas fa-save"></i>
+        </button>
     {% for adv in advisory %}
     <h2 class="title-advisory-detail">{{adv.title}}</h2>
     <ul class="design">
         {% if adv.summary|length > 0 %}
         <li class="design">
             <div class="advisory-detail" onmouseup="getSelectedText()">
-                <h4 class="title-advisory-detail"> Zusammenfassung </h4>
-                {{adv.summary|safe}}
+                <h4 class="title-advisory-summary"> Zusammenfassung </h4>
+                <span id="advisory-summary-text"> {{adv.summary|safe}} </span>
             </div>
             <br>
             <div class="advisory-detail">
-                <a href="{% url 'advisory-changes' adv.id %}" class="title-advisory-detail link"
+                <a href="{% url 'advisory-changes' adv.id %}" class="more"
                    title="Hier klicken, um die Änderungen zu sehen">
                     Zuletzt geändert von {{adv.modified_by}} am
                     {{adv.evt_modified|date:"d.m.Y H:i"}}</a>
@@ -43,17 +45,17 @@
         {% elif adv.type != "next-advisory" %}
         <li class="design">
             <div class="advisory-detail">
-                <h4 class="title-advisory-detail"> Zusammenfassung </h4>
+                <h4 class="title-advisory-summary"> Zusammenfassung </h4>
                 <p>Es gibt keine Zusammenfassung zu diesem Kontakt.</p>
             </div>
         </li>
         {% endif %}
         <li class="design">
             <div class="advisory-detail">
-                <h4 class="title-advisory-detail"> Notizen </h4>
+                <h4 class="title-advisory-summary"> Notizen </h4>
                 {% for note in notes %}
                 <div class="clickable-notes" onclick="showDetails('{{note.id}}')">
-                    <i class="tim-icons icon-notes"></i> <span class="title-advisory-detail link"> {{note.title}} </span>
+                    <i class="tim-icons icon-notes"></i> <span class="more"> {{note.title}} </span>
                 </div>
                 <div class="details card" id="{{note.id}}">
                     <a href="{% url 'view-note' note.id %}"> {{ note.text|safe}}
@@ -71,7 +73,7 @@
         </li>
         <li class="design">
             <div class="advisory-detail">
-                <h4 class="title-advisory-detail"> Verlinkte Dokumente </h4>
+                <h4 class="title-advisory-summary"> Verlinkte Dokumente </h4>
                 <!-- ToDo: once documents are available -->
                 <div class="clickable-doc" title="In Entwicklung, nicht abrufbar">
                     <i class="tim-icons icon-attach-87"></i>Factsheet.pdf
@@ -82,7 +84,7 @@
         <li class="design">
             <div class="advisory-detail">
                 <a href="{% url 'protocol' adv.id %}">
-                    <h4 class="title-advisory-detail link"> Zum Protokoll </h4>
+                    <h4 class="more"> Zum Protokoll </h4>
                 </a>
             </div>
         </li>
@@ -95,6 +97,9 @@
     <div class="item" onclick="togglePopup()" title="Markiere die betroffene Stelle und schreib eine Notiz dazu.
       Der markierte Text wird dann in die Notiz eingebaut.">
         <i class="fa fa-clipboard"></i> Notiz erstellen
+    </div>
+    <div class="item" onclick="highlightText()">
+        <i class="fa fa-pencil-alt"></i> Text markieren
     </div>
 </div>
 
