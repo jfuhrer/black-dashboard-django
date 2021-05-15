@@ -37,6 +37,10 @@
                 <div>{{ form.text }} {{ form.media }}</div>
                 <br>
                 <button type="submit" name="safe" class="btn btn-fill btn-primary">Speichern</button>
+                <button type="submit" name="safe" class="btn btn-fill btn-primary"
+                        onclick="location.href='mailto:{{advisor.email}}?subject=Geteilte Notiz: {{note.title}}&body=Bitte deine Notiz hierhin kopieren';">
+                    Speichern & mit Berater teilen
+                </button>
                 <a href="{% url 'notes' %}" class="btn btn-fill btn-primary">Abbrechen</a>
             </form>
         </div>
