@@ -49,7 +49,7 @@
 </section>
 
 <div id="context-menu">
-    <div class="item" onclick="togglePopup()" title="Markiere die betroffene Stelle und schreib eine Notiz dazu.
+    <div class="item" onclick="togglePopup(event)" title="Markiere die betroffene Stelle und schreib eine Notiz dazu.
       Der markierte Text wird dann in die Notiz eingebaut.">
         <i class="fa fa-clipboard"></i> Notiz erstellen
     </div>
@@ -60,7 +60,7 @@
 
 <div class="popup" id="popup-1">
     <div class="content card">
-        <div title='Abbrechen' class="close-btn" onclick="togglePopup()">&times;</div>
+        <div title='Abbrechen' class="close-btn" onclick="togglePopup(event)">&times;</div>
         <h3 id="popup-1-header">Neue Notiz</h3>
         <div class="form-group">
             <form action="{% url 'create-note' %}?next={{ request.path }}" method="POST" role="form">

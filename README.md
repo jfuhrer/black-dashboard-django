@@ -82,8 +82,12 @@ At present, Firefox and Google Chrome are supported.
 
 ## Responsiveness
 
-Some of the features are responsive for three devices: iPhone 6/7/8 iOs 11 (375 x 667), Notebook (1280 x 578) and Monitor (1920 x 937)
+Generally, all functionalities are implemented and designed for desktops. Hence, the mobile version is not fully supported.
+
+Nevertheless, the navigation with the side- and topbar as well as the main pages are indeed responsive.
+(References: iPhone 6/7/8 iOs 11 (375 x 667), Notebook (1280 x 578) and Monitor (1920 x 937))
 <br />
+
 ## Resources
 **ToDo: put in urls**
 - Demo: 

@@ -127,9 +127,20 @@ function getSelectionHtml() {
 }
 
 // pop up create note
-function togglePopup(){
+function togglePopup(event){
+    var popup = document.getElementById("popup-1");
+
+    if(typeof event !== "undefined") {
+        var canvas = document.getElementById('timeline-container');
+        var rect = canvas.getBoundingClientRect();
+        var mouseX = event.clientX - rect.left;
+        var mouseY = event.clientY - rect.top;
+        popup.style.top = mouseY + "px";
+        popup.style.left = mouseX+ 300+"px";
+    }
+
+    popup.classList.toggle("active");
     let text = m_selectedHtml;
-    document.getElementById("popup-1").classList.toggle("active");
     document.getElementById("selected-text").value=text;
     document.getElementById("selected-text-preview").textContent=text;
 
