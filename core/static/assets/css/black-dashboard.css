@@ -15934,11 +15934,9 @@ img {
   position: fixed;
   padding-top: .3125rem;
   padding-bottom: .3125rem;
-  color: #ffffff; /*switch ligh mode */
-  margin-left: 17px;
   margin-top: 3px;
   text-transform: uppercase;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
 }
 
 .navbar .navbar-toggle button:focus,
@@ -15962,18 +15960,18 @@ img {
 }
 
 .notification {
-  background: #fd5d93;
+  background: var(--red);
   color: #ffffff;
   border-radius: 0.875rem;
-  height: 6px;
-  width: 6px;
+  height: 7px;
+  width: 7px;
   position: absolute;
   text-align: center;
   font-size: 12px;
   font-weight: 800;
   top: 10px;
   right: 10px;
-  border: 1px solid #fd5d93;
+  border: 1px solid var(--red);
 }
 
 .navbar-nav li {

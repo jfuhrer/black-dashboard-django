@@ -119,6 +119,7 @@ body {
     #context-menu .item:hover {
       background:var(--light);
       cursor: pointer;
+      border-radius:5px;
     }
     #context-menu .item i {
       display:inline-block;

@@ -10,7 +10,7 @@
 
 */
 
-
+ // -------------------- timelie functionalities ----------------------
 (function() {
 
   'use strict';
@@ -44,71 +44,140 @@
 })();
 
 
-// context menu
+ // -------------------- summary functionalities ----------------------
+
+// global variable to store selected HTML
+var m_selectedHtml;
+// global variable to store context of selected HTML in case there are multiple matches
+var m_contextSelectedString;
+
+    // prevent traditional context menu
     window.addEventListener("contextmenu",function(event){
       event.preventDefault();
-      var contextElement = document.getElementById("context-menu");
-      contextElement.style.top = event.pageY +  "px";
-      contextElement.style.left = event.pageX + "px";
-      contextElement.classList.add("active");
     });
-    window.addEventListener("click",function(){
-        if (document.getElementById("context-menu") !== null) {
-            document.getElementById("context-menu").classList.remove("active");
+
+    // press ESC to close menu
+    window.addEventListener("keydown", event => {
+        if (event.isComposing || event.keyCode === 27) { // ESC
+            closeContextMenu();
         }
     });
 
+function displayContextMenu(){
+    textArray = getSelectionHtml();
+    m_selectedHtml = textArray[0];
+    m_contextSelectedString = textArray[1];
 
-// store selected text in storage
-function getSelectedText(){
-    if (window.getSelection) {
-        text = window.getSelection();
-    } else if (window.document.getSelection) {
-        text =window.document.getSelection();
-    } else if (window.document.selection) {
-        text = window.document.selection.createRange().text;
+    // only display when text selected
+    if(m_selectedHtml !== null) {
+        if(m_selectedHtml.length > 1) {
+            var contextElement = document.getElementById("context-menu");
+            contextElement.style.top = event.pageY + 10 + "px";
+            contextElement.style.left = event.pageX + 10 + "px";
+            contextElement.style.transform = 'scale(1)';
+            contextElement.style.transition = 'transform 300ms ease-in-out';
+            //contextElement.classList.add("active");
+        }
     }
-    sessionStorage.setItem('text', text);
-    return text;
+}
+
+function closeContextMenu() {
+   var contextElement = document.getElementById("context-menu");
+    if (contextElement !== null) {
+        contextElement.style.transform = 'scale(0)';
+        contextElement.style.transition = 'transform 300ms ease-in-out';
+        //document.getElementById("context-menu").classList.remove("active");
+    }
+}
+
+
+function getSelectionHtml() {
+    var html = "";
+    var contextString = "";
+    var textArray = [];
+    var div = document.getElementById('advisory-summary-text')
+    var innerTextHTML = div.innerHTML;
+
+    if (typeof window.getSelection != "undefined") {
+        var sel = window.getSelection();
+
+        if (sel.rangeCount) {
+            var container = document.createElement("div");
+            for (var i = 0, len = sel.rangeCount; i < len; ++i) {
+                container.appendChild(sel.getRangeAt(i).cloneContents());
+            }
+            html = container.innerHTML;
+
+            // try to get context of selected String
+            // ToDo: implement this correclty
+            var selectionText   = sel.toString();
+            var surroundingText = sel.anchorNode.data;
+            var index           = sel.anchorOffset;
+            //contextString = surroundingText.substring(0, index + selectionText.length);
+        }
+    } else if (typeof document.selection != "undefined") {
+        if (document.selection.type == "Text") {
+            html = document.selection.createRange().htmlText;
+        }
+    }
+
+    textArray.push(html) // search result
+    textArray.push(contextString) // context of search result to compare it
+    return textArray;
 }
 
 // pop up create note
 function togglePopup(){
-    let text = sessionStorage.getItem('text');
+    let text = m_selectedHtml;
     document.getElementById("popup-1").classList.toggle("active");
     document.getElementById("selected-text").value=text;
     document.getElementById("selected-text-preview").textContent=text;
+
+    closeContextMenu();
 }
 
-// highlight text in summary
-function highlightText(){
-    let text = sessionStorage.getItem('text');
 
+function highlightText(){
+    var searchStr  = m_selectedHtml
     var div = document.getElementById('advisory-summary-text')
     var innerTextHTML = div.innerHTML;
-    var indexText = innerTextHTML.indexOf(text);
+    var searchStrLen = searchStr.length;
 
-   if (indexText >= 0) {
+    if (searchStrLen == 0) {
+        return [];
+    }
+    var startIndex = 0, index, indices = [];
+
+    while ((index = innerTextHTML.indexOf(searchStr, startIndex)) > -1) {
+        indices.push(index);
+        startIndex = index + searchStrLen;
+    }
+
+    // multiple occurences of searchStr; get context and search again
+     if(indices.length > 1) {
+     console.log('multiple indices')
+     alert("Dein markierter Text konnte leider nicht eindeutig identifiziert und markiert werden. Bitte versuche es mit einem bisschen längerem Text.");
+    }
+
+    else if(indices.length === 1) {
+        var indexText = indices[0]; // first element
         innerTextHTML = innerTextHTML.substring(0,indexText) + "<span class='highlight'>" +
-        innerTextHTML.substring(indexText,indexText+text.length) + "</span>" + innerTextHTML.substring(indexText + text.length);
+        innerTextHTML.substring(indexText,indexText+searchStr.length) + "</span>" +
+        innerTextHTML.substring(indexText + searchStr.length);
+
         div.innerHTML = innerTextHTML;
-   }
+    }
+
+    closeContextMenu();
  }
 
-function showDetails(id_name) {
-  var x = document.getElementById(id_name);
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
 
 if (document.getElementById("popup-1") !== null) {
     // Make the DIV element draggable:
     dragElement(document.getElementById("popup-1"));
 }
 
+// dragable popup note
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   if (document.getElementById(elmnt.id + "-header")) {
@@ -149,5 +218,16 @@ function dragElement(elmnt) {
     document.onmousemove = null;
   }
 }
+
+// show details on note
+function showDetails(id_name) {
+  var x = document.getElementById(id_name);
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
 
 

@@ -12,7 +12,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="javascript:void(0)">FinCon</a>  <!-- name of Website -->
+            <a class="navbar-brand" href="/">FinCon</a>  <!-- name of Website -->
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -30,7 +30,7 @@
                 </button>
               </li> -->
               <li class="dropdown nav-item">
-                <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                <a href="" class="dropdown-toggle nav-link" data-toggle="dropdown">
                   <div class="notification d-none d-lg-block d-xl-block"></div>
                   <i class="tim-icons icon-bell-55"></i>
                   <p class="d-lg-none">
@@ -38,9 +38,9 @@
                   </p>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
-                  <li class="nav-link"><a href="#" class="nav-item dropdown-item">Du hast 3 neue Dokumente im Safe</a></li>
-                  <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Die Beratung 2020 wurde aktualisiert von M. Siebert</a></li>
-                  <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Deine nächste Beratung ist in 28 Tagen. Hier Fragen erfassen!</a></li>
+                  <li class="nav-link"><a href="/documents" class="nav-item dropdown-item">Du hast 3 neue Dokumente im Safe</a></li>
+                  <li class="nav-link"><a href="{% url 'advisory-summary' 1 %}" class="nav-item dropdown-item">Die Beratung 2018 wurde aktualisiert von M. Siebert</a></li>
+                  <li class="nav-link"><a href="{% url 'advisory-summary' 2 %}" class="nav-item dropdown-item">Deine nächste Beratung ist in 28 Tagen. Hier Fragen stellen!</a></li>
                 </ul>
               </li>
               <li class="dropdown nav-item">
@@ -54,8 +54,6 @@
                   </p>
                 </a>
                 <ul class="dropdown-menu dropdown-navbar">
-                  <li class="nav-link"><a href="/user-development" class="nav-item dropdown-item">Anlegerprofil</a></li>
-                  <li class="dropdown-divider"></li>
                   <li class="nav-link"><a href="/page-user" class="nav-item dropdown-item">Kundenprofil</a></li>
                   <li class="dropdown-divider"></li>
                   <li class="nav-link"><a href="{% url 'logout' %}" class="nav-item dropdown-item">Log out</a></li>
@@ -64,21 +62,6 @@
               <li class="separator d-lg-none"></li>
             </ul>
             {% endif %}
-
           </div>
         </div>
       </nav>
-      <!-- search in sidebar accessable
-      <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Suche">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <i class="tim-icons icon-simple-remove"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div> -->
-      <!-- End Navbar -->

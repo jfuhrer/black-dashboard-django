@@ -30,7 +30,7 @@
     <ul class="design">
         {% if adv.summary|length > 0 %}
         <li class="design">
-            <div class="advisory-detail" onmouseup="getSelectedText()">
+            <div class="advisory-detail" onmouseup="displayContextMenu()">
                 <h4 class="title-advisory-summary"> Zusammenfassung </h4>
                 <span id="advisory-summary-text"> {{adv.summary|safe}} </span>
             </div>
@@ -94,8 +94,7 @@
 </section>
 
 <div id="context-menu">
-    <div class="item" onclick="togglePopup()" title="Markiere die betroffene Stelle und schreib eine Notiz dazu.
-      Der markierte Text wird dann in die Notiz eingebaut.">
+    <div class="item" onclick="togglePopup()">
         <i class="fa fa-clipboard"></i> Notiz erstellen
     </div>
     <div class="item" onclick="highlightText()">
