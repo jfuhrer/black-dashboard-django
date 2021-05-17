@@ -30,7 +30,7 @@ This is the high-fidelity prototype developed for the Master's Thesis at Univers
 
 ## Quick start
 
-** TODO Jara change to mine **
+**TODO Jara change to mine**
 > UNZIP the sources or clone the private repository. After getting the code, open a terminal and navigate to the working directory, with product source code.
 
 ```bash
@@ -85,13 +85,10 @@ At present, Firefox and Google Chrome are supported.
 Some of the features are responsive for three devices: iPhone 6/7/8 iOs 11 (375 x 667), Notebook (1280 x 578) and Monitor (1920 x 937)
 <br />
 ## Resources
-
-- Demo: <https://www.creative-tim.com/live/black-dashboard-django>
-- Download Page: <https://www.creative-tim.com/product/black-dashboard-django>
-- Documentation: <https://demos.creative-tim.com/black-dashboard-django/docs/1.0/getting-started/getting-started-django.html>
-- License Agreement: <https://www.creative-tim.com/license>
-- Support: <https://www.creative-tim.com/contact-us>
-- Issues: [Github Issues Page](https://github.com/creativetimofficial/black-dashboard-django/issues)
+**ToDo: put in urls**
+- Demo: 
+- Download Page:
+- Documentation: 
 
 <br />
 
