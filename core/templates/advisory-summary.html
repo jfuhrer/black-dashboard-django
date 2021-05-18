@@ -17,16 +17,15 @@
 
 {% block stylesheets %}
 <link rel="stylesheet" href="{% static 'assets/css/advisory-summary.css' %}">
-<!--<link rel="stylesheet" href="{% static 'assets/css/pie-chart.css' %}"> -->
-
+<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"> -->
 {% endblock stylesheets %}
 
 {% block content %}
 
 <section class="timeline" id="timeline-container">
-        <button title="In Entwicklung - Markierungen Speichern" type="submit" name="safe" class="save-annotations-btn">
-            <i class="fas fa-save"></i>
-        </button>
+    <button title="In Entwicklung - Markierungen Speichern" type="submit" name="safe" class="save-annotations-btn">
+        <i class="fas fa-save"></i>
+    </button>
     {% for adv in advisory %}
     <h2 class="title-advisory-detail">{{adv.title}}</h2>
     <ul class="design">
@@ -35,6 +34,7 @@
             <div class="advisory-detail" onmouseup="displayContextMenu()">
                 <h4 class="title-advisory-summary"> Zusammenfassung </h4>
                 <span id="advisory-summary-text"> {{adv.summary|safe}} </span>
+                <!--note for delevoper: there are several charts (charts.js) embedded in summary -->
             </div>
             <br>
             <div class="advisory-detail">
@@ -128,6 +128,9 @@
 
 {% block javascripts %}
 <script type="text/javascript" src="{% static 'assets/js/timeline.js' %}"></script>
-<!--<script type="text/javascript" src="{% static 'assets/js/pie-chart.js' %}"></script> -->
+<script type="text/javascript" src="{% static 'assets/js/pie-chart.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js"
+        integrity="sha512-VMsZqo0ar06BMtg0tPsdgRADvl0kDHpTbugCBBrL55KmucH6hP9zWdLIWY//OTfMnzz6xWQRxQqsUFefwHuHyg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 {% endblock javascripts %}

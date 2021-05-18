@@ -250,10 +250,29 @@ body {
 }
 
 
+/* ---------- Pie Chart -------------------------*/
+#tobe-allocation-bar {
+ width: 800px !important;
+ height: 400px !important;
+}
+
+#current-allocation-pie {
+ width: 466px !important;
+ height: 233px !important;
+}
+
 
 /* GENERAL MEDIA QUERIES
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
+@media screen and (max-width:1300px) and (min-width:601px) {
+
+    #tobe-allocation-bar {
+     width: 600px !important;
+     height: 300px !important;
+    }
+
+}
 @media screen and (max-width: 600px) {
 
     .popup {
@@ -276,6 +295,11 @@ body {
 
     #cke_id_text {
         width: 330px !important;
+    }
+
+    #tobe-allocation-bar {
+     width: 600px !important;
+     height: 300px !important;
     }
 
 }
