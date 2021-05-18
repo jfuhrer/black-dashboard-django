@@ -31,6 +31,18 @@ function openAll() {
   z.style.display = "block";
   w.style.display = "block";
 
+
+    //var divs = document.getElementsByClassName('clickable');
+    //for (var i = 0; i < divs.length; ++i) {
+       // console.log( divs[i])
+     //    divs[i].style["display"] = "block";
+   // }
+
+  var imgs = document.images;
+  for (var i=0, iLen=imgs.length; i<iLen; i++) {
+    imgs[i].style.display = "block";
+  }
+
 }
 
 function closeAll() {
@@ -43,5 +55,10 @@ function closeAll() {
   y.style.display = "none";
   z.style.display = "none";
   w.style.display = "none";
+
+  var imgs = document.images;
+  for (var i=0, iLen=imgs.length; i<iLen; i++) {
+    imgs[i].style.display = "none";
+  }
 }
 

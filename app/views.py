@@ -129,6 +129,7 @@ class ViewNoteView(LoginRequiredMixin, generic.DetailView):
         user = UserProfile.objects.get(user=self.request.user)
         advisor = BankEmployees.objects.get(pk=user.advisor_id)
         context['advisor'] = advisor
+        context['segment'] = 'notes'
         context['notes'] = Notes.objects.filter(pk=self.kwargs.get('pk'))
         return context
 
@@ -144,7 +145,7 @@ class AdvisorySummaryView(LoginRequiredMixin, generic.DetailView):
         form = CreateNoteForm(initial={"advisory_session": self.kwargs.get('pk')})
         notesToAdvisory = Notes.objects.filter(advisory_session=self.kwargs.get('pk'))
         advisory = AdvisorySession.objects.filter(pk=self.kwargs.get('pk'))
-        context = {'advisory': advisory, 'notes': notesToAdvisory, 'form': form}
+        context = {'advisory': advisory, 'notes': notesToAdvisory, 'form': form, 'segment':'index'}
         return context
 
 
@@ -156,7 +157,7 @@ class AdvisoryChangesView(LoginRequiredMixin, generic.DetailView):
 
     def get_context_data(self, **kwargs):
         advisory = AdvisorySession.objects.filter(pk=self.kwargs.get('pk'))
-        context = {'advisory': advisory}
+        context = {'advisory': advisory, 'segment': 'index'}
         return context
 
 
@@ -165,10 +166,15 @@ class SingleProtocolView(LoginRequiredMixin, generic.DetailView):
     model = AdvisorySession
     template_name = 'protocol.html'
     context_object_name = 'protocol'
+    form_class = CreateNoteForm
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        form = CreateNoteForm(initial={"advisory_session": self.kwargs.get('pk')})
         context['advisory'] = AdvisorySession.objects.filter(pk=self.kwargs.get('pk'))
+        context['form'] = form
+        context['segment'] = 'protocols'
         return context
 
 

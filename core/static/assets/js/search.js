@@ -13,7 +13,7 @@
 // highlight search query in results
 function highlight(text){
     text = text.toUpperCase()
-    var matches = document.querySelectorAll("div.serachResult"), i;
+    var matches = document.querySelectorAll("div.searchResult"), i;
 
     for (i = 0; i < matches.length; ++i) {
         var innerTextHTML = matches[i].innerHTML;

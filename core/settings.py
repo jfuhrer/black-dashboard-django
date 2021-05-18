@@ -48,10 +48,11 @@ CKEDITOR_CONFIGS = {
         'removePlugins': 'stylesheetparser',
         'toolbar_Custom': [
             ['Bold', 'Italic', 'Underline', 'Strikethrough', 'Image', 'Link', 'Table',
-             'Insert Horizontal Line', 'Text Color', 'Background Color', 'Smiley', 'NumberedList', 'BulletedList', 'Source'],
+             'Insert Horizontal Line', 'Text Color', 'Background Color', 'Smiley', 'NumberedList', 'BulletedList'],
         ],
         'height': 200,
         'width': 500,
+        'resize_enabled': False,
     },
 }
 

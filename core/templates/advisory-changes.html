@@ -26,40 +26,44 @@
 <section class="timeline">
     {% for adv in advisory %}
     <h2 class="title-advisory-detail">Änderungen {{adv.title}}</h2>
-    <h4>In Entwicklung. Ziel: Veränderungen darstellen - wer hat was geändert?</h4>
+    <h6>Dies ist eine Platzhalter-Seite, es sind keine Funktionalitäten zu testen und der Inhalt ist hardcoded</h6>
     <ul class="design">
         <li class="design">
-            <div class="advisory-detail" onmouseup="getSelectedText()">
+            <div class="advisory-detail">
+                Zuletzt geändert von {{adv.modified_by}} am
+                {{adv.evt_modified|date:"d.m.Y H:i"}}
+            </div>
+
+        </li>
+        <li class="design">
+            <div class="advisory-detail">
                 <p><strong>Eckdaten</strong><br/>
                     Kundenberaterin Maja Siebert<br/>
-                    in der Filiale Altdorf (oder via Zoom Link: ...)<br/>
+                    in der Filiale Altdorf<br/>
                     <br/>
                     <strong>Aktuelle Situation</strong><br/>
-                    - Regelm&auml;ssiges Einkommen <s style="color:red"> CHF 102&rsquo;000</s>  <span style="color:green">CHF 112'000</span> <br/>
+                    - Regelm&auml;ssiges Einkommen <s style="color:red"> CHF 102&rsquo;000</s> <span
+                            style="color:green">CHF 112'000</span> <br/>
                     - Keine grossen, vorhersehbare Ausgaben in den n&auml;chsten Jahren<br/>
                     - Langer Anlagehorizont<br/>
                     - Bereits kleine Erfahrungen mit Finanzprodukten<br/>
                     - Interesse an einzelnen Aktien, Fokus Nachhaltigkeit<br/>
-                    <br/>
-                    <strong>Aktuelle Verteilung Ihres Portfolios</strong><br/>
-                    <img alt="alt: Portfolioveerteilung" src="/media/uploads/2021/04/28/portfolio_verteilung.jpg"/><br/>
                     <br/>
                     <br/>
                     <strong>Anlagekriterien</strong><br/>
                     - Anlagehorizont: 8- 12 Jahre<br/>
                     - Risikobereitschaft: Hoch<br/>
                     - Verlusttragbarkeit: Gegeben<br/>
-                    - Finanzielle Situation: Regelm&auml;ssiges Einkommen <s style="color:red"> CHF 102&rsquo;000</s> <span style="color:green"> CHF 112'000 </span>, Liquide Mittel CHF 150&rsquo;000.
+                    - Finanzielle Situation: Regelm&auml;ssiges Einkommen <s style="color:red"> CHF 102&rsquo;000</s>
+                    <span style="color:green"> CHF 112'000 </span>, Liquide Mittel CHF 150&rsquo;000.
                     Keine Hypothek oder Schulden<br/>
                     - Erfahrung &amp; Kenntnisse: Bereits kleine Erfahrungen mit Finanzprodukten, investiert in Strategy
-                    Equity Fond. <br> <span style="color:green">Gute Kenntnisse &amp; Interesse an einzelnen Aktien </span><br/>
+                    Equity Fond. <br> <span
+                            style="color:green">Gute Kenntnisse &amp; Interesse an einzelnen Aktien </span><br/>
                     <br/>
                     <strong>Anlagestrategie</strong><br/>
                     Basierend auf den zuvor definierten Anlagekriterien trifft die Anlagestrategie Wachstum am besten
                     auf Sie zu.<br/>
-                    <br/>
-                    <br/>
-                    N&ouml;tige Umschichtungen f&uuml;r die Strategie Wachstum:<br/>
                     <br/>
                     <br/>
                     <strong>M&ouml;glichkeiten</strong><br/>
@@ -70,7 +74,8 @@
                     <br/>
                     ETF<br/>
                     Exchange Traded Funds. Passive gemanagte Indexfonds: haben tiefere Geb&uuml;hren, decken einen gr&ouml;sseren
-                    Bereich ab als einzelne Aktien, &auml;hnlich wie aktiv gemanagte Fonds von der Bank. <span style="color:green"> Achtung: Keine aktiven
+                    Bereich ab als einzelne Aktien, &auml;hnlich wie aktiv gemanagte Fonds von der Bank. <span
+                            style="color:green"> Achtung: Keine aktiven
                     Anpassungen an B&ouml;rsenentwicklung. </span><br/>
                     <br/>
                     <br/>
@@ -80,12 +85,11 @@
                     Investition von CHF 12&rsquo;000<br/>
                     Ausgef&uuml;hrt von Beraterin am 18. Oktober 2019</p>
             </div>
-
         </li>
         <li class="design">
             <div class="advisory-detail">
                 <a href="{% url 'advisory-summary' adv.id %}">
-                    <h4 class="more"> Zur Zusammenfassung</h4>
+                    <h4 class="more"> Zurück Zur Zusammenfassung</h4>
                 </a>
             </div>
         </li>
@@ -97,5 +101,4 @@
 {% endblock content %}
 
 {% block javascripts %}
-<script type="text/javascript" src="{% static 'assets/js/timeline.js' %}"></script>
 {% endblock javascripts %}

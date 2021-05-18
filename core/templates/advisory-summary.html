@@ -17,6 +17,8 @@
 
 {% block stylesheets %}
 <link rel="stylesheet" href="{% static 'assets/css/advisory-summary.css' %}">
+<!--<link rel="stylesheet" href="{% static 'assets/css/pie-chart.css' %}"> -->
+
 {% endblock stylesheets %}
 
 {% block content %}
@@ -42,11 +44,11 @@
                     {{adv.evt_modified|date:"d.m.Y H:i"}}</a>
             </div>
         </li>
-        {% elif adv.type != "next-advisory" %}
+        {% elif adv.type == "next-advisory" %}
         <li class="design">
             <div class="advisory-detail">
-                <h4 class="title-advisory-summary"> Zusammenfassung </h4>
-                <p>Es gibt keine Zusammenfassung zu diesem Kontakt.</p>
+                <h4 class="title-advisory-summary"> Agenda </h4>
+                <p>{{adv.agenda}}.</p>
             </div>
         </li>
         {% endif %}
@@ -126,4 +128,6 @@
 
 {% block javascripts %}
 <script type="text/javascript" src="{% static 'assets/js/timeline.js' %}"></script>
+<!--<script type="text/javascript" src="{% static 'assets/js/pie-chart.js' %}"></script> -->
+
 {% endblock javascripts %}

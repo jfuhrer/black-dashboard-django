@@ -17,11 +17,13 @@
 
 {% block stylesheets %}
 <link rel="stylesheet" href="{% static 'assets/css/advisory-summary.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/protocol.css' %}">
+
 {% endblock stylesheets %}
 
 {% block content %}
 
-<section class="timeline">
+<section class="timeline" id="timeline-container">
     <button title="In Entwicklung - Markierungen Speichern" type="submit" name="safe" class="save-annotations-btn">
             <i class="fas fa-check"></i>
     </button>
@@ -29,7 +31,16 @@
     <ul class="design">
         <h2>{{adv.title}}</h2>
         <li class="design">
-            <div class="advisory-detail" onmouseup="getSelectedText()">
+            <div class="advisory-detail" onmouseup="displayContextMenu()">
+                <strong>Teilnehmer </strong><br>
+                Kundin: {{request.user.first_name}} {{request.user.last_name}} <br>
+                Beraterin: {{adv.advisor_name}} <br>  <br>
+                <strong>Zeit & Ort </strong><br>
+                 {{adv.date|date:"d.m.Y H:i" }} Uhr, {{adv.place}} <br>
+            </div>
+        </li>
+        <li class="design">
+            <div class="advisory-detail" onmouseup="displayContextMenu()">
                 {% if adv.protocol|length > 0 %}
                 <span id="advisory-summary-text"> {{adv.protocol|safe}}</span>
                 {% else %}
@@ -49,8 +60,7 @@
 </section>
 
 <div id="context-menu">
-    <div class="item" onclick="togglePopup(event)" title="Markiere die betroffene Stelle und schreib eine Notiz dazu.
-      Der markierte Text wird dann in die Notiz eingebaut.">
+    <div class="item" onclick="togglePopup(event)">
         <i class="fa fa-clipboard"></i> Notiz erstellen
     </div>
     <div class="item" onclick="highlightText()">

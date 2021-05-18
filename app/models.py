@@ -54,7 +54,6 @@ class AdvisorySession(models.Model):
     overview = models.TextField(blank=True)
     hot_leads = models.TextField(blank=True)
     agenda = models.TextField(blank=True)
-    investment_details = models.TextField(blank=True)
     summary = RichTextUploadingField(blank=True, null=True)
     protocol = RichTextUploadingField(blank=True, null=True)
     created_by = models.CharField(max_length=150) # should be an ID and automatically filled

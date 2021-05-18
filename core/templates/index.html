@@ -30,9 +30,6 @@
                 <div class="timeline-advisory">
                     <p class="timeline-title"> {{advisory.title}}</p>
                     <p class="timeline-text"> <i class="tim-icons icon-bullet-list-67 advisory-icon" title="Key Take Away"></i>{{advisory.overview}}</p>
-                    {% if advisory.investment_details|length > 0 %}
-                    <p class="timeline-text"><i class="tim-icons icon-coins advisory-icon" title="Investments"></i>{{advisory.investment_details}}</p>
-                    {% endif %}
                     {% if advisory.hot_leads|length > 0 %}
                     <p class="timeline-text"><i class="tim-icons icon-zoom-split advisory-icon" title="Hot Leads"></i>{{advisory.hot_leads}}</p>
                     {% endif %}

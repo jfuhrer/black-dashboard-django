@@ -4,7 +4,7 @@
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}
-<link rel="stylesheet" href="{% static 'assets/css/user-development.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/investor-profile.css' %}">
 {% endblock stylesheets %}
 
 {% block content %}
@@ -14,10 +14,10 @@
         <div class="card">
             <div class="card-header ">
                 <h3 class="title d-inline">Anlegerprofil</h3>
-                <span class="open-all fa fa-plus" onclick="openAll()"> </span>
-                <span class="close-all fa fa-minus" onclick="closeAll()"> </span>
             </div>
             <div class="card-body">
+                <span class="open-all tim-icons icon-minimal-down" onclick="openAll()" title="Alles Aufklappen"> </span>
+                <span class="close-all tim-icons icon-minimal-up" onclick="closeAll()" title="Alles Zuklappen"> </span>
                 <br>
                 <div class="clickable" onclick="showDetails('investmentStrategy')">
                     <i class="tim-icons icon-minimal-down" style="padding-right: 5px;"></i>
@@ -34,7 +34,7 @@
                         um die bestmöglche Performance unter vertretbarem Risiko zu erreichen.
                     </div>
                     <div class="investment-explanations">
-                        Die Bank bietet fünf verschiedene <span onclick="showDetails('anlagestrategie_tabelle')" >
+                        Die Bank bietet fünf verschiedene <span class="more" onclick="showDetails('anlagestrategie_tabelle')" >
                         Anlagestrategien </span>
                         an.
                         <img id="anlagestrategie_tabelle" src="{% static 'assets/img/anlagestrategie_tabelle.png' %}"
@@ -104,5 +104,5 @@
 
 
 {% block javascripts %}
-<script type="text/javascript" src="{% static 'assets/js/user-development.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/investor-profile.js' %}"></script>
 {% endblock javascripts %}

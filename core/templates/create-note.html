@@ -37,13 +37,14 @@
                 <br>
                 <div>Zu erledigen bis: {{ form.due_date }}</div>
                 <br>
-                <div>Reminder: {{ form.reminder }}</div>
+                <div title="Bei einem gesetzten Reminder bekommst du 1 Tag vor dem Ablaufdatum eine Erinnerungsemail.">Reminder: {{ form.reminder }}</div>
                 <br>
                 <span>{{ form.text }} {{ form.media }}</span>
                 <br>
                 <button type="submit" name="safe" class="btn btn-fill btn-primary">Speichern</button>
                 <button type="submit" name="safe" class="btn btn-fill btn-primary"
-                        onclick="location.href='mailto:{{advisor.email}}?subject=Geteilte Notiz: {{note.title}}&body=Bitte deine Notiz hierhin kopieren';">
+                        onclick="location.href='mailto:{{advisor.email}}?subject=Geteilte Notiz: {{note.title}}&body=Bitte deine Notiz hierhin kopieren';"
+                        title="Notiz-Inhalt kopieren & E-Mail an Berater senden">
                     Speichern & mit Berater teilen
                 </button>
                 <a href="{% url 'notes' %}" class="btn btn-fill btn-primary">Abbrechen</a>
