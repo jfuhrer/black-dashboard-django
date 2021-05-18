@@ -49,8 +49,9 @@ class SearchResultsView(LoginRequiredMixin, generic.ListView):
             result_title = advisory.title
             result_text = advisory.summary
             result_date = advisory.date
+            result_id = advisory.id
             object_list.append({'type': 'Beratung', 'title': result_title,
-                                'date': result_date, 'text':result_text})
+                                'date': result_date, 'text':result_text, 'id':result_id})
 
         advisory_results = AdvisorySession.objects.filter(protocol__icontains=query).distinct()
 
@@ -58,8 +59,9 @@ class SearchResultsView(LoginRequiredMixin, generic.ListView):
             result_title = advisory.title
             result_text = advisory.protocol
             result_date = advisory.date
+            result_id = advisory.id
             object_list.append({'type': 'Beratung Protokoll', 'title': result_title,
-                                'date': result_date, 'text': result_text})
+                                'date': result_date, 'text': result_text, 'id':result_id})
 
         notes_results = Notes.objects.filter(
             Q(title__icontains=query) | Q(text__icontains=query)  # case insensitive
@@ -69,8 +71,9 @@ class SearchResultsView(LoginRequiredMixin, generic.ListView):
             result_title = notes.title
             result_text = notes.text # ToDo: not only in summary but overall
             result_date = notes.evt_created
+            result_id = notes.id
             object_list.append({'type': 'Notiz', 'title': result_title,
-                                'date': result_date, 'text': result_text})
+                                'date': result_date, 'text': result_text, 'id':result_id})
 
         return object_list
 

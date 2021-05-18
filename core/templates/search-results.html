@@ -52,7 +52,19 @@
                         <div>{{result.type}}</div>
                     </td>
                     <td>
-                        <div class="searchResult" id="resultTitle">{{result.title}}</div>
+                        {% if result.type == "Beratung" %}
+                        <a href="{% url 'advisory-summary' result.id %}">
+                            <div class="searchResult">{{result.title}}</div>
+                        </a>
+                        {% elif result.type == "Beratung Protokoll" %}
+                        <a href="{% url 'protocol' result.id %}">
+                            <div class="searchResult">{{result.title}}</div>
+                        </a>
+                        {% elif result.type == "Notiz" %}
+                        <a href="{% url 'view-note' result.id %}">
+                            <div class="searchResult">{{result.title}}</div>
+                        </a>
+                        {% endif %}
                     </td>
                     <td>
                         <div>{{result.date | date:"d.m.Y" }}</div>
