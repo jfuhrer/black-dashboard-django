@@ -33,8 +33,25 @@ body {
   padding: 8px 0;
 }
 
+/*line dashed*/
 .timeline ul li.bullet-next-advisory {
   padding-top: 10px;
+  background: repeating-linear-gradient(
+  0deg,
+  var(--white),
+  var(--primary) 20px,
+  var(--primary) 20px
+);
+}
+
+/*line dashed*/
+.timeline ul li:nth-child(2)  {
+  background: repeating-linear-gradient(
+      0deg,
+      var(--white),
+      var(--primary) 20px,
+      var(--primary) 20px
+    );
 }
 
 .timeline ul li {
@@ -98,6 +115,7 @@ body {
 .timeline ul li:nth-child(even) div {
   left: -589px;
 }
+
 
 /*triangle advisory*/
 .timeline ul li:nth-child(odd) div::before {
