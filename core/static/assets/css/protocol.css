@@ -14,3 +14,54 @@ li.in-view {
     margin-left: 20px;
     list-style-type: disc;
 }
+
+.details {
+  padding: 0 30px;
+  text-align: left;
+  display: none;
+  color: var(--black-blue);
+}
+
+.open-all {
+  cursor:pointer;
+  position:absolute;
+  right:100px;
+  width:30px;
+  height:30px;
+  background:var(--primary);
+  color: var(--white);
+  font-size:20px;
+  font-weight:600;
+  line-height:30px;
+  text-align:center;
+  border-radius:50%;
+}
+
+
+.close-all {
+  cursor:pointer;
+  position:absolute;
+  right:50px;
+  width:30px;
+  height:30px;
+  background:var(--primary);
+  color: var(--white);
+  font-size:20px;
+  font-weight:600;
+  line-height:30px;
+  text-align:center;
+  border-radius:50%;
+}
+
+.clickable {
+    cursor:pointer;
+    padding-top: 0px !important;
+}
+
+.fa-li {
+    left: -0.84em !important;
+    top: 3.3em;
+    font-size: medium;
+    z-index:2;
+}
+

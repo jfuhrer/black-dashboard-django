@@ -16,7 +16,7 @@
   padding: 0 30px;
   text-align: left;
   margin-top: 20px;
-  display: none;
+  display: block;
   color: var(--black-blue);
 }
 
@@ -45,13 +45,16 @@
 }
 
 
+#strategy-comparison {
+ width: 566px !important;
+ height: 303px !important;
+}
+
+
+
 .clickable {
     cursor:pointer;
     padding: 10px;
-}
-
-.dividing-hr {
-    margin: 2px 20px;
 }
 
 .open-all {

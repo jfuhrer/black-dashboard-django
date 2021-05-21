@@ -139,14 +139,16 @@ body {
   position: absolute;
   top: 26px;
   display: inline-block;
-  padding: 20px 10px;
+  padding: 10px 20px;
   min-width: 300px;
+  color: var(--black-blue);
+  font-weight: 400;
   border-radius: 10px;
-  color: var(--white);
-  background-color: var(--primary);
+  border: solid 3px var(--secondary);
+  background: white;
   opacity: 1.0;
-  text-overflow: ellipsis;
   box-shadow: 0 1px 20px 0px rgba(0, 0, 0, 0.1);
+  z-index: 2;
 }
 
 
@@ -537,6 +539,10 @@ hr {
   border: 0;
   border-top: 0.0625rem solid
   border-color: var(--secondary);
+}
+
+.dividing-hr {
+    margin: 2px 20px;
 }
 
 small,

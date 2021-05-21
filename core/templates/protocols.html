@@ -38,10 +38,14 @@
                         <th>
                             Datum
                         </th>
+                        <th title="Hinweis für Tester: Es gibt 2 Arten von Protokollen. In Version 1 sieht man den
+        ganzen Text von anfang an, in Version 2 ist er auf- & zuklappbar">
+                            Version
+                        </th>
                     </tr>
                     </thead>
-                    {% for advisory in advisories %}
                     <tbody>
+                     {% for advisory in advisories %}
                     <tr>
                         <td class="td-download">
                             <i class="tim-icons icon-cloud-download-93" title="Download"></i>
@@ -54,9 +58,28 @@
                         <td class="td-date">
                             {{advisory.date | date:"d.m.Y"}}
                         </td>
+                        <td>
+                            Version 1
+                        </td>
+                    </tr>
+                     {% endfor %}
+                    <tr>
+                        <td class="td-download">
+                            <i class="tim-icons icon-cloud-download-93" title="Download"></i>
+                        </td>
+                        <td class="td-title">
+                            <a href="{% url 'protocol-v2' 1 %}">
+                                Beratung Oktober 2018
+                            </a>
+                        </td>
+                        <td class="td-date">
+                            17.10.2018
+                        </td>
+                        <td>
+                            Version 2
+                        </td>
                     </tr>
                     </tbody>
-                    {% endfor %}
                 </table>
             </div>
         </div>

@@ -11,7 +11,7 @@ from django.urls import path, re_path
 from app import views
 from app.views import EditNoteView, ViewNoteView, AdvisorySummaryView, SingleProtocolView, CreateNoteView, \
     SearchResultsView, \
-    SearchView, AdvisoryChangesView
+    SearchView, AdvisoryChangesView, SingleProtocolV2View
 
 urlpatterns = [
     # The home page
@@ -20,6 +20,7 @@ urlpatterns = [
     re_path(r'^notes$', views.notes, name='notes'),
     re_path(r'^protocols', views.protocols, name='protocols'),
 
+    path('protocol-v2/<int:pk>/', SingleProtocolV2View.as_view(), name='protocol-v2'),
     path('protocol/<int:pk>/', SingleProtocolView.as_view(), name='protocol'),
     path('advisory-summary/<int:pk>/', AdvisorySummaryView.as_view(), name='advisory-summary'),
     path('advisory-changes/<int:pk>/', AdvisoryChangesView.as_view(), name='advisory-changes'),

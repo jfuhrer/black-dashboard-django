@@ -181,6 +181,22 @@ class SingleProtocolView(LoginRequiredMixin, generic.DetailView):
         return context
 
 
+class SingleProtocolV2View(LoginRequiredMixin, generic.DetailView):
+    login_url = '/login/'
+    model = AdvisorySession
+    template_name = 'protocol-v2.html'
+    context_object_name = 'protocol-v2'
+    form_class = CreateNoteForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        form = CreateNoteForm(initial={"advisory_session": self.kwargs.get('pk')})
+        context['advisory'] = AdvisorySession.objects.filter(pk=self.kwargs.get('pk'))
+        context['form'] = form
+        context['segment'] = 'protocols'
+        return context
+
+
 @login_required(login_url="/login/")
 def index(request):
     context = {}
@@ -274,3 +290,4 @@ def protocols(request):
     except:
         html_template = loader.get_template('page-500.html')
         return HttpResponse(html_template.render(context, request))
+

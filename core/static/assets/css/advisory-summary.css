@@ -48,6 +48,7 @@ body {
 
 /*timeline stroke*/
 .timeline ul.design li.design {
+  margin-left: 0 !important;
   list-style-type: none;
   position: relative;
   width: 6px;

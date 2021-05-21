@@ -29,23 +29,23 @@
                         Die <span class="explanations" data-title="Definiert die Strategie beim Anlegen der Vermögenswerte.
                                                                  Richtet sich nach Kriterien wie Risikofreudigkeit, Verlustfähigkeit, Anlagehorizont und Erfahrungen.
                                                                  Wir bieten 5 verschiedene Strategien an, siehe Tabelle.">
-                        Anlagestrategie</span> wird vom Kunden nach diversen Kriterien gewählt und von der Bank umgesetzt.
+                        Anlagestrategie</span> wird vom Kunden nach diversen Kriterien gewählt und von der Bank
+                        umgesetzt.
                         Dabei bestimmt sie die Gewichtung einzelnen Anlagekategorien innerhalb einer Bandbreite,
                         um die bestmöglche Performance unter vertretbarem Risiko zu erreichen.
                     </div>
                     <div class="investment-explanations">
-                        Die Bank bietet fünf verschiedene <span class="more" onclick="showDetails('anlagestrategie_tabelle')" >
-                        Anlagestrategien </span>
-                        an.
+                        Die Bank bietet fünf verschiedene Anlagestrategien an. Siehe diese <span class="more"
+                                                                                                 onclick="showDetails('anlagestrategie_tabelle')">
+                        Tabelle </span>.
                         <img id="anlagestrategie_tabelle" src="{% static 'assets/img/anlagestrategie_tabelle.png' %}"
-                              style="width:800px">
+                             style="width:800px">
                     </div>
                     <div class="investment-explanations">
-                        Du hast aktuell die Anlagestrategie <span class="more"
-                                                                  onclick="showDetails('anlagestrategie_aktuell')"> Ambitioniert </span>
-                        gewählt.
-                        Dies bedeutet, dass du potentiell eher hoches Risiko eingehst, aber auch eine eher hohen Rendite
-                        erwarten darfst.
+                        Du hast aktuell die Anlagestrategie Ambitioniert gewählt. Dies bedeutet, dass du potentiell eher
+                        hoches Risiko eingehst, aber auch eine eher hohen Rendite
+                        erwarten darfst. Siehe diese <span class="more"
+                                                           onclick="showDetails('anlagestrategie_aktuell')"> Grafik </span>.
                         <img id="anlagestrategie_aktuell" src="{% static 'assets/img/anlagestrategie.png' %}"
                              alt="Anlagestrategie" style="width:500px">
                     </div>
@@ -59,10 +59,17 @@
                 <div class="details" id="investmentGoal">
                     <div class="investment-explanations">
                         Mit der Strategie Ambitioniert verfolgst du das Ziel eines langfristiges Kapitalwachstums.
+                        <br><br>
+                        Hypothetische Kursentwicklung einer Investition von CHF 5'000 in unterschiedlichen Markt-Szenarien:
+                        <br><br>
+                        <canvas id="strategy-comparison"></canvas>
+                         <br>
+                        Disclaimer: Dies sind rein hypothetische Zahlen und Entwicklungen basierend auf historischen Daten.
+                        Sie dienen lediglich der Veranschaulichung der unterschiedlichen Volatilität der Anlagestrategien.
                     </div>
                 </div>
                 <br>
-                <div  class="clickable" onclick="showDetails('riskLevel')">
+                <div class="clickable" onclick="showDetails('riskLevel')">
                     <i class="tim-icons icon-minimal-down" style="padding-right: 5px;"></i>
                     <b>Risikostufe:</b> 4 von 5
                     <hr class="dividing-hr">
@@ -105,4 +112,7 @@
 
 {% block javascripts %}
 <script type="text/javascript" src="{% static 'assets/js/investor-profile.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/timeline.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/pie-chart.js' %}"></script>
+
 {% endblock javascripts %}
