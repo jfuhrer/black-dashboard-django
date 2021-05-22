@@ -17,6 +17,7 @@ from django import template
 from django.urls import reverse_lazy
 from django.views import generic
 
+
 from .forms import CreateNoteForm, SearchForm
 from .models import AdvisorySession, Notes, BankEmployees, UserProfile
 
