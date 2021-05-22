@@ -17,7 +17,8 @@ from django import template
 from django.urls import reverse_lazy
 from django.views import generic
 
-
+# needed when data is loaded through REST API
+from . import services
 from .forms import CreateNoteForm, SearchForm
 from .models import AdvisorySession, Notes, BankEmployees, UserProfile
 
@@ -131,6 +132,9 @@ class ViewNoteView(LoginRequiredMixin, generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = UserProfile.objects.get(user=self.request.user)
+
+        # or via API
+        # user = services.getProfile(self.request)
         advisor = BankEmployees.objects.get(pk=user.advisor_id)
         context['advisor'] = advisor
         context['segment'] = 'notes'
@@ -146,9 +150,14 @@ class AdvisorySummaryView(LoginRequiredMixin, generic.DetailView):
     form_class = CreateNoteForm
 
     def get_context_data(self, **kwargs):
-        form = CreateNoteForm(initial={"advisory_session": self.kwargs.get('pk')})
-        notesToAdvisory = Notes.objects.filter(advisory_session=self.kwargs.get('pk'))
-        advisory = AdvisorySession.objects.filter(pk=self.kwargs.get('pk'))
+        eventId = self.kwargs.get('pk')
+        form = CreateNoteForm(initial={"advisory_session": eventId})
+        notesToAdvisory = Notes.objects.filter(advisory_session=eventId)
+        advisory = AdvisorySession.objects.filter(pk=eventId)
+
+        # or load data via REST API from Heinzelmännli endpoint
+        # notesToAdvisory = services.getNotesByEvent(self.request, eventId)
+        # advisory = services.getEvent(self.request, eventId)
         context = {'advisory': advisory, 'notes': notesToAdvisory, 'form': form, 'segment':'index'}
         return context
 
@@ -161,6 +170,8 @@ class AdvisoryChangesView(LoginRequiredMixin, generic.DetailView):
 
     def get_context_data(self, **kwargs):
         advisory = AdvisorySession.objects.filter(pk=self.kwargs.get('pk'))
+        # or via API
+        # advisory = services.getEvent(self.request, self.kwargs.get('pk'))
         context = {'advisory': advisory, 'segment': 'index'}
         return context
 
@@ -177,6 +188,8 @@ class SingleProtocolView(LoginRequiredMixin, generic.DetailView):
         context = super().get_context_data(**kwargs)
         form = CreateNoteForm(initial={"advisory_session": self.kwargs.get('pk')})
         context['advisory'] = AdvisorySession.objects.filter(pk=self.kwargs.get('pk'))
+        # or via API
+        # context['advisory'] = services.getEvent(self.request, self.kwargs.get('pk'))
         context['form'] = form
         context['segment'] = 'protocols'
         return context
@@ -193,6 +206,8 @@ class SingleProtocolV2View(LoginRequiredMixin, generic.DetailView):
         context = super().get_context_data(**kwargs)
         form = CreateNoteForm(initial={"advisory_session": self.kwargs.get('pk')})
         context['advisory'] = AdvisorySession.objects.filter(pk=self.kwargs.get('pk'))
+        # or via API
+        # context['advisory'] = services.getEvent(self.request, self.kwargs.get('pk'))
         context['form'] = form
         context['segment'] = 'protocols'
         return context
@@ -206,8 +221,12 @@ def index(request):
         if userId is None:
             print('user cannot be found', userId)  # ToDo: throw better exception
 
-        #advisors = BankEmployees.objects.all() # if wanted get advisor name by this model
+        # if wanted get advisor name by this model
+        #advisors = BankEmployees.objects.all()
+
         advisories = AdvisorySession.objects.filter(person_id=userId).order_by('-date')
+        # or via API
+        # advisories = services.getEvents(self.request)
 
         context['segment'] = 'index'
         context['advisories'] = advisories
@@ -219,6 +238,7 @@ def index(request):
         html_template = loader.get_template('page-404.html')
         return HttpResponse(html_template.render(context, request))
 
+    # alternative way to render
     #html_template = loader.get_template( 'index.html' )
     #return HttpResponse(html_template.render(context, request))
 
@@ -257,7 +277,10 @@ def notes(request):
         if userId is None:
             print('user cannot be found', userId)  # ToDo: throw better exception
 
-        notesObjects = Notes.objects.filter(person_id=userId) # ToDo: wrong, how to get id
+        notesObjects = Notes.objects.filter(person_id=userId)
+        # or via API
+        # notesObjects = services.getNotes(self.request)
+
         context = {'notes': notesObjects, 'segment': 'notes'}
         return render(request, "notes.html", context)
 
@@ -280,6 +303,8 @@ def protocols(request):
             print('user cannot be found', userId)  # ToDo: throw better exception
 
         advisories = AdvisorySession.objects.filter(person=userId, type='advisory')
+        # or via API
+        # advisories = services.getEvents(self.request)
 
         context = {'advisories': advisories, 'segment': 'protocols'}
         return render(request, "protocols.html", context)

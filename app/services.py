@@ -19,6 +19,7 @@ from django.shortcuts import render
 
 # ****************************** GET ********************************
 
+
 # get the list of all events of a client
 def getEvents(request):
     clientId = request.user
@@ -31,7 +32,7 @@ def getEvents(request):
 
     # extract the events of the list object called "events" in the JSON file
     events_list = {'events': events['events']}
-    return render(request, "/", {"events": events_list})
+    return events_list
 
 
 # get the client profile
@@ -41,10 +42,8 @@ def getProfile(request):
 
     # https://hzmplaceholder.ch/clients/<clientId>/profile
     response = requests.get(url+clientId+'/profile')
-
     userProfile = response.json()
-
-    return render(request, "/page-user", {"profile": userProfile})
+    return userProfile
 
 
 # get the investment profile
@@ -56,8 +55,7 @@ def getInvestmentProfile(request):
     response = requests.get(url+clientId+'/investmentProfile')
 
     invProfile = response.json()
-
-    return render(request, "/investor-profile", {"profile": invProfile})
+    return invProfile
 
 
 # get an event
@@ -67,8 +65,7 @@ def getEvent(request, eventId):
     # https://hzmplaceholder.ch/events/<eventId>/
     response = requests.get(url+eventId)
     evt = response.json()
-
-    return render(request, "/advisory-summary/" + eventId, {"event": evt})
+    return evt
 
 
 # get the list of all notes of a client
@@ -83,7 +80,7 @@ def getNotes(request):
 
     # extract the notes of the list object called "notes" in the JSON file
     notes_list = {'notes': ns['notes']}
-    return render(request, "/notes", {"notes": notes_list})
+    return notes_list
 
 # get the list of all notes of an event
 def getNotesByEvent(request, eventId):
@@ -93,7 +90,7 @@ def getNotesByEvent(request, eventId):
     response = requests.get(url+eventId)
     ns = response.json()
     notes_list = {'notes': ns['notes']}
-    return render(request, "/notes", {"notes": notes_list})
+    return notes_list
 
 
 # get a note
@@ -103,8 +100,7 @@ def getNote(request, noteId):
     # https://hzmplaceholder.ch/events/<eventId>/
     response = requests.get(url+noteId)
     nt = response.json()
-
-    return render(request, "/notes/" + noteId, {"note": nt})
+    return nt
 
 
 # get the list of all documents of a client
@@ -116,10 +112,9 @@ def getDocuments(request):
     response = requests.get(url+clientId)
 
     docs = response.json()
-
     # extract the documents of the list object called "documents" in the JSON file
     docs_list = {'docs': docs['docs']}
-    return render(request, "/documents", {"docs": docs_list})
+    return docs_list
 
 
 # get the list of all documents of an event
@@ -130,7 +125,7 @@ def getDocumentsByEvent(request, eventId):
     response = requests.get(url+eventId)
     docs = response.json()
     docs_list = {'docs': docs['docs']}
-    return render(request, "/documents", {"docs": docs_list})
+    return docs_list
 
 
 # get a document
@@ -140,8 +135,7 @@ def getDocument(request, documentId):
     # https://hzmplaceholder.ch/documents/<documentId>/
     response = requests.get(url+documentId)
     doc = response.json()
-
-    return render(request, "/documents/" + documentId, {"doc": doc})
+    return doc
 
 
 # ****************************** POST ********************************
