@@ -39,7 +39,7 @@
                                                                                                  onclick="showDetails('anlagestrategie_tabelle')">
                         Tabelle </span>.
                         <img id="anlagestrategie_tabelle" src="{% static 'assets/img/anlagestrategie_tabelle.png' %}"
-                             style="width:800px">
+                             style="width:800px; display: none">
                     </div>
                     <div class="investment-explanations">
                         Du hast aktuell die Anlagestrategie Ambitioniert gewählt. Dies bedeutet, dass du potentiell eher
@@ -47,7 +47,7 @@
                         erwarten darfst. Siehe diese <span class="more"
                                                            onclick="showDetails('anlagestrategie_aktuell')"> Grafik </span>.
                         <img id="anlagestrategie_aktuell" src="{% static 'assets/img/anlagestrategie.png' %}"
-                             alt="Anlagestrategie" style="width:500px">
+                             alt="Anlagestrategie" style="width:500px;  display: none">
                     </div>
                 </div>
                 <br>
@@ -81,8 +81,8 @@
                             onclick="showDetails('risiko_aktuell')"> Risiko von Stufe 4</span> ein.
                         Dies bedeutet, dass du bereit bist, erhöhte Vermögensschwankungen und tendenziell hohes Risiko
                         einzugehen.
-                        <img id="risiko_aktuell" src="{% static 'assets/img/risiko_aktuell.png' %}" alt="Risikostufe"
-                             style="width:500px">
+                        <img id="risiko_aktuell" src="{% static 'assets/img/risiko.png' %}" alt="Risikostufe"
+                             style="width:500px; display: none">
                     </div>
                 </div>
                 <br>
@@ -99,8 +99,8 @@
                         allfällige
                         Kursschwankungen "ausgesessen" werden können und keinen Verkaufsdruck entsteht.
                         <br>
-                        <img id="anlagehorizont_aktuell" src="{% static 'assets/img/anlagehorizont.png' %}"
-                             alt="Anlagehorizont" style="width:500px">
+                        <img id="anlagehorizont_aktuell" src="{% static 'assets/img/horizont.png' %}"
+                             alt="Anlagehorizont" style="width:500px; display: none">
                     </div>
                 </div>
             </div>

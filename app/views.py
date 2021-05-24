@@ -152,7 +152,7 @@ class AdvisorySummaryView(LoginRequiredMixin, generic.DetailView):
     def get_context_data(self, **kwargs):
         eventId = self.kwargs.get('pk')
         form = CreateNoteForm(initial={"advisory_session": eventId})
-        notesToAdvisory = Notes.objects.filter(advisory_session=eventId)
+        notesToAdvisory = Notes.objects.filter(advisory_session=eventId).order_by('-evt_created')
         advisory = AdvisorySession.objects.filter(pk=eventId)
 
         # or load data via REST API from Heinzelmännli endpoint
@@ -277,7 +277,7 @@ def notes(request):
         if userId is None:
             print('user cannot be found', userId)  # ToDo: throw better exception
 
-        notesObjects = Notes.objects.filter(person_id=userId)
+        notesObjects = Notes.objects.filter(person_id=userId).order_by('-evt_created')
         # or via API
         # notesObjects = services.getNotes(self.request)
 
@@ -302,7 +302,7 @@ def protocols(request):
         if userId is None:
             print('user cannot be found', userId)  # ToDo: throw better exception
 
-        advisories = AdvisorySession.objects.filter(person=userId, type='advisory')
+        advisories = AdvisorySession.objects.filter(person=userId, type='advisory').order_by('-date')
         # or via API
         # advisories = services.getEvents(self.request)
 

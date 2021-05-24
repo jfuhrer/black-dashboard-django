@@ -41,6 +41,9 @@
                         <th>
                             Erstellt am
                         </th>
+                        <th>
+                            Verlinkte Beratung
+                        </th>
                     </tr>
                     </thead>
                     {% for note in notes %}
@@ -58,6 +61,9 @@
                         </td>
                          <td class="td-created">
                             <div class="text-muted">{{note.evt_created|date:"d.m.Y" }}</div>
+                        </td>
+                        <td class="td-created">
+                            <div class="text-muted">{{note.advisory_session}}</div>
                         </td>
                         <td class="td-note-text">
                             <a href="{% url 'view-note' note.id %}">

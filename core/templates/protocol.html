@@ -22,8 +22,12 @@
 {% endblock stylesheets %}
 
 {% block content %}
+{% include 'includes/context-menu-popup.html' %}
 
 <section class="timeline" id="timeline-container">
+    <button title="Markierung anzeigen" type="submit" name="safe" class="save-annotations-btn">
+        <i class="fas fa-highlighter"></i>
+    </button>
     {% for adv in advisory %}
     <ul class="design">
         <h2>{{adv.title}}</h2>
@@ -41,7 +45,7 @@
         <li class="design">
             <div class="advisory-detail" onmouseup="displayContextMenu()">
                 {% if adv.protocol|length > 0 %}
-                <span id="advisory-summary-text" style="line-height:180%"> {{adv.protocol|safe}}</span>
+                <span class="advisory-summary-text" style="line-height:180%"> {{adv.protocol|safe}}</span>
                 {% else %}
                 <p> Es konnte kein Gesprächsprotokoll gefunden werden.</p>
                 {% endif %}
@@ -57,35 +61,6 @@
     </ul>
     {% endfor %}
 </section>
-
-<div id="context-menu">
-    <div class="item" onclick="togglePopup(event)">
-        <i class="fa fa-clipboard"></i> Notiz erstellen
-    </div>
-    <div class="item" onclick="highlightText()">
-        <i class="fa fa-pencil-alt"></i> Text markieren
-    </div>
-</div>
-
-<div class="popup" id="popup-1">
-    <div class="content card">
-        <div title='Abbrechen' class="close-btn" onclick="togglePopup(event)">&times;</div>
-        <h3 id="popup-1-header">Neue Notiz</h3>
-        <div class="form-group">
-            <form action="{% url 'create-note' %}?next={{ request.path }}" method="POST" role="form">
-                {% csrf_token %}
-                <span>Titel: {{ form.title }}</span><br><br>
-                <span>Notiz zum Abschnitt:</span>
-                <span id="selected-text-preview"></span>
-                <input style="visibility:hidden" type="text" id="selected-text" name="selected-text" value=""/>
-                <span style="display:none">{{ form.advisory_session }} </span> <br>
-                <span>{{ form.text }} {{ form.media }}</span>
-                <button title="Speichern" type="submit" name="safe" class="save-btn"><i class="fas fa-check"></i>
-                </button>
-            </form>
-        </div>
-    </div>
-</div>
 
 {% endblock content %}
 

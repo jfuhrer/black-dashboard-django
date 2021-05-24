@@ -21,9 +21,13 @@
 {% endblock stylesheets %}
 
 {% block content %}
+{% include 'includes/context-menu-popup.html' %}
 
 <!--  ToDo: implement correctly once change handling is defined -->
 <section class="timeline">
+    <button title="Markierung anzeigen" type="submit" name="safe" class="save-annotations-btn">
+        <i class="fas fa-highlighter"></i>
+    </button>
     {% for adv in advisory %}
     <h2 class="title-advisory-detail">Änderungen {{adv.title}}</h2>
     <h6>Dies ist eine Platzhalter-Seite, es sind keine Funktionalitäten zu testen und der Inhalt ist hardcoded</h6>
@@ -36,8 +40,8 @@
 
         </li>
         <li class="design">
-            <div class="advisory-detail">
-                <p><strong>Eckdaten</strong><br/>
+            <div class="advisory-detail" onmouseup="displayContextMenu()">
+                <p class="advisory-summary-text"><strong>Eckdaten</strong><br/>
                     Kundenberaterin Maja Siebert<br/>
                     in der Filiale Altdorf<br/>
                     <br/>
@@ -101,4 +105,5 @@
 {% endblock content %}
 
 {% block javascripts %}
+<script type="text/javascript" src="{% static 'assets/js/timeline.js' %}"></script>
 {% endblock javascripts %}

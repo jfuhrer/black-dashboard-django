@@ -139,8 +139,8 @@ body {
   cursor:pointer;
   position:absolute;
   right:15%;
-  width:30px;
-  height:30px;
+  width:35px;
+  height:35px;
   background:var(--primary);
   color: var(--white);
   font-size:20px;
@@ -155,7 +155,7 @@ body {
 /* --------------------------- notes drill down ---------------------------*/
 
 .details {
-  max-width: 500px; /* ToDO: not static width!*/
+  max-width: calc(100vw - 150px);
   padding: 0 30px;
   text-align: left;
   display: none;

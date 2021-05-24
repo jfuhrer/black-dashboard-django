@@ -28,28 +28,10 @@
     margin: 20px;
 }
 
-#anlagestrategie_tabelle {
-    display: none
-}
-
-#risiko_aktuell {
-    display: none
-}
-
-#anlagestrategie_aktuell {
-    display: none
-}
-
-#anlagehorizont_aktuell {
-    display: none
-}
-
-
 #strategy-comparison {
  width: 566px !important;
  height: 303px !important;
 }
-
 
 
 .clickable {
@@ -91,4 +73,15 @@
 .details img {
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+
+
+/* monitor */
+@media screen and (min-width:1301px) {
+    #strategy-comparison {
+        width: 766px !important;
+        height: 403px !important;
+    }
+
 }

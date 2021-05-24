@@ -116,7 +116,6 @@ body {
     cursor: pointer;
     font-weight: 600;
     color: var(--primary) !important;
-    padding: 10px 0 10px 0;
 }
 
 .more:hover {

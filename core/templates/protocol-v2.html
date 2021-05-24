@@ -22,17 +22,18 @@
 {% endblock stylesheets %}
 
 {% block content %}
+{% include 'includes/context-menu-popup.html' %}
 
-<section class="timeline" id="timeline-container">
+<section class="timeline" id="timeline-container" onmouseup="displayContextMenu()">
     <span class="open-all tim-icons icon-minimal-down" onclick="openAll()" title="Alles Aufklappen"> </span>
     <span class="close-all tim-icons icon-minimal-up" onclick="closeAll()" title="Alles Zuklappen"> </span>
     {% for adv in advisory %}
-    <ul class="design">
+    <ul class="design advisory-summary-text">
         <h2>{{adv.title}}</h2>
         <h6 title="Hinweis für Tester: Es gibt 2 Arten von Protokollen. In Version 1 sieht man den
         ganzen Text von anfang an, in Version 2 ist er auf- & zuklappbar">Version 2: Details on Demand</h6>
         <li class="design">
-            <div class="advisory-detail" onmouseup="displayContextMenu()">
+            <div class="advisory-detail">
                 <strong>Teilnehmer </strong><br>
                 Kundin: {{request.user.first_name}} {{request.user.last_name}} <br>
                 Beraterin: Maja Siebert <br>  <br>

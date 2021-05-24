@@ -95,8 +95,8 @@ function getSelectionHtml() {
     var html = "";
     var contextString = "";
     var textArray = [];
-    var div = document.getElementById('advisory-summary-text')
-    var innerTextHTML = div.innerHTML;
+    var div = document.getElementsByClassName('advisory-summary-text')
+    var innerTextHTML = div[0].innerHTML;
 
     if (typeof window.getSelection != "undefined") {
         var sel = window.getSelection();
@@ -150,8 +150,8 @@ function togglePopup(event){
 
 function highlightText(){
     var searchStr  = m_selectedHtml
-    var div = document.getElementById('advisory-summary-text')
-    var innerTextHTML = div.innerHTML;
+    var div = document.getElementsByClassName('advisory-summary-text')
+    var innerTextHTML = div[0].innerHTML;
     var searchStrLen = searchStr.length;
 
     if (searchStrLen == 0) {
@@ -176,7 +176,7 @@ function highlightText(){
         innerTextHTML.substring(indexText,indexText+searchStr.length) + "</span>" +
         innerTextHTML.substring(indexText + searchStr.length);
 
-        div.innerHTML = innerTextHTML;
+        div[0].innerHTML = innerTextHTML;
     }
 
     closeContextMenu();
