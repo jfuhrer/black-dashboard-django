@@ -27,6 +27,10 @@
 <section class="timeline" id="timeline-container" onmouseup="displayContextMenu()">
     <span class="open-all tim-icons icon-minimal-down" onclick="openAll()" title="Alles Aufklappen"> </span>
     <span class="close-all tim-icons icon-minimal-up" onclick="closeAll()" title="Alles Zuklappen"> </span>
+        <label class="toggle" title="Markierung anzeigen / ausblenden">
+        <input id="toggleswitch" type="checkbox">
+        <span class="roundbutton"></span>
+    </label>
     {% for adv in advisory %}
     <ul class="design advisory-summary-text">
         <h2>{{adv.title}}</h2>

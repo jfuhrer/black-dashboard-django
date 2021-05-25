@@ -83,7 +83,7 @@ function displayContextMenu(){
 
 function closeContextMenu() {
    var contextElement = document.getElementById("context-menu");
-    if (contextElement !== null) {
+    if (contextElement != null) {
         contextElement.style.transform = 'scale(0)';
         contextElement.style.transition = 'transform 300ms ease-in-out';
         //document.getElementById("context-menu").classList.remove("active");
@@ -154,6 +154,7 @@ function highlightText(){
     var innerTextHTML = div[0].innerHTML;
     var searchStrLen = searchStr.length;
 
+
     if (searchStrLen == 0) {
         return [];
     }
@@ -172,11 +173,19 @@ function highlightText(){
 
     else if(indices.length === 1) {
         var indexText = indices[0]; // first element
-        innerTextHTML = innerTextHTML.substring(0,indexText) + "<span class='highlight'>" +
+        innerTextHTML = innerTextHTML.substring(0,indexText) + "<span class='highlight' style='background-color:var(--yellow);padding: 5px 0 5px 0; border-radius: 10px;'>" +
         innerTextHTML.substring(indexText,indexText+searchStr.length) + "</span>" +
         innerTextHTML.substring(indexText + searchStr.length);
 
         div[0].innerHTML = innerTextHTML;
+
+        // change state of toggle switch to checked = show highlights
+        var input = document.getElementById('toggleswitch');
+        if(input != null) {
+            input.checked = true;
+        }
+    } else {
+        alert("Es können nicht mehrere Zeilen gleichzeitig markiert werden. Bitte die gewünschten Zeilen einzeln markieren.");
     }
 
     closeContextMenu();
@@ -238,6 +247,49 @@ function showDetails(id_name) {
   } else {
     x.style.display = "none";
   }
+}
+
+
+/*
+// show details on note
+function toggleHighlight() {
+  var button = document.getElementById('toggleswitch');
+  if(button != null)  {
+        var items = document.getElementsByClassName('highlight');
+        if(items.length > 0) {
+
+            if(button.checked) {
+                console.log('checked')
+                for (var i = 0; i < items.length; i++) {
+                 items[i].style.backgroundColor = 'var(--yellow)';
+                 }
+            } else {
+                for (var i = 0; i < items.length; i++) {
+                    items[i].style.backgroundColor = 'transparent';
+                }
+            }
+        }
+  }
+} */
+
+// toggle button to show / hide annotation, highlighter
+var input = document.getElementById('toggleswitch');
+if(input != null) {
+    input.addEventListener('change',function(){
+
+        var items = document.getElementsByClassName('highlight');
+        if(items.length > 0) {
+            if(this.checked) {
+                for (var i = 0; i < items.length; i++) {
+                 items[i].style.backgroundColor = 'var(--yellow)';
+                 }
+            } else {
+                for (var i = 0; i < items.length; i++) {
+                    items[i].style.backgroundColor = 'transparent';
+                }
+            }
+        }
+    });
 }
 
 

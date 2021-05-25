@@ -25,12 +25,13 @@
 
 <!--  ToDo: implement correctly once change handling is defined -->
 <section class="timeline">
-    <button title="Markierung anzeigen" type="submit" name="safe" class="save-annotations-btn">
-        <i class="fas fa-highlighter"></i>
-    </button>
+    <label class="toggle" title="Markierung anzeigen / ausblenden">
+        <input id="toggleswitch" type="checkbox">
+        <span class="roundbutton"></span>
+    </label>
     {% for adv in advisory %}
     <h2 class="title-advisory-detail">Änderungen {{adv.title}}</h2>
-    <h6>Dies ist eine Platzhalter-Seite, es sind keine Funktionalitäten zu testen und der Inhalt ist hardcoded</h6>
+    <h6>Dies ist eine Platzhalter-Seite. Der Inhalt ist hardcoded.</h6>
     <ul class="design">
         <li class="design">
             <div class="advisory-detail">

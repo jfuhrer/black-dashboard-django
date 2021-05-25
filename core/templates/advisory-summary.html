@@ -23,9 +23,10 @@
 {% include 'includes/context-menu-popup.html' %}
 
 <section class="timeline" id="timeline-container">
-    <button title="Markierung anzeigen" type="submit" name="safe" class="save-annotations-btn">
-        <i class="fas fa-highlighter"></i>
-    </button>
+    <label class="toggle" title="Markierung anzeigen / ausblenden">
+        <input id="toggleswitch" type="checkbox">
+        <span class="roundbutton"></span>
+    </label>
     {% for adv in advisory %}
     <h2 class="title-advisory-detail">{{adv.title}}</h2>
     <ul class="design">

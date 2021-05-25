@@ -18,18 +18,18 @@
 {% block stylesheets %}
 <link rel="stylesheet" href="{% static 'assets/css/advisory-summary.css' %}">
 <link rel="stylesheet" href="{% static 'assets/css/protocol.css' %}">
-
 {% endblock stylesheets %}
 
 {% block content %}
 {% include 'includes/context-menu-popup.html' %}
 
 <section class="timeline" id="timeline-container">
-    <button title="Markierung anzeigen" type="submit" name="safe" class="save-annotations-btn">
-        <i class="fas fa-highlighter"></i>
-    </button>
+    <label class="toggle" title="Markierung anzeigen / ausblenden">
+        <input id="toggleswitch" type="checkbox">
+        <span class="roundbutton"></span>
+    </label>
     {% for adv in advisory %}
-    <ul class="design">
+    <ul class="design advisory-summary-text">
         <h2>{{adv.title}}</h2>
         <h6 title="Hinweis für Tester: Es gibt 2 Arten von Protokollen. In Version 1 sieht man den
         ganzen Text von anfang an, in Version 2 ist er auf- & zuklappbar">Version 1: Full text </h6>
@@ -45,7 +45,7 @@
         <li class="design">
             <div class="advisory-detail" onmouseup="displayContextMenu()">
                 {% if adv.protocol|length > 0 %}
-                <span class="advisory-summary-text" style="line-height:180%"> {{adv.protocol|safe}}</span>
+                <span style="line-height:180%"> {{adv.protocol|safe}}</span>
                 {% else %}
                 <p> Es konnte kein Gesprächsprotokoll gefunden werden.</p>
                 {% endif %}
