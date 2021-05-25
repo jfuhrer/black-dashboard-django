@@ -60,12 +60,15 @@
                     <div class="investment-explanations">
                         Mit der Strategie Ambitioniert verfolgst du das Ziel eines langfristiges Kapitalwachstums.
                         <br><br>
-                        Hypothetische Kursentwicklung einer Investition von CHF 5'000 in unterschiedlichen Markt-Szenarien:
+                        Hypothetische Kursentwicklung einer Investition von CHF 5'000 in unterschiedlichen
+                        Markt-Szenarien:
                         <br><br>
                         <canvas id="strategy-comparison"></canvas>
-                         <br>
-                        Disclaimer: Dies sind rein hypothetische Zahlen und Entwicklungen basierend auf historischen Daten.
-                        Sie dienen lediglich der Veranschaulichung der unterschiedlichen Volatilität der Anlagestrategien.
+                        <br>
+                        Disclaimer: Dies sind rein hypothetische Zahlen und Entwicklungen basierend auf historischen
+                        Daten.
+                        Sie dienen lediglich der Veranschaulichung der unterschiedlichen Volatilität der
+                        Anlagestrategien.
                     </div>
                 </div>
                 <br>
@@ -101,6 +104,40 @@
                         <br>
                         <img id="anlagehorizont_aktuell" src="{% static 'assets/img/horizont.png' %}"
                              alt="Anlagehorizont" style="width:500px; display: none">
+                    </div>
+                </div>
+                <br>
+                <div class="clickable" class="user-details" onclick="showDetails('serviceModel')">
+                    <i class="tim-icons icon-minimal-down" style="padding-right: 5px;"></i>
+                    <b>Empfohlenes Servicemodell:</b> Delegation - Fondsportfolio
+                    <hr class="dividing-hr">
+                </div>
+                <div class="details" id="serviceModel">
+                    <div class="investment-explanations">
+                        Mit dem <span class="more"
+                                      onclick="showDetails('service_model_overview')"> Servicemodell </span>
+                        wird festgelegt, wie das Portfolio von der Bank bewirtschaftet werden soll. Aufgrund
+                        <span class="explanations"
+                              data-title="Du hast Zeit & Interesse, dich mit Finanzfragen zu befassen und mit unserer
+                              Unterstützung zu entscheiden, wie und wo du dein Geld anlegen willst."> deiner Anlagebedürfnisse </span>
+                        passt das Servicemodell "Delegation - Fondsportfolio" am besten zu dir. Durch dieses delegierst
+                        du die Überwachung und Gewichtung deines Geldes innerhalb des von dir <span class="explanations"
+                                                                                                    data-title="Fonds Ambitioniert">gewählten Fonds.</span>
+                        Somit hast du nach wie vor Kontrolle, in welchen Fonds du investierst, musst dich aber nicht mit
+                        den
+                        Details beschäftigen.
+                        Zu zahlst lediglich auf dein Fondskonto ein und wir legen dieses Geld dann an.
+                        <br>
+                        <br>
+                        Alternativ bieten wir die Servicemodelle <span class="explanations"
+                                                                       data-title="Du delegierst uns vorwiegend alle Anlageentscheidungen und wir werden dein Geld
+                        optimal anlegen.">Delegation - Vermögensverwaltung </span> und <span class="explanations"
+                                                                                            data-title="Eine reine
+                                                                                            Beratung ohne Ausführung einer Finnanztransaktion. Wir stehen dir lediglich beratend
+                                                                                            zur Seite, während du selbständig die Anlagen betätigst.">
+                        Beratung - Anlageberatung </span> an.
+                        <img id="service_model_overview" src="{% static 'assets/img/service_model_1.png' %}"
+                             alt="Anlagehorizont" style="display: none">
                     </div>
                 </div>
             </div>
