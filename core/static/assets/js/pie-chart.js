@@ -172,7 +172,7 @@ if(strategyComparisonChart !== null) {
             datasets: [
                 {
                     fill: false,
-                    label: "Relax",
+                    label: "Festverzinslich",
                     borderColor: 'rgba(223, 184, 184)',
                     backgroundColor: 'rgba(223, 184, 184, 0.6)', // duskyPink
                     data: [
@@ -185,7 +185,7 @@ if(strategyComparisonChart !== null) {
                 },
                 {
                     fill: false,
-                    label: "Select",
+                    label: "Sicherheit",
                     borderColor: 'rgba(201, 192, 177)', // beige third
                     backgroundColor: 'rgba(201, 192, 177, 0.6)',
                     data: [
@@ -198,7 +198,7 @@ if(strategyComparisonChart !== null) {
                 },
                 {
                     fill: false,
-                    label: "Balance",
+                    label: "Ausgewogen",
                     borderColor: 'rgba(88, 168, 168)', // softCyan
                     backgroundColor: 'rgba(88, 168, 168, 0.6)',
                     data: [
@@ -211,7 +211,7 @@ if(strategyComparisonChart !== null) {
                 },
                 {
                     fill: false,
-                    label: "Ambition",
+                    label: "Wachstum",
                     borderColor: 'rgba(145, 156, 130)',
                     backgroundColor: 'rgba(145, 156, 130, 0.6)', // olivegreen secondary
                     data: [
@@ -224,7 +224,7 @@ if(strategyComparisonChart !== null) {
                 },
                 {
                     fill: false,
-                    label: "Focus",
+                    label: "Aktien",
                     borderColor: 'rgba(252, 190, 24)',
                     backgroundColor: 'rgba(252, 190, 24, 0.6)', // yellow
                     data: [
@@ -238,7 +238,12 @@ if(strategyComparisonChart !== null) {
             ]
         },
         options: {
-          legend: { display: true },
+          legend: {
+            display: true,
+            labels:{
+                fontColor:'#1d253b',//blackblue
+                fontSize:25,
+          } },
           title: {
             text: 'Hypothetische Kursentwicklung in unterschiedlichen Szenarien',
             display: false,
@@ -248,8 +253,23 @@ if(strategyComparisonChart !== null) {
               scaleLabel: {
                 display: true,
                 labelString: 'CHF',
-                fontSize:20
-              }
+                fontSize:30,
+                padding: 10
+              },
+              ticks: {
+                fontSize: 25
+            }
+            }],
+             xAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Kursentwicklung',
+                fontSize:30,
+                padding: 10
+              },
+              ticks: {
+                fontSize: 25,
+                padding: 10            }
             }]
          }
         }
