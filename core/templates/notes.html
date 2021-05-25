@@ -46,6 +46,7 @@
                         </th>
                     </tr>
                     </thead>
+                    {% if notes %}
                     {% for note in notes %}
                     <tbody>
                     <tr>
@@ -77,6 +78,9 @@
                     </tr>
                     </tbody>
                     {% endfor %}
+                    {% else %}
+                    <h4>Du hast noch keine Notizen.</h4>
+                    {% endif %}
                 </table>
             </div>
         </div>

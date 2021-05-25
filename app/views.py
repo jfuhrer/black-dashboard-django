@@ -252,9 +252,9 @@ def pages(request):
 
         load_template = request.path.split('/')[-1]
         context['segment'] = load_template
-        load_template = load_template + '.html'
+        load_template = load_template
 
-        html_template = loader.get_template(load_template)
+        html_template = loader.get_template(load_template+'.html')
         return HttpResponse(html_template.render(context, request))
 
     except template.TemplateDoesNotExist:
