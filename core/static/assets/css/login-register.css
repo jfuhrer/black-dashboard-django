@@ -2,6 +2,7 @@ body{
 	margin:0;
 	background: var(--lighter);
 	color: var(--primary) !important;
+	overflow: scroll !important;
 }
 
 *,:after,:before{box-sizing:border-box}
