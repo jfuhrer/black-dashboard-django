@@ -31,7 +31,6 @@ This is the high-fidelity prototype developed for the Master's Thesis at Univers
 
 ## Quick start
 
-**TODO Jara change to mine**
 > UNZIP the sources or clone the private repository. After getting the code, open a terminal and navigate to the working directory, with product source code.
 
 ```bash
