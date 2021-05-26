@@ -24,7 +24,8 @@ This is the high-fidelity prototype developed for the Master's Thesis at Univers
 
 > To authenticate use the default credentials ***jara / Masterarbeit*** or create a new user. Be aware however, that a new user possibly doesnt have any advisory sessions.
 
-- [Login Page](https://www.creative-tim.com/live/black-dashboard-django)
+- [Login Page](https://fincon-agent.herokuapp.com/)
+- The page is hosted on Heroku, using Amazon Webservices.
 
 <br />
 
@@ -35,7 +36,7 @@ This is the high-fidelity prototype developed for the Master's Thesis at Univers
 
 ```bash
 $ # Get the code
-$ git clone https://github.com/creativetimofficial/black-dashboard-django.git
+$ git clone https://github.com/jfuhrer/black-dashboard-django.git
 $ cd black-dashboard-django
 $
 $ # Virtualenv modules installation (Unix based systems)
@@ -62,12 +63,10 @@ $
 $ # Access the web app in browser: http://127.0.0.1:8000/
 ```
 
-> Note: To use the app, please access the registration page and create a new user. After authentication, the app will unlock the private pages.
-
 <br />
 
 ## Template Documentation
-The documentation for the **Black Dashboard Django Template**is hosted at their [website](https://demos.creative-tim.com/black-dashboard-django/docs/1.0/getting-started/getting-started-django.html).
+The documentation for the template used **Black Dashboard Django** is hosted at their [website](https://demos.creative-tim.com/black-dashboard-django/docs/1.0/getting-started/getting-started-django.html).
 
 <br />
 
@@ -84,15 +83,14 @@ At present, Firefox and Google Chrome are supported.
 
 Generally, all functionalities are implemented and designed for desktops. Hence, the mobile version is not fully supported.
 
-Nevertheless, the navigation with the side- and topbar as well as the main pages are indeed responsive.
+Nevertheless, the navigation with the side- and topbar as well as the main pages are indeed responsive on smartphones.
 (References: iPhone 6/7/8 iOs 11 (375 x 667), Notebook (1280 x 578) and Monitor (1920 x 937))
 <br />
 
 ## Resources
 **ToDo: put in urls**
-- Demo: 
-- Download Page:
-- Documentation: 
+- Demo:  https://fincon-agent.herokuapp.com/ 
+- Download Page: https://github.com/jfuhrer/black-dashboard-django/
 
 <br />
 
