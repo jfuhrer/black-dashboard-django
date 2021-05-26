@@ -87,7 +87,6 @@ Nevertheless, the navigation with the side- and topbar as well as the main pages
 <br />
 
 ## Resources
-**ToDo: put in urls**
 - Demo:  https://fincon-agent.herokuapp.com/ 
 - Download Page: https://github.com/jfuhrer/black-dashboard-django/
 
