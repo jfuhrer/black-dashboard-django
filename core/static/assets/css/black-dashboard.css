@@ -96,7 +96,6 @@ body {
   color: var(--black-blue);
   text-align: left;
   background-color: #1e1e2f;
-  overflow: hidden;
 }
 
 [tabindex="-1"]:focus {
