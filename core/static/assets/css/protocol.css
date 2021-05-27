@@ -69,45 +69,17 @@ li.in-view {
 @media screen and (max-width: 600px) {
 
 .open-all {
-  cursor:pointer;
-  position:absolute;
-  right:25%;
-  top: 25%;
-  width:30px;
-  height:30px;
-  background:var(--primary);
-  color: var(--white);
-  font-size:20px;
-  font-weight:600;
-  line-height:30px;
-  text-align:center;
-  border-radius:50%;
+  right:25% !important;
+  top: 160px !important;
 }
-
 
 .close-all {
-  cursor:pointer;
-  position:absolute;
-  right:13%;
-  top: 25%;
-  width:30px;
-  height:30px;
-  background:var(--primary);
-  color: var(--white);
-  font-size:20px;
-  font-weight:600;
-  line-height:30px;
-  text-align:center;
-  border-radius:50%;
+  right:13% !important;
+  top: 160px !important;
 }
 
-    .toggle {
-        margin:0 0 0 2rem;
-        position: absolute;
-        left: 5%;
-        top: 25% !important;
-        display: inline-block;
-        width: 3.2rem;
-        height: 1.9rem;
-    }
+ .toggle {
+    left: 5% !important;
+     top: 160px !important;
+   }
 }

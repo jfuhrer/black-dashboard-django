@@ -356,14 +356,8 @@ input:checked + .roundbutton:before  {
     }
 
     .toggle {
-        margin:0 0 0 2rem;
-        position: absolute;
         right: 15%;
-        top: 20%;
-        display: inline-block;
-        width: 3.2rem;
-        height: 1.9rem;
+        top: 160px !important;
     }
-
 
 }
