@@ -1,7 +1,6 @@
 
 // Global Options
 Chart.defaults.global.defaultFontFamily = 'Poppins';
-Chart.defaults.global.defaultFontSize = 17;
 Chart.defaults.global.defaultFontColor = '#1d253b'; //blackblue
 
 // pie chart in summary for current portfolio. embedded in DB column "summary"
@@ -69,48 +68,6 @@ if(myChart !== null) {
     });
 }
 
-/*
- // Current asset allocation Bar chart
-new Chart(document.getElementById("current-allocation-bar").getContext('2d'), {
-    type: 'bar',
-    data: {
-      labels: ['Anleihen', 'Liquidität', 'Aktien', 'Alternative Anlagen'],
-      datasets: [
-        {
-          label: "CHF",
-          backgroundColor: [
-            'rgba(223, 184, 184)', // duskyPink
-            'rgba(145, 156, 130)', // olivegreen secondary
-            'rgba(201, 192, 177)', // beige third
-            'rgba(88, 168, 168)' // softCyan
-            ],
-          data:[
-            5000,
-            15000,
-            18500,
-            7000
-          ],
-          }
-      ]
-    },
-    options: {
-      legend: { display: false },
-      title: {
-        display: true,
-        text: 'IST Verteilung'
-      },
-       scales: {
-        yAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'CHF',
-            fontSize:20
-          }
-        }]
-     }
-    }
-});*/
-
 let toBeChart = document.getElementById('tobe-allocation-bar');
 if(toBeChart !== null) {
     toBeChart = toBeChart.getContext('2d')
@@ -139,11 +96,16 @@ if(toBeChart !== null) {
                       23500,
                       10000
                      ]
-                        }
+                }
             ]
         },
         options: {
-          legend: { display: true },
+          legend: {
+            display: true,
+            labels:{
+            fontColor:'#1d253b',//blackblue
+            fontSize:20,
+          }},
           title: {
             display: false,
           },
@@ -153,9 +115,22 @@ if(toBeChart !== null) {
                 display: true,
                 labelString: 'CHF',
                 fontSize:20
+              },
+              ticks: {
+                fontSize:17
+              }
+            }],
+            xAxes: [{
+              ticks: {
+                fontSize:17
               }
             }]
-         }
+         },
+         tooltips: {
+             enabled: true,
+             titleFontSize: 20,
+             bodyFontSize: 20,
+       }
         }
     });
 }
@@ -168,7 +143,7 @@ if(strategyComparisonChart !== null) {
     new Chart(strategyComparisonChart, {
         type: 'line',
         data: {
-            labels: ['Investition', 'Kurs steigt stabil', 'Kurseinsturz', 'Kurserholung', 'Kurs steigt stabil'],
+            labels: ['Investition', 'Wachstum', 'Einsturz', 'Erholung', 'Wachstum'],
             datasets: [
                 {
                     fill: false,
@@ -216,7 +191,7 @@ if(strategyComparisonChart !== null) {
                     backgroundColor: 'rgba(145, 156, 130, 0.6)', // olivegreen secondary
                     data: [
                       5000,
-                      7000,
+                      6600,
                       3300,
                       6000,
                       7600
@@ -229,7 +204,7 @@ if(strategyComparisonChart !== null) {
                     backgroundColor: 'rgba(252, 190, 24, 0.6)', // yellow
                     data: [
                       5000,
-                      7500,
+                      7000,
                       2900,
                       6700,
                       8400
@@ -241,9 +216,9 @@ if(strategyComparisonChart !== null) {
           legend: {
             display: true,
             labels:{
-                fontColor:'#1d253b',//blackblue
-                fontSize:25,
-          } },
+            fontColor:'#1d253b',//blackblue
+            fontSize:25,
+          }},
           title: {
             text: 'Hypothetische Kursentwicklung in unterschiedlichen Szenarien',
             display: false,
@@ -253,25 +228,30 @@ if(strategyComparisonChart !== null) {
               scaleLabel: {
                 display: true,
                 labelString: 'CHF',
-                fontSize:30,
+                fontSize:25,
                 padding: 10
               },
               ticks: {
-                fontSize: 25
+                fontSize: 20
             }
             }],
              xAxes: [{
               scaleLabel: {
                 display: true,
                 labelString: 'Kursentwicklung',
-                fontSize:30,
+                fontSize:25,
                 padding: 10
               },
               ticks: {
-                fontSize: 25,
-                padding: 10            }
+                fontSize: 23,
+                }
             }]
-         }
+         },
+         tooltips: {
+             enabled: true,
+             titleFontSize: 30,
+             bodyFontSize: 30,
+       }
         }
     });
 
