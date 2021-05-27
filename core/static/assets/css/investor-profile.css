@@ -85,3 +85,12 @@
     }
 
 }
+
+@media screen and (max-width: 600px) {
+
+    #strategy-comparison {
+       display: none !important;
+    }
+
+}
+

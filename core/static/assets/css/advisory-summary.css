@@ -348,8 +348,22 @@ input:checked + .roundbutton:before  {
     }
 
     #tobe-allocation-bar {
-     width: 600px !important;
-     height: 300px !important;
+        display: none !important;
     }
+
+    #current-allocation-pie {
+      display:none !important;
+    }
+
+    .toggle {
+        margin:0 0 0 2rem;
+        position: absolute;
+        right: 15%;
+        top: 20%;
+        display: inline-block;
+        width: 3.2rem;
+        height: 1.9rem;
+    }
+
 
 }
