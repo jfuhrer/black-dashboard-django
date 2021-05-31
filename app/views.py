@@ -9,10 +9,11 @@ Copyright (c) 2019 - present AppSeed.us
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import PermissionDenied
 from django.db.models import Q
 from django.shortcuts import render
 from django.template import loader
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django import template
 from django.urls import reverse_lazy
 from django.views import generic
@@ -43,8 +44,8 @@ class SearchResultsView(LoginRequiredMixin, generic.ListView):
         query = self.request.GET.get('q')
 
         advisory_results = AdvisorySession.objects.filter(
-            Q(summary__icontains=query) |
-            Q(title__icontains=query)
+            Q(person=self.request.user) &
+            (Q(summary__icontains=query) | Q(title__icontains=query))
         ).distinct()
 
         for advisory in advisory_results:
@@ -55,7 +56,9 @@ class SearchResultsView(LoginRequiredMixin, generic.ListView):
             object_list.append({'type': 'Beratung', 'title': result_title,
                                 'date': result_date, 'text':result_text, 'id':result_id})
 
-        advisory_results = AdvisorySession.objects.filter(protocol__icontains=query).distinct()
+        advisory_results = AdvisorySession.objects.filter(
+            Q(person=self.request.user) & Q(protocol__icontains=query)
+        ).distinct()
 
         for advisory in advisory_results:
             result_title = advisory.title
@@ -66,7 +69,8 @@ class SearchResultsView(LoginRequiredMixin, generic.ListView):
                                 'date': result_date, 'text': result_text, 'id':result_id})
 
         notes_results = Notes.objects.filter(
-            Q(title__icontains=query) | Q(text__icontains=query)  # case insensitive
+            Q(person=self.request.user) &
+            (Q(title__icontains=query) | Q(text__icontains=query))  # case insensitive
         ).distinct()
 
         for notes in notes_results:
@@ -122,6 +126,11 @@ class EditNoteView(LoginRequiredMixin, generic.UpdateView):
     form_class = CreateNoteForm
     success_url = reverse_lazy('notes')
 
+    def get_object(self, *args, **kwargs):
+        obj = super(EditNoteView, self).get_object(*args, **kwargs)
+        if not obj.person == self.request.user:
+            raise PermissionDenied("Du bist nicht berechtigt, diese Notiz zu bearbeiten.")
+        return obj
 
 
 class ViewNoteView(LoginRequiredMixin, generic.DetailView):
@@ -129,6 +138,12 @@ class ViewNoteView(LoginRequiredMixin, generic.DetailView):
     model = Notes
     template_name = 'view-note.html'
     context_object_name = 'note'
+
+    def get_object(self, *args, **kwargs):
+        obj = super(ViewNoteView, self).get_object(*args, **kwargs)
+        if not obj.person == self.request.user:
+            raise PermissionDenied("Du bist nicht berechtigt, diese Notiz zu lesen.")
+        return obj
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -159,6 +174,12 @@ class AdvisorySummaryView(LoginRequiredMixin, generic.DetailView):
     context_object_name = 'advisory-summary'
     form_class = CreateNoteForm
 
+    def get_object(self, *args, **kwargs):
+        obj = super(AdvisorySummaryView, self).get_object(*args, **kwargs)
+        if not obj.person == self.request.user:
+            raise PermissionDenied("Du bist nicht berechtigt, diese Beratung anzuschauen.")
+        return obj
+
     def get_context_data(self, **kwargs):
         eventId = self.kwargs.get('pk')
         form = CreateNoteForm(initial={"advisory_session": eventId})
@@ -178,6 +199,12 @@ class AdvisoryChangesView(LoginRequiredMixin, generic.DetailView):
     template_name = 'advisory-changes.html'
     context_object_name = 'advisory-changes'
 
+    def get_object(self, *args, **kwargs):
+        obj = super(AdvisorySummaryView, self).get_object(*args, **kwargs)
+        if not obj.person == self.request.user:
+            raise PermissionDenied("Du bist nicht berechtigt, die Änderungen dieser Beratung anzuschauen.")
+        return obj
+
     def get_context_data(self, **kwargs):
         advisory = AdvisorySession.objects.filter(pk=self.kwargs.get('pk'))
         # or via API
@@ -192,6 +219,12 @@ class SingleProtocolView(LoginRequiredMixin, generic.DetailView):
     template_name = 'protocol.html'
     context_object_name = 'protocol'
     form_class = CreateNoteForm
+
+    def get_object(self, *args, **kwargs):
+        obj = super(SingleProtocolView, self).get_object(*args, **kwargs)
+        if not obj.person == self.request.user:
+            raise PermissionDenied("Du bist nicht berechtigt, dieses Protokoll zu lesen.")
+        return obj
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -211,6 +244,8 @@ class SingleProtocolV2View(LoginRequiredMixin, generic.DetailView):
     context_object_name = 'protocol-v2'
     form_class = CreateNoteForm
 
+    # no permission needed because demonstration view
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         form = CreateNoteForm(initial={"advisory_session": self.kwargs.get('pk')})
@@ -228,7 +263,8 @@ def index(request):
     try:
         userId = request.user
         if userId is None:
-            print('user cannot be found', userId)  # ToDo: throw better exception
+            print('user cannot be found', userId)
+            raise Http404
 
         # if wanted get advisor name by this model
         #advisors = BankEmployees.objects.all()
@@ -236,26 +272,22 @@ def index(request):
         advisories = AdvisorySession.objects.filter(person_id=userId).order_by('-date')
         # or via API
         # advisories = services.getEvents(self.request)
+        # context['advisors'] = advisors
 
         context['segment'] = 'index'
         context['advisories'] = advisories
-        #context['advisors'] = advisors
 
         return render(request, "index.html", context)
 
     except template.TemplateDoesNotExist:
-        html_template = loader.get_template('page-404.html')
+        html_template = loader.get_template('404.html')
         return HttpResponse(html_template.render(context, request))
-
-    # alternative way to render
-    #html_template = loader.get_template( 'index.html' )
-    #return HttpResponse(html_template.render(context, request))
 
 
 @login_required(login_url="/login/")
 def pages(request):
     context = {}
-    # All resource paths end in .html.
+    # All resource paths end in .html. --> for investor profile, user profile, login, register
     # Pick out the html file name from the url. And load that template.
     try:
 
@@ -267,11 +299,11 @@ def pages(request):
         return HttpResponse(html_template.render(context, request))
 
     except template.TemplateDoesNotExist:
-        html_template = loader.get_template('page-404.html')
+        html_template = loader.get_template('404.html')
         return HttpResponse(html_template.render(context, request))
 
     except:
-        html_template = loader.get_template('page-500.html')
+        html_template = loader.get_template('500.html')
         return HttpResponse(html_template.render(context, request))
 
 
@@ -282,7 +314,8 @@ def notes(request):
     try:
         userId = request.user
         if userId is None:
-            print('user cannot be found', userId)  # ToDo: throw better exception
+            print('user cannot be found', userId)
+            raise Http404
 
         notesObjects = Notes.objects.filter(person_id=userId).order_by('-evt_created')
         # or via API
@@ -292,11 +325,11 @@ def notes(request):
         return render(request, "notes.html", context)
 
     except template.TemplateDoesNotExist:
-        html_template = loader.get_template('page-404.html')
+        html_template = loader.get_template('404.html')
         return HttpResponse(html_template.render(context, request))
 
     except:
-        html_template = loader.get_template('page-500.html')
+        html_template = loader.get_template('500.html')
         return HttpResponse(html_template.render(context, request))
 
 
@@ -307,7 +340,8 @@ def protocols(request):
     try:
         userId = request.user
         if userId is None:
-            print('user cannot be found', userId)  # ToDo: throw better exception
+            print('user cannot be found', userId)
+            raise Http404
 
         advisories = AdvisorySession.objects.filter(person=userId, type='advisory').order_by('-date')
         # or via API
@@ -317,10 +351,10 @@ def protocols(request):
         return render(request, "protocols.html", context)
 
     except template.TemplateDoesNotExist:
-        html_template = loader.get_template('page-404.html')
+        html_template = loader.get_template('404.html')
         return HttpResponse(html_template.render(context, request))
 
     except:
-        html_template = loader.get_template('page-500.html')
+        html_template = loader.get_template('500.html')
         return HttpResponse(html_template.render(context, request))
 

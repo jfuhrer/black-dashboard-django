@@ -21,7 +21,7 @@ SECRET_KEY = config('SECRET_KEY', default='S#perS3crEt_1122')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
-
+DEBUG = False
 # load production server from .env
 ALLOWED_HOSTS = ['fincon-agent.herokuapp.com', 'localhost', '127.0.0.1', config('SERVER', default='127.0.0.1')]
 
@@ -47,7 +47,7 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'Custom',
         'removePlugins': 'stylesheetparser',
         'toolbar_Custom': [
-            ['Bold', 'Italic', 'Underline', 'Strikethrough', 'Image', 'Link', 'Table',
+            ['Bold', 'Italic', 'Underline', 'Strikethrough', 'Link', 'Table',
              'Insert Horizontal Line', 'Text Color', 'Background Color', 'Smiley', 'NumberedList', 'BulletedList'],
         ],
         'height': 200,
