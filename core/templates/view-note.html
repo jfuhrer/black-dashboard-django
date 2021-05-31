@@ -50,12 +50,12 @@
             <a href="{% url 'edit-note' note.id %}" class="btn btn-fill btn-primary">Bearbeiten</a>
             {% if advisor.email %}
             <a title="Notiz-Inhalt kopieren & E-Mail an Berater senden"
-               href="mailto:{{advisor.email}}?subject=Geteilte Notiz: {{note.title}}&body=Bitte deine Notiz hierhin kopieren"
+               href="mailto:{{advisor.email}}?subject=Geteilte Notiz: {{note.title}} &body=Bitte deine Notiz hierhin kopieren"
                class="btn btn-fill btn-primary">
                 Notiz mit Berater teilen</a>
             {% else %}
             <a title="Notiz-Inhalt kopieren & E-Mail senden"
-               href="mailto:?subject=Geteilte Notiz: {{note.title}}&body=Bitte deine Notiz hierhin kopieren"
+               href="mailto:?subject=Geteilte Notiz: {{note.title}} &body=Bitte deine Notiz hierhin kopieren"
                class="btn btn-fill btn-primary">
                 Notiz mit Berater teilen</a>
             {% endif %}

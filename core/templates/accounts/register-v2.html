@@ -52,6 +52,15 @@
                 <span class="text-danger">{{ form.username.errors }}</span>
 
                 <div class="group">
+                    <label class="label">Vorname</label>
+                    <div class="input"> {{ form.first_name }}</div>
+                </div>
+                <div class="group">
+                    <label class="label">Nachname</label>
+                    <div class="input"> {{ form.last_name }}</div>
+                </div>
+
+                <div class="group">
                     <label class="label">Passwort</label>
                     <div class="input"> {{ form.password1 }}</div>
                 </div>

@@ -71,7 +71,7 @@ class SearchResultsView(LoginRequiredMixin, generic.ListView):
 
         for notes in notes_results:
             result_title = notes.title
-            result_text = notes.text # ToDo: not only in summary but overall
+            result_text = notes.text
             result_date = notes.evt_created
             result_id = notes.id
             object_list.append({'type': 'Notiz', 'title': result_title,
@@ -101,17 +101,17 @@ class CreateNoteView(LoginRequiredMixin, generic.CreateView):
         return initial
 
     def get_success_url(self):
-        return self.request.GET.get('next', reverse_lazy('notes')) #redirect to url stored in param 'a'
+        return self.request.GET.get('next', reverse_lazy('notes')) #redirect to url stored in param 'next'
 
     def form_valid(self, form):
         form.instance.person = self.request.user
+
         # add selected text to notes-textfield if existing
         selected_text = self.request.POST.get('selected-text')
         if selected_text is not None:
             form.instance.text = '<p> Notiz zu Abschnitt: <br> '+ selected_text +\
                                  '</p> <hr>' + \
                                  form.instance.text
-        print('form valid')
         return super(CreateNoteView, self).form_valid(form)
 
 
@@ -123,6 +123,7 @@ class EditNoteView(LoginRequiredMixin, generic.UpdateView):
     success_url = reverse_lazy('notes')
 
 
+
 class ViewNoteView(LoginRequiredMixin, generic.DetailView):
     login_url = '/login/'
     model = Notes
@@ -131,12 +132,21 @@ class ViewNoteView(LoginRequiredMixin, generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        user = UserProfile.objects.get(user=self.request.user)
 
-        # or via API
-        # user = services.getProfile(self.request)
-        advisor = BankEmployees.objects.get(pk=user.advisor_id)
-        context['advisor'] = advisor
+        try:
+            # or via API
+            # user = services.getProfile(self.request)
+            user = UserProfile.objects.get(user=self.request.user)
+            try:
+                advisor = BankEmployees.objects.get(pk=user.advisor_id)
+                context['advisor'] = advisor
+
+            except BankEmployees.DoesNotExist:
+                advisor = None
+
+        except UserProfile.DoesNotExist:
+            user = None
+
         context['segment'] = 'notes'
         context['notes'] = Notes.objects.filter(pk=self.kwargs.get('pk'))
         return context
@@ -164,7 +174,7 @@ class AdvisorySummaryView(LoginRequiredMixin, generic.DetailView):
 
 class AdvisoryChangesView(LoginRequiredMixin, generic.DetailView):
     login_url = '/login/'
-    model = AdvisorySession # ToDo maybe own model?
+    model = AdvisorySession
     template_name = 'advisory-changes.html'
     context_object_name = 'advisory-changes'
 
@@ -182,7 +192,6 @@ class SingleProtocolView(LoginRequiredMixin, generic.DetailView):
     template_name = 'protocol.html'
     context_object_name = 'protocol'
     form_class = CreateNoteForm
-
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -258,12 +267,10 @@ def pages(request):
         return HttpResponse(html_template.render(context, request))
 
     except template.TemplateDoesNotExist:
-
         html_template = loader.get_template('page-404.html')
         return HttpResponse(html_template.render(context, request))
 
     except:
-
         html_template = loader.get_template('page-500.html')
         return HttpResponse(html_template.render(context, request))
 
