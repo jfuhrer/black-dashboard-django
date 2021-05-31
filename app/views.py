@@ -100,8 +100,8 @@ class CreateNoteView(LoginRequiredMixin, generic.CreateView):
         initial = super(generic.CreateView, self).get_initial()
         # prefill person and if available advisory session
         initial.update({'person': self.request.user})
-        if self.request.GET.get('next')[-2] is not None:
-            initial.update({'advisory_session': self.request.GET.get('next')[-2]})
+        eventId = self.request.GET.get('eventId')
+        initial.update({'advisory_session': eventId})
         return initial
 
     def get_success_url(self):

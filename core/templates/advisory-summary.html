@@ -80,7 +80,7 @@
             </div>
             <div class="advisory-detail">
                 <i class="tim-icons icon-simple-add"></i>
-                <a href="{% url 'create-note' %}?next={{ request.path }}">Neue Notiz erstellen</a>
+                <a href="{% url 'create-note' %}?next={{ request.path }}&eventId={{ adv.id }}">Neue Notiz erstellen</a>
             </div>
         </li>
         <li class="design">
