@@ -292,7 +292,7 @@ body {
 }
 
 input:checked + .roundbutton {
-    background-color: var(--secondary);
+    background-color: var(--yellow);
 }
 
 input:checked + .roundbutton:before  {

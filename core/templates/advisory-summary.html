@@ -23,8 +23,8 @@
 {% include 'includes/context-menu-popup.html' %}
 
 <section class="timeline" id="timeline-container">
-    <label class="toggle" title="Markierung anzeigen / ausblenden">
-        <input id="toggleswitch" type="checkbox">
+    <label class="toggle" title="Markierung im Text anzeigen / ausblenden">
+        <input id="toggleswitch" type="checkbox" >
         <span class="roundbutton"></span>
     </label>
     {% for adv in advisory %}
@@ -64,7 +64,7 @@
         {% endif %}
         <li class="design">
             <div class="advisory-detail">
-                <h4 class="title-advisory-summary"> Notizen </h4>
+                <h4 class="title-advisory-summary">Persönliche Notizen</h4>
                 {% for note in notes %}
                 <div class="clickable-notes" onclick="showDetails('{{note.id}}')">
                     <i class="tim-icons icon-notes"></i> <span class="more"> {{note.title}} </span>
