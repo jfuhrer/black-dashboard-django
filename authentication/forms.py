@@ -16,7 +16,8 @@ class LoginForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 "placeholder" : "Benutzername",
-                "class": "form-control"
+                "class": "form-control",
+                "autocomplete": "off"
             }
         ))
     password = forms.CharField(
@@ -32,28 +33,32 @@ class SignUpForm(UserCreationForm):
         widget=forms.TextInput(
             attrs={
                 "placeholder" : "Benutzername",
-                "class": "form-control"
+                "class": "form-control",
+                "autocomplete": "off"
             }
         ))
     first_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
                 "placeholder" : "Vorname",
-                "class": "form-control"
+                "class": "form-control",
+                "autocomplete": "off"
             }
         ))
     last_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
                 "placeholder" : "Nachname",
-                "class": "form-control"
+                "class": "form-control",
+                "autocomplete": "off"
             }
         ))
     email = forms.EmailField(
         widget=forms.EmailInput(
             attrs={
                 "placeholder" : "Email",                
-                "class": "form-control"
+                "class": "form-control",
+                "autocomplete": "off"
             }
         ))
     password1 = forms.CharField(

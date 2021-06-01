@@ -126,6 +126,12 @@ class EditNoteView(LoginRequiredMixin, generic.UpdateView):
     form_class = CreateNoteForm
     success_url = reverse_lazy('notes')
 
+    def get_initial(self):
+        initial = super(generic.UpdateView, self).get_initial()
+        # prefill person and if available advisory session
+        initial.update({'person': self.request.user})
+        return initial
+
     def get_object(self, *args, **kwargs):
         obj = super(EditNoteView, self).get_object(*args, **kwargs)
         if not obj.person == self.request.user:
