@@ -36,8 +36,13 @@
                 <span id="selected-text-preview"></span>
                 <input style="visibility:hidden" type="text" id="selected-text" name="selected-text" value=""/>
                 <span style="display:none">{{ form.advisory_session }} </span> <br>
+                <div style="display:none">Erstellt von: {{ form.person }} </div>
                 <span>{{ form.text }} {{ form.media }}</span>
                 <button title="Speichern" type="submit" name="safe" class="save-btn"><i class="fas fa-check"></i>
+                </button>
+                <button type="submit" name="safe" class="save-share-btn"
+                        onclick="location.href='mailto:{{advisor.email}}?subject=Geteilte Notiz: {{note.title}}&body=Bitte deine Notiz hierhin kopieren';"
+                        title="Speichern & mit Berater teilen"><i class="fas fa-share"></i>
                 </button>
             </form>
         </div>

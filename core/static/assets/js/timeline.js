@@ -72,8 +72,19 @@ function displayContextMenu(){
     if(m_selectedHtml !== null) {
         if(m_selectedHtml.length > 1) {
             var contextElement = document.getElementById("context-menu");
+            var moveX = 0;
+            var diffToRightBorder = screen.width - event.pageX
+
+            if(diffToRightBorder < 200)
+            {
+                moveX = -80;
+            }
+            else {
+                moveX = 10;
+            }
+
             contextElement.style.top = event.pageY + 10 + "px";
-            contextElement.style.left = event.pageX + 10 + "px";
+            contextElement.style.left = event.pageX + moveX + "px";
             contextElement.style.transform = 'scale(1)';
             contextElement.style.transition = 'transform 300ms ease-in-out';
             //contextElement.classList.add("active");
@@ -135,8 +146,21 @@ function togglePopup(event){
         var rect = canvas.getBoundingClientRect();
         var mouseX = event.clientX - rect.left;
         var mouseY = event.clientY - rect.top;
+        var moveX = 0;
+        var diffToRightBorder = screen.width - mouseX
+
+        if(diffToRightBorder < 800)
+        {
+            moveX = -300
+            console.log('minus 300')
+        }
+        else {
+            moveX = 300;
+              console.log('plus 300')
+        }
+
         popup.style.top = mouseY + "px";
-        popup.style.left = mouseX+ 300+"px";
+        popup.style.left = mouseX + moveX +"px";
     }
 
     popup.classList.toggle("active");

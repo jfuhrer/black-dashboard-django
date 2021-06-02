@@ -90,6 +90,16 @@ class SearchResultsView(LoginRequiredMixin, generic.ListView):
         return context
 
 
+def remove_html_tags(text):
+    """Remove html tags from a string"""
+    import re
+    # make semi colon after list element
+    text = text.replace('</li>', ";")
+    # clean other tags
+    clean = re.compile('<.*?>')
+    return re.sub(clean, ' ', text)
+
+
 class CreateNoteView(LoginRequiredMixin, generic.CreateView):
     login_url = '/login/'
     model = Notes
@@ -109,12 +119,12 @@ class CreateNoteView(LoginRequiredMixin, generic.CreateView):
 
     def form_valid(self, form):
         form.instance.person = self.request.user
-
         # add selected text to notes-textfield if existing
         selected_text = self.request.POST.get('selected-text')
         if selected_text is not None:
+            selected_text = remove_html_tags(selected_text)
             form.instance.text = '<p> Notiz zu Abschnitt: <br> '+ selected_text +\
-                                 '</p> <hr>' + \
+                                 '</p>' + \
                                  form.instance.text
         return super(CreateNoteView, self).form_valid(form)
 
@@ -128,7 +138,6 @@ class EditNoteView(LoginRequiredMixin, generic.UpdateView):
 
     def get_initial(self):
         initial = super(generic.UpdateView, self).get_initial()
-        # prefill person and if available advisory session
         initial.update({'person': self.request.user})
         return initial
 
@@ -187,8 +196,9 @@ class AdvisorySummaryView(LoginRequiredMixin, generic.DetailView):
         return obj
 
     def get_context_data(self, **kwargs):
+        person = self.request.user
         eventId = self.kwargs.get('pk')
-        form = CreateNoteForm(initial={"advisory_session": eventId})
+        form = CreateNoteForm(initial={"advisory_session": eventId, "person": person})
         notesToAdvisory = Notes.objects.filter(advisory_session=eventId).order_by('-evt_created')
         advisory = AdvisorySession.objects.filter(pk=eventId)
 
@@ -234,7 +244,7 @@ class SingleProtocolView(LoginRequiredMixin, generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        form = CreateNoteForm(initial={"advisory_session": self.kwargs.get('pk')})
+        form = CreateNoteForm(initial={"advisory_session": self.kwargs.get('pk'), "person": self.request.user})
         context['advisory'] = AdvisorySession.objects.filter(pk=self.kwargs.get('pk'))
         # or via API
         # context['advisory'] = services.getEvent(self.request, self.kwargs.get('pk'))
@@ -254,7 +264,7 @@ class SingleProtocolV2View(LoginRequiredMixin, generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        form = CreateNoteForm(initial={"advisory_session": self.kwargs.get('pk')})
+        form = CreateNoteForm(initial={"advisory_session": self.kwargs.get('pk'), "person": self.request.user})
         context['advisory'] = AdvisorySession.objects.filter(pk=self.kwargs.get('pk'))
         # or via API
         # context['advisory'] = services.getEvent(self.request, self.kwargs.get('pk'))
