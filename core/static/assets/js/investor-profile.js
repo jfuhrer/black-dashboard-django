@@ -17,10 +17,10 @@ function openAll() {
        divs[i].style.display = "block"
   }
 
-  var imgs = document.images;
-  for (var i=0, iLen=imgs.length; i<iLen; i++) {
-    imgs[i].style.display = "block";
-  }
+   var imgs = document.getElementsByClassName('graphic');
+   for (var i = 0; i < imgs.length; ++i) {
+      imgs[i].style.display = "block";
+   }
 
 }
 
@@ -30,9 +30,9 @@ function closeAll() {
       divs[i].style.display = "none";
    }
 
-  var imgs = document.images;
-  for (var i=0, iLen=imgs.length; i<iLen; i++) {
-    imgs[i].style.display = "none";
-  }
+   var imgs = document.getElementsByClassName('graphic');
+   for (var i = 0; i < imgs.length; ++i) {
+      imgs[i].style.display = "none";
+   }
 }
 
