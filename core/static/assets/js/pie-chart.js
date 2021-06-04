@@ -103,9 +103,10 @@ if(toBeChart !== null) {
           legend: {
             display: true,
             labels:{
-            fontColor:'#1d253b',//blackblue
-            fontSize:20,
-          }},
+                fontColor:'#1d253b',//blackblue
+                fontSize:20,
+            }
+          },
           title: {
             display: false,
           },
@@ -143,7 +144,7 @@ if(strategyComparisonChart !== null) {
     new Chart(strategyComparisonChart, {
         type: 'line',
         data: {
-            labels: ['Investition', 'Wachstum', 'Einsturz', 'Erholung', 'Wachstum'],
+            labels: ['Investition', 'Wachstum', 'Korrektur', 'Erholung', 'Wachstum'],
             datasets: [
                 {
                     fill: false,
@@ -216,9 +217,19 @@ if(strategyComparisonChart !== null) {
           legend: {
             display: true,
             labels:{
-            fontColor:'#1d253b',//blackblue
-            fontSize:25,
-          }},
+                fontColor:'#1d253b',//blackblue
+                fontSize:25,
+            },
+             onHover: function(e) {
+                e.target.style.cursor = 'pointer';
+            }
+            },
+             hover: {
+                onHover: function(e) {
+                 var point = this.getElementAtEvent(e);
+                if (point.length) e.target.style.cursor = 'pointer';
+                else e.target.style.cursor = 'default';
+            }},
           title: {
             text: 'Hypothetische Kursentwicklung in unterschiedlichen Szenarien',
             display: false,
