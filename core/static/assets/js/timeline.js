@@ -152,11 +152,9 @@ function togglePopup(event){
         if(diffToRightBorder < 800)
         {
             moveX = -300
-            console.log('minus 300')
         }
         else {
             moveX = 300;
-              console.log('plus 300')
         }
 
         popup.style.top = mouseY + "px";
@@ -164,7 +162,7 @@ function togglePopup(event){
     }
 
     popup.classList.toggle("active");
-    let text = m_selectedHtml;
+    let text = m_selectedHtml.replace(/(<([^>]+)>)/ig, '');
     document.getElementById("selected-text").value=text;
     document.getElementById("selected-text-preview").textContent=text;
 
@@ -271,6 +269,21 @@ function showDetails(id_name) {
   } else {
     x.style.display = "none";
   }
+
+   var iconUp = document.getElementById(id_name+'IconUp');
+   var iconDown = document.getElementById(id_name+'IconDown');
+
+   // toggle icon up down arrow
+   if(iconUp != null && iconDown != null ) {
+     if (iconUp.style.display === "none") {
+        iconUp.style.display = "contents";
+        iconDown.style.display = "none";
+        } else {
+        iconUp.style.display = "none";
+        iconDown.style.display = "contents";
+        }
+   }
+
 }
 
 

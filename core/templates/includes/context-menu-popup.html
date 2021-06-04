@@ -31,12 +31,13 @@
         <div class="form-group">
             <form action="{% url 'create-note' %}?next={{ request.path }}" method="POST" role="form">
                 {% csrf_token %}
-                <span>Titel: {{ form.title }}</span><br><br>
-                <span>Notiz zum Abschnitt:</span>
+                <span>Notiz zum Abschnitt:</span><br>
+                <input style="display:none" type="text" id="selected-text" name="selected-text" value=""/>
                 <span id="selected-text-preview"></span>
-                <input style="visibility:hidden" type="text" id="selected-text" name="selected-text" value=""/>
-                <span style="display:none">{{ form.advisory_session }} </span> <br>
-                <div style="display:none">Erstellt von: {{ form.person }} </div>
+                <br>
+                <span style="display:none">Verlinkte Beratung: {{ form.advisory_session }} </span>
+                <span style="display:none">Erstellt von: {{ form.person }}</span><br>
+                <span>Titel: {{ form.title }}</span><br><br>
                 <span>{{ form.text }} {{ form.media }}</span>
                 <button title="Speichern" type="submit" name="safe" class="save-btn"><i class="fas fa-check"></i>
                 </button>

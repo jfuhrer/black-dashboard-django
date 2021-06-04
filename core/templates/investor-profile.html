@@ -20,8 +20,9 @@
             <div class="card-body">
                 <br>
                 <div class="clickable" onclick="showDetails('investmentStrategy')">
-                    <i class="tim-icons icon-minimal-down" style="padding-right: 5px;"></i>
-                    <b>Anlagestrategie:</b> Wachstum
+                    <i id="investmentStrategyIconDown" class="tim-icons icon-minimal-down toggleDown" style="padding-right: 5px; display: none"></i>
+                    <i id="investmentStrategyIconUp" class="tim-icons icon-minimal-up toggleUp" style="padding-right: 5px; display:contents"></i>
+                    <span class="titleContainer"><b>Anlagestrategie:</b> Wachstum</span>
                     <hr class="dividing-hr">
                 </div>
                 <div class="details" id="investmentStrategy">
@@ -52,8 +53,9 @@
                 </div>
                 <br>
                 <div class="clickable" onclick="showDetails('investmentGoal')">
-                    <i class="tim-icons icon-minimal-down" style="padding-right: 5px;"></i>
-                    <b>Anlageziel:</b> Vermögensvermehrung
+                    <i id="investmentGoalIconDown" class="tim-icons icon-minimal-down toggleDown" style="padding-right: 5px; display:none"></i>
+                    <i id="investmentGoalIconUp" class="tim-icons icon-minimal-up toggleUp" style="padding-right: 5px; display:contents"></i>
+                    <span class="titleContainer"><b>Anlageziel:</b> Vermögensvermehrung </span>
                     <hr class="dividing-hr">
                 </div>
                 <div class="details" id="investmentGoal">
@@ -75,8 +77,9 @@
                 </div>
                 <br>
                 <div class="clickable" onclick="showDetails('riskLevel')">
-                    <i class="tim-icons icon-minimal-down" style="padding-right: 5px;"></i>
-                    <b>Risikostufe:</b> 4 von 5
+                    <i id="riskLevelIconDown" class="tim-icons icon-minimal-down toggleDown" style="padding-right: 5px; display:none"></i>
+                    <i id="riskLevelIconUp" class="tim-icons icon-minimal-up toggleUp" style="padding-right: 5px; display:contents"></i>
+                    <span class="titleContainer"> <b>Risikostufe:</b> 4 von 5 </span>
                     <hr class="dividing-hr">
                 </div>
                 <div class="details" id="riskLevel">
@@ -92,8 +95,9 @@
                 </div>
                 <br>
                 <div class="clickable" class="user-details" onclick="showDetails('investmentHorizon')">
-                    <i class="tim-icons icon-minimal-down" style="padding-right: 5px;"></i>
-                    <b>Anlagehorizont:</b> 8 bis 12 Jahre
+                    <i id="investmentHorizonIconDown" class="tim-icons icon-minimal-down toggleDown" style="padding-right: 5px; display: none"></i>
+                    <i id="investmentHorizonIconUp" class="tim-icons icon-minimal-up toggleUp" style="padding-right: 5px; display:contents"></i>
+                    <span class="titleContainer"><b>Anlagehorizont:</b> 8 bis 12 Jahre </span>
                     <hr class="dividing-hr">
                 </div>
                 <div class="details" id="investmentHorizon">
@@ -110,8 +114,9 @@
                 </div>
                 <br>
                 <div class="clickable" class="user-details" onclick="showDetails('serviceModel')">
-                    <i class="tim-icons icon-minimal-down" style="padding-right: 5px;"></i>
-                    <b>Empfohlenes Servicemodell:</b> Delegation - Fondsportfolio
+                    <i id="serviceModelIconDown" class="tim-icons icon-minimal-down toggleDown" style="padding-right: 5px; display: none"></i>
+                    <i id="serviceModelIconUp" class="tim-icons icon-minimal-up toggleUp" style="padding-right: 5px; display:contents"></i>
+                    <span class="titleContainer"><b>Empfohlenes Servicemodell:</b> Delegation - Fondsportfolio</span>
                     <hr class="dividing-hr">
                 </div>
                 <div class="details" id="serviceModel">
@@ -137,7 +142,7 @@
                                                                                             data-title="Eine reine
                                                                                             Beratung ohne Ausführung einer Finnanztransaktion. Wir stehen dir lediglich beratend
                                                                                             zur Seite, während du selbständig die Anlagen betätigst.">
-                        Beratung - Anlageberatung </span> an. Auf unserer  <a href ="https://www.ifi.uzh.ch/de.html" target="_blank" class="more" title="Absprung zu unserer Webseite">Webseite </a> findest du mehr Infos dazu.
+                        Beratung - Anlageberatung </span> an. Auf unserer <a href ="https://www.ifi.uzh.ch/de.html" target="_blank" style="cursor: pointer; font-weight: 600;"> <i class="fas fa-external-link-alt"></i> Webseite </a> findest du mehr Infos dazu.
                         <img id="service_model_overview" class="graphic" src="{% static 'assets/img/service_model_1.png' %}"
                              alt="Anlagehorizont" style="display: none">
                     </div>

@@ -22,6 +22,16 @@ function openAll() {
       imgs[i].style.display = "block";
    }
 
+
+      var iconsDown = document.getElementsByClassName('toggleDown');
+   for (var i = 0; i < iconsDown.length; ++i) {
+      iconsDown[i].style.display = "none";
+   }
+
+   var iconsUp = document.getElementsByClassName('toggleUp');
+   for (var i = 0; i < iconsUp.length; ++i) {
+      iconsUp[i].style.display = "contents";
+   }
 }
 
 function closeAll() {
@@ -34,5 +44,16 @@ function closeAll() {
    for (var i = 0; i < imgs.length; ++i) {
       imgs[i].style.display = "none";
    }
+
+   var iconsDown = document.getElementsByClassName('toggleDown');
+   for (var i = 0; i < iconsDown.length; ++i) {
+      iconsDown[i].style.display = "contents";
+   }
+
+   var iconsUp = document.getElementsByClassName('toggleUp');
+   for (var i = 0; i < iconsUp.length; ++i) {
+      iconsUp[i].style.display = "none";
+   }
+
 }
 
