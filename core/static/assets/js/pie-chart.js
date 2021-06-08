@@ -79,7 +79,7 @@ if(toBeChart !== null) {
             datasets: [
                 {
                     label: "IST",
-                    backgroundColor: 'rgba(223, 184, 184)', // duskyPink,
+                    backgroundColor: 'rgba(145, 156, 130)', // secondary,
                     data: [
                       5000,
                       15000,
@@ -89,7 +89,7 @@ if(toBeChart !== null) {
                 },
                 {
                     label: "SOLL",
-                    backgroundColor: 'rgba(145, 156, 130)', // olivegreen secondary
+                    backgroundColor: 'rgba(223, 184, 184)', // duskyPink
                     data: [
                       3000,
                       10000,

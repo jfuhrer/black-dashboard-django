@@ -215,12 +215,6 @@ class AdvisoryChangesView(LoginRequiredMixin, generic.DetailView):
     template_name = 'advisory-changes.html'
     context_object_name = 'advisory-changes'
 
-    def get_object(self, *args, **kwargs):
-        obj = super(AdvisorySummaryView, self).get_object(*args, **kwargs)
-        if not obj.person == self.request.user:
-            raise PermissionDenied("Du bist nicht berechtigt, die Änderungen dieser Beratung anzuschauen.")
-        return obj
-
     def get_context_data(self, **kwargs):
         advisory = AdvisorySession.objects.filter(pk=self.kwargs.get('pk'))
         # or via API

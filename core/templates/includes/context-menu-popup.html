@@ -31,8 +31,8 @@
         <div class="form-group">
             <form action="{% url 'create-note' %}?next={{ request.path }}" method="POST" role="form">
                 {% csrf_token %}
-                <span>Notiz zum Abschnitt:</span><br>
-                <input style="display:none" type="text" id="selected-text" name="selected-text" value=""/>
+                <span style="font-weight: 600">Notiz zum Abschnitt:</span><br>
+                <input style="display:none;" type="text" id="selected-text" name="selected-text" value=""/>
                 <span id="selected-text-preview"></span>
                 <br>
                 <span style="display:none">Verlinkte Beratung: {{ form.advisory_session }} </span>
