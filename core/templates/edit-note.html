@@ -43,7 +43,11 @@
                         title="Notiz-Inhalt kopieren & E-Mail an Berater senden">
                     Speichern & mit Berater teilen
                 </button>
+                {% if 'next' in request.GET %}
+                 <a href="{{ request.GET.next }}" class="btn btn-fill btn-primary">Abbrechen</a>
+                {% else %}
                 <a href="{% url 'notes' %}" class="btn btn-fill btn-primary">Abbrechen</a>
+                {% endif %}
             </form>
         </div>
     </div>

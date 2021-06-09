@@ -46,8 +46,13 @@
             <p>Reminder: Inaktiv</p>
             {% endif %}
             <br>
+            {% if 'next' in request.GET %}
+            <a href="{{ request.GET.next }}" class="btn btn-fill btn-primary">Schliessen</a>
+            <a href="{% url 'edit-note' note.id %}?next={{ request.GET.next }}" class="btn btn-fill btn-primary">Bearbeiten</a>
+            {% else %}
             <a href="{% url 'notes' %}" class="btn btn-fill btn-primary">Schliessen</a>
             <a href="{% url 'edit-note' note.id %}" class="btn btn-fill btn-primary">Bearbeiten</a>
+            {% endif %}
             {% if advisor.email %}
             <a title="Notiz-Inhalt kopieren & E-Mail an Berater senden"
                href="mailto:{{advisor.email}}?subject=Geteilte Notiz: {{note.title}} &body=Bitte deine Notiz hierhin kopieren"

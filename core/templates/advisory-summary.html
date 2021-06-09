@@ -70,7 +70,7 @@
                     <i class="tim-icons icon-notes"></i> <span class="more"> {{note.title}} </span>
                 </div>
                 <div class="details card" id="{{note.id}}" style="display:none;">
-                    <a href="{% url 'view-note' note.id %}"> {{ note.text|safe}}
+                    <a href="{% url 'view-note' note.id %}?next={{ request.path }}"> {{ note.text|safe}}
                         <hr>
                         <p>Erstellt am: {{ note.evt_created|date:"d.m.Y"}} </p>
                         <p>Zu erledigen bis: {{ note.due_date|date:"d.m.Y"}} </p>

@@ -134,7 +134,6 @@ class EditNoteView(LoginRequiredMixin, generic.UpdateView):
     model = Notes
     template_name = 'edit-note.html'
     form_class = CreateNoteForm
-    success_url = reverse_lazy('notes')
 
     def get_initial(self):
         initial = super(generic.UpdateView, self).get_initial()
@@ -146,6 +145,9 @@ class EditNoteView(LoginRequiredMixin, generic.UpdateView):
         if not obj.person == self.request.user:
             raise PermissionDenied("Du bist nicht berechtigt, diese Notiz zu bearbeiten.")
         return obj
+
+    def get_success_url(self):
+        return self.request.GET.get('next', reverse_lazy('notes')) #redirect to url stored in param 'next'
 
 
 class ViewNoteView(LoginRequiredMixin, generic.DetailView):

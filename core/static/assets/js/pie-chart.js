@@ -8,7 +8,7 @@ let myChart = document.getElementById('current-allocation-pie');
 
 if(myChart !== null) {
     myChart =  myChart.getContext('2d')
-    let massPopChart = new Chart(myChart, {
+    new Chart(myChart, {
       type:'pie', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
       data:{
         labels:['Anleihen', 'Liquidität', 'Aktien', 'Alternative Anlagen'],
