@@ -22,10 +22,10 @@ This is the high-fidelity prototype developed for the Master's Thesis at Univers
 
 ## Demo
 
-> To authenticate use the default credentials ***jara / Masterarbeit*** or create a new user. Be aware however, that a new user possibly doesnt have any advisory sessions.
+> To authenticate use the default credentials ***jara / Masterarbeit*** or create a new user. Be aware however, that a new user doesn't have any advisory sessions.
 
 - [Login Page](https://fincon-agent.herokuapp.com/)
-- The page is hosted on Heroku, using Amazon Webservices.
+- The page is hosted on Heroku.
 
 <br />
 
@@ -80,10 +80,10 @@ At present, Firefox and Google Chrome are supported.
 
 ## Responsiveness
 
-Generally, all functionalities are implemented and designed for desktops. Hence, the mobile version is not fully supported.
+Generally, all functionalities are implemented and designed for a web application. Hence, the mobile version is not fully supported.
 
 Nevertheless, the navigation with the side- and topbar as well as the main pages are indeed responsive on smartphones.
-(References: iPhone 6/7/8 iOs 11 (375 x 667), Notebook (1280 x 578) and Monitor (1920 x 937))
+(Supported References: iPhone 6/7/8 iOs 11 (375 x 667), Notebook (1280 x 578) and Monitor (1920 x 937)). If design issues occur, please try to resize the window to the given parameters and check whether the issue disappears.
 <br />
 
 ## Resources
