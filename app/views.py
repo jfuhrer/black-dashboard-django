@@ -115,7 +115,8 @@ class CreateNoteView(LoginRequiredMixin, generic.CreateView):
         return initial
 
     def get_success_url(self):
-        return self.request.GET.get('next', reverse_lazy('notes')) #redirect to url stored in param 'next'
+        # redirect to url stored in param 'next'
+        return self.request.GET.get('next', reverse_lazy('notes'))
 
     def form_valid(self, form):
         form.instance.person = self.request.user
@@ -147,7 +148,8 @@ class EditNoteView(LoginRequiredMixin, generic.UpdateView):
         return obj
 
     def get_success_url(self):
-        return self.request.GET.get('next', reverse_lazy('notes')) #redirect to url stored in param 'next'
+        # redirect to url stored in param 'next'
+        return self.request.GET.get('next', reverse_lazy('notes'))
 
 
 class ViewNoteView(LoginRequiredMixin, generic.DetailView):
@@ -278,10 +280,22 @@ def index(request):
             print('user cannot be found', userId)
             raise Http404
 
-        # if wanted get advisor name by this model
-        #advisors = BankEmployees.objects.all()
+        try:
+            # or via API
+            # user = services.getProfile(self.request)
+            user = UserProfile.objects.get(user=request.user)
+            try:
+                advisor = BankEmployees.objects.get(pk=user.advisor_id)
+                context['advisor'] = advisor
+
+            except BankEmployees.DoesNotExist:
+                advisor = None
+
+        except UserProfile.DoesNotExist:
+            user = None
 
         advisories = AdvisorySession.objects.filter(person_id=userId).order_by('-date')
+
         # or via API
         # advisories = services.getEvents(self.request)
         # context['advisors'] = advisors
