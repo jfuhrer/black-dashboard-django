@@ -63,8 +63,8 @@
 }
 
 ::selection {
-  color: var(--gray);
-  background: var(--lighter);
+  color: var(--white);
+  background: var(--light);
 }
 
 html {
