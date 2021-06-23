@@ -9,21 +9,28 @@
 {% block content %}
 
 <div class="row">
-    <div class="col-md-8">
-        <div class="card profile">
-            <div class="card-header ">
-                <h3 class="title d-inline">Kundenprofil</h3>
-            </div>
+        <div class="col-md-4">
+        <div class="card card-user">
             <div class="card-body">
-                <div class="user-details"><b>Benutzername / Kundennummer</b> <br> {{ request.user.username }}</div>
-                <br>
-                <div class="user-details"><b>Name</b> <br>{{ request.user.first_name }} {{ request.user.last_name }}
+                <p class="card-text">
+                <div class="author">
+                    <div class="block block-one"></div>
+                    <div class="block block-two"></div>
+                    <div class="block block-three"></div>
+                    <div class="block block-four"></div>
+                    <img class="avatar" src="{% static 'assets/img/anime6.png' %}" alt="Photo of Advisor">
+                    <h5 class="title">Dein Kundenprofil</h5>
+                    <p class="description"> {{ request.user.first_name }} {{ request.user.last_name }} </p>
                 </div>
-                <br>
-                <div class="user-details"><b>E-Mail</b><br> {{ request.user.email }}</div>
+                <div class="card-description">
+                    <i class="tim-icons icon-badge" style="padding-right: 5px;" title="username / client no."></i> {{ request.user.username }} <br>
+                    <i class="tim-icons icon-email-85" style="padding-right: 5px;" title="email"></i> {{ request.user.email }}<br>
+                    <i class="tim-icons icon-headphones" style="padding-right: 5px;" title="phone no."></i> 079 123 44 55<br>
+                </div>
             </div>
         </div>
     </div>
+
     <div class="col-md-4">
         <div class="card card-user">
             <div class="card-body">
@@ -38,8 +45,8 @@
                     <p class="description"> Alexander Huber </p>
                 </div>
                 <div class="card-description">
-                    <i class="tim-icons icon-email-85" style="padding-right: 5px;"></i> alex.huber@bank.ch <br>
-                    <i class="tim-icons icon-headphones" style="padding-right: 5px;"></i> 044 123 44 67
+                    <i class="tim-icons icon-email-85" style="padding-right: 5px;" title="email"></i> alex.huber@bank.ch <br>
+                    <i class="tim-icons icon-headphones" style="padding-right: 5px;" title="phone no."></i> 044 123 44 67
                 </div>
             </div>
         </div>
