@@ -79,6 +79,11 @@ body {
     background: var(--duskyPink) !important
 }
 
+/* today box */
+.today {
+    background: var(--primary) !important;
+}
+
 /* advisory box */
 .timeline ul li div.timeline-advisory {
   position: relative;
@@ -124,6 +129,14 @@ body {
 }
 
 /*triangle advisory*/
+.timeline ul li:nth-child(even) div::before {
+  right: -15px;
+  border-width: 8px 0 8px 16px;
+  border-color: transparent transparent transparent var(--secondary);
+}
+
+
+/*triangle next*/
 .timeline ul li:nth-child(odd) div.next-advisory::before {
   left: -15px;
   border-width: 8px 16px 8px 0;
@@ -131,19 +144,13 @@ body {
 }
 
 
-/*triangle next*/
-.timeline ul li:nth-child(even) div::before {
+/*triangle today*/
+.timeline ul li:nth-child(even) div.today::before {
   right: -15px;
   border-width: 8px 0 8px 16px;
-  border-color: transparent transparent transparent var(--secondary);
+  border-color: transparent transparent transparent var(--primary);
 }
 
-/*triangle next*/
-.timeline ul li:nth-child(even) div.next-advisory::before {
-  right: -15px;
-  border-width: 8px 0 8px 16px;
-  border-color: transparent transparent transparent var(--duskyPink);
-}
 
 /*triangle event*/
 .timeline ul li:nth-child(even) div.timeline-event::before {
@@ -191,6 +198,11 @@ body {
 /* bullet next advisory*/
 .timeline ul li.bullet-next-advisory.in-view::after {
   background: var(--duskyPink);
+}
+
+/* bullet today*/
+.timeline ul li.bullet-today.in-view::after {
+  background: var(--primary);
 }
 
 /* bullet event*/
@@ -254,6 +266,13 @@ body {
      left: -15px;
      border-width: 8px 16px 8px 0;
      border-color: transparent var(--third) transparent transparent;
+    }
+
+    /*triangle today*/
+   .timeline ul li:nth-child(even) div.today::before {
+     left: -15px;
+     border-width: 8px 16px 8px 0;
+     border-color: transparent var(--primary) transparent transparent;
     }
 
   .timeline-text {

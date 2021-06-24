@@ -16,36 +16,59 @@
             <div class="timeline-advisory next-advisory">
                 <a href="{% url 'advisory-summary' advisory.id %}">
                     <p class="timeline-title"> {{advisory.title}}</p>
-                    <p class="timeline-text"><i class="tim-icons icon-square-pin advisory-icon"></i> {{advisory.date|date:"d.m.Y H:i" }} Uhr, {{advisory.place}}</p>
-                    <p class="timeline-text"><i class="tim-icons icon-single-02 advisory-icon"></i>{{advisory.advisor_name}}</p>
-                    <p class="timeline-text"><i class="tim-icons icon-bullet-list-67 advisory-icon" title="Agenda"></i>{{advisory.agenda}} </p>
+                    <p class="timeline-text"><i class="tim-icons icon-square-pin advisory-icon"></i>
+                        {{advisory.date|date:"d.m.Y H:i" }} Uhr, {{advisory.place}}</p>
+                    <p class="timeline-text"><i class="tim-icons icon-single-02 advisory-icon"></i>{{advisory.advisor_name}}
+                    </p>
+                    <p class="timeline-text"><i class="tim-icons icon-bullet-list-67 advisory-icon" title="Agenda"></i>{{advisory.agenda}}
+                    </p>
                 </a>
-                <a href={{advisory.overview}} class="meeting-link" title="Zoom Link"> <i class="tim-icons icon-tv-2 advisory-icon"></i>
+                <a href={{advisory.overview}} class="meeting-link" title="Zoom Link"> <i
+                        class="tim-icons icon-tv-2 advisory-icon"></i>
                     Zoom Meeting beitreten
                 </a>
             </div>
         </li>
         {% elif advisory.type == "advisory" %}
-        <li>
-            <a href="{% url 'advisory-summary' advisory.id %}">
-                <div class="timeline-advisory">
-                    <p class="timeline-title"> {{advisory.title}}</p>
-                    <p class="timeline-text"> <i class="tim-icons icon-bullet-list-67 advisory-icon" title="Key Take Away"></i>{{advisory.overview}}</p>
-                    {% if advisory.hot_leads|length > 0 %}
-                    <p class="timeline-text"><i class="tim-icons icon-zoom-split advisory-icon" title="Hot Leads"></i>{{advisory.hot_leads}}</p>
-                    {% endif %}
+        {% if advisory.title == "Heute" %}
+        <li class="bullet-today">
+            <a href="/investor-profile">
+                <div class="timeline-advisory today">
+                    <p class="timeline-title"> {{advisory.title}},
+                        <script> document.write(new Date().toLocaleDateString()); </script>
+                    </p>
+                      <p class="timeline-text"><i class="tim-icons icon-chart-pie-36 advisory-icon"
+                                                title="Anlegerprofil"></i> Strategie Wachstum</p>
                 </div>
             </a>
         </li>
         {% else %}
+        <li>
+            <a href="{% url 'advisory-summary' advisory.id %}">
+                <div class="timeline-advisory">
+                    <p class="timeline-title"> {{advisory.title}}</p>
+                    <p class="timeline-text"><i class="tim-icons icon-bullet-list-67 advisory-icon"
+                                                title="Key Take Away"></i>{{advisory.overview}}</p>
+                    {% if advisory.hot_leads|length > 0 %}
+                    <p class="timeline-text"><i class="tim-icons icon-zoom-split advisory-icon" title="Hot Leads"></i>{{advisory.hot_leads}}
+                    </p>
+                    {% endif %}
+                </div>
+            </a>
+        </li>
+        {% endif %}
+        {% else %}
         <li class="bullet-timeline-event">
             <a href="{% url 'advisory-summary' advisory.id %}">
-                  <div class="timeline-event">
+                <div class="timeline-event">
                     <p class="timeline-title"> {{advisory.title}}</p>
-                    <p class="timeline-text"><i class="tim-icons icon-square-pin advisory-icon"></i>{{advisory.date|date:"d.m.Y"}}</p>
-                    <p class="timeline-text"><i class="tim-icons icon-single-02 advisory-icon"></i>Mit {{advisory.advisor_name}}</p>
-                    <p class="timeline-text"><i class="tim-icons icon-bullet-list-67 advisory-icon" title="Inhalt"></i>{{advisory.overview}}</p>
-                  </div>
+                    <p class="timeline-text"><i class="tim-icons icon-square-pin advisory-icon"></i>{{advisory.date|date:"d.m.Y"}}
+                    </p>
+                    <p class="timeline-text"><i class="tim-icons icon-single-02 advisory-icon"></i>Mit
+                        {{advisory.advisor_name}}</p>
+                    <p class="timeline-text"><i class="tim-icons icon-bullet-list-67 advisory-icon" title="Inhalt"></i>{{advisory.overview}}
+                    </p>
+                </div>
             </a>
         </li>
         {% endif %}
@@ -57,12 +80,12 @@
             <h3 class="title d-inline"> Tut uns leid, du hast noch keine Beratungen bei uns gehabt.</h3>
         </div>
         <div class="card-body" style="color: var(--black-blue)">
-        Möchtest du einen Termin vereinbaren? Kontaktiere uns: <br> <br>
+            Möchtest du einen Termin vereinbaren? Kontaktiere uns: <br> <br>
             <button type="submit" name="safe" class="btn btn-fill btn-primary"
-                        onclick="location.href='mailto:{{advisor.email}}?subject=Termin vereinbaren';"
-                        title="Termin vereinbaren">
-                    Termin vereinbaren
-                </button>
+                    onclick="location.href='mailto:{{advisor.email}}?subject=Termin vereinbaren';"
+                    title="Termin vereinbaren">
+                Termin vereinbaren
+            </button>
         </div>
     </div>
     {% endif %}
