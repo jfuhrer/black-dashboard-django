@@ -22,7 +22,7 @@ if(myChart !== null) {
             7000
           ],
           backgroundColor:[
-            'rgba(247, 171, 171)', // duskyPink
+            'rgba(242, 189, 189)', // duskyPink
             'rgba(145, 156, 130)', // olivegreen secondary
             'rgba(201, 192, 177)', // beige third
             'rgba(88, 168, 168)' // softCyan
@@ -89,7 +89,7 @@ if(toBeChart !== null) {
                 },
                 {
                     label: "SOLL",
-                    backgroundColor: 'rgba(247, 171, 171)', // duskyPink
+                    backgroundColor: 'rgba(242, 189, 189)', // duskyPink
                     data: [
                       3000,
                       10000,
@@ -150,7 +150,7 @@ if(strategyComparisonChart !== null) {
                     fill: false,
                     label: "Festverzinslich",
                     borderColor: 'rgba(223, 184, 184)',
-                    backgroundColor: 'rgba(247, 171, 171)', // duskyPink
+                    backgroundColor: 'rgba(242, 189, 189)', // duskyPink
                     data: [
                       5000,
                       5200,
